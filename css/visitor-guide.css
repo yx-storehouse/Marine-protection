@@ -1,0 +1,1523 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+  }
+  
+  :root {
+    --primary-color: #0077b6;
+    --secondary-color: #00b4d8;
+    --accent-color: #48cae4;
+    --dark-blue: #03045e;
+    --medium-blue: #023e8a;
+    --light-blue: #caf0f8;
+    --white: #ffffff;
+    --gradient-blue: linear-gradient(135deg, var(--dark-blue), var(--primary-color));
+    --gradient-teal: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--light-blue);
+    color: #333;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: var(--gradient-blue);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+  }
+  
+  .btn:hover::before {
+    left: 100%;
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 119, 182, 0.4);
+  }
+  
+  section {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  h2 {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    color: var(--dark-blue);
+    text-align: center;
+    position: relative;
+  }
+  
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-teal);
+    border-radius: 2px;
+  }
+  
+  p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .wave-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    z-index: 1;
+  }
+  
+  .wave-divider svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 80px;
+  }
+  
+  .wave-divider.white .shape-fill {
+    fill: #ffffff;
+  }
+  
+  .wave-divider.light-blue .shape-fill {
+    fill: var(--light-blue);
+  }
+  
+  .wave-divider.dark-blue .shape-fill {
+    fill: var(--dark-blue);
+  }
+  
+  .wave-divider.medium-blue .shape-fill {
+    fill: var(--medium-blue);
+  }
+  
+  .bg-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+  
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* 导航栏 - 保持原样 */
+  header {
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  header.scrolled {
+    background-color: rgba(3, 4, 94, 0.95);
+    backdrop-filter: blur(10px);
+  }
+  
+  header.scrolled .logo {
+    color: var(--white);
+  }
+  
+  header.scrolled .nav-links a {
+    color: var(--white);
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .logo i {
+    margin-right: 10px;
+    font-size: 2rem;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin-bottom: 0;
+  }
+  
+  .nav-links li {
+    margin-left: 30px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: var(--dark-blue);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-teal);
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  
+  .mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* 英雄区 */
+  .guide-hero {
+    height: 80vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80")
+      no-repeat center center / cover;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+    margin-top: 80px;
+  }
+  
+  .guide-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPjxjaXJjbGUgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjMpIiBjeD0iNSIgY3k9IjUiIHI9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=");
+    opacity: 0.3;
+  }
+  
+  .guide-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+  
+  .guide-hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .guide-hero h1 span {
+    color: var(--accent-color);
+  }
+  
+  .guide-hero p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    animation: fadeInUp 1s ease 0.3s forwards;
+    opacity: 0;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .guide-hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    animation: fadeInUp 1s ease 0.6s forwards;
+    opacity: 0;
+  }
+  
+  .guide-hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    z-index: 1;
+  }
+  
+  .guide-hero-scroll a {
+    color: var(--white);
+    font-size: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .guide-hero-scroll a:hover {
+    color: var(--accent-color);
+  }
+  
+  /* 信息卡片样式 */
+  .info-card {
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    margin-bottom: 30px;
+    transform: translateY(50px);
+    opacity: 0;
+    height: 100%;
+  }
+  
+  .info-card.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .info-card-header {
+    background: var(--gradient-blue);
+    color: var(--white);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .info-card-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .info-card:hover .info-card-header::before {
+    opacity: 1;
+  }
+  
+  .info-card-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .info-card-header h3 i {
+    margin-right: 15px;
+    font-size: 2rem;
+  }
+  
+  .info-card-body {
+    padding: 30px;
+  }
+  
+  /* 开放时间和门票 */
+  .hours-tickets {
+    background-color: var(--white);
+    position: relative;
+  }
+  
+  .hours-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .hours-table th,
+  .hours-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .hours-table th {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+    font-weight: bold;
+  }
+  
+  .hours-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .hours-table tr:hover td {
+    background-color: #f9f9f9;
+  }
+  
+  .special-note {
+    background-color: rgba(255, 247, 214, 0.5);
+    border-left: 4px solid #ffd166;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  
+  .special-note i {
+    color: #ffd166;
+    margin-right: 10px;
+  }
+  
+  /* 票价表格 */
+  .ticket-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .ticket-table th,
+  .ticket-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .ticket-table th {
+    background: var(--gradient-blue);
+    color: var(--white);
+    font-weight: bold;
+  }
+  
+  .ticket-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .ticket-table tr:hover td {
+    background-color: #f9f9f9;
+  }
+  
+  .ticket-price {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+  }
+  
+  .ticket-discount {
+    display: inline-block;
+    background-color: #e63946;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    font-weight: bold;
+  }
+  
+  /* 购票方式 */
+  .ticket-method {
+    background-color: var(--light-blue);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+  
+  .ticket-method:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ticket-method-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2rem;
+    color: var(--white);
+  }
+  
+  .ticket-method h4 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--dark-blue);
+  }
+  
+  /* 交通指南 */
+  .transportation {
+    background-color: var(--light-blue);
+    position: relative;
+  }
+  
+  .transport-option {
+    margin-bottom: 30px;
+  }
+  
+  .transport-option h4 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--dark-blue);
+    display: flex;
+    align-items: center;
+  }
+  
+  .transport-option h4 i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+  }
+  
+  .transport-route {
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .transport-route:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transport-route h5 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+  }
+  
+  .route-steps {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  
+  .route-steps li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+  }
+  
+  .route-steps li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  .route-steps li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+  }
+  
+  .route-steps li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 20px;
+    width: 1px;
+    height: calc(100% - 15px);
+    background-color: var(--accent-color);
+  }
+  
+  /* 停车场信息 */
+  .parking-item {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+  
+  .parking-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .parking-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+  }
+  
+  .parking-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--dark-blue);
+  }
+  
+  .parking-item p {
+    color: #666;
+    margin-bottom: 0;
+  }
+  
+  /* 馆内设施 */
+  .facilities {
+    background-color: var(--white);
+    position: relative;
+  }
+  
+  .facility-card {
+    background-color: var(--light-blue);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+  
+  .facility-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .facility-img {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .facility-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .facility-card:hover .facility-img img {
+    transform: scale(1.1);
+  }
+  
+  .facility-content {
+    padding: 25px;
+  }
+  
+  .facility-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--dark-blue);
+    display: flex;
+    align-items: center;
+  }
+  
+  .facility-content h3 i {
+    margin-right: 10px;
+    color: var(--primary-color);
+  }
+  
+  .facility-content p {
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .facility-details {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .facility-details li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .facility-details li i {
+    margin-right: 10px;
+    color: var(--accent-color);
+  }
+  
+  /* 游览路线 */
+  .tour-routes {
+    background-color: var(--light-blue);
+    position: relative;
+  }
+  
+  .routes-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+  }
+  
+  .route-tab {
+    padding: 12px 25px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--dark-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 10px 10px;
+    position: relative;
+  }
+  
+  .route-tab::before {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--gradient-teal);
+    transition: width 0.3s ease;
+  }
+  
+  .route-tab:hover::before {
+    width: 100%;
+  }
+  
+  .route-tab.active {
+    color: var(--primary-color);
+  }
+  
+  .route-tab.active::before {
+    width: 100%;
+  }
+  
+  .route-content {
+    display: none;
+  }
+  
+  .route-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .route-map {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .route-map-img {
+    width: 100%;
+    height: 400px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .route-map-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .route-point {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .route-point:hover {
+    transform: scale(1.2);
+    background-color: var(--accent-color);
+  }
+  
+  .route-point-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .route-point-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: var(--dark-blue) transparent transparent transparent;
+  }
+  
+  .route-point:hover .route-point-tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: calc(100% + 10px);
+  }
+  
+  .route-timeline {
+    margin-top: 30px;
+    position: relative;
+  }
+  
+  .route-timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-blue);
+    border-radius: 2px;
+  }
+  
+  .route-step {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 30px;
+  }
+  
+  .route-step:last-child {
+    margin-bottom: 0;
+  }
+  
+  .route-step-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+  
+  .route-step-content {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .route-step-content h4 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--dark-blue);
+  }
+  
+  .route-step-content p {
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .route-step-time {
+    display: inline-block;
+    background-color: var(--light-blue);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--dark-blue);
+    font-weight: bold;
+  }
+  
+  .route-step-time i {
+    margin-right: 5px;
+    color: var(--primary-color);
+  }
+  
+  /* 在线购票 */
+  .online-tickets {
+    background-color: var(--white);
+    position: relative;
+  }
+  
+  .ticket-form {
+    background-color: var(--light-blue);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--dark-blue);
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.2);
+    outline: none;
+  }
+  
+  .ticket-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .ticket-info {
+    flex: 1;
+  }
+  
+  .ticket-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--dark-blue);
+  }
+  
+  .ticket-info p {
+    color: #666;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+  
+  .ticket-price-tag {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-right: 20px;
+  }
+  
+  .ticket-quantity {
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantity-btn {
+    width: 35px;
+    height: 35px;
+    background-color: var(--light-blue);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .quantity-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+  }
+  
+  .quantity-input {
+    width: 50px;
+    height: 35px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 0 10px;
+    font-size: 1rem;
+  }
+  
+  .ticket-total {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .total-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-blue);
+  }
+  
+  .total-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  .payment-method {
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    height: 100%;
+  }
+  
+  .payment-method:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-method.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-method-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+  }
+  
+  .payment-method p {
+    margin-bottom: 0;
+    font-weight: bold;
+    color: var(--dark-blue);
+  }
+  
+  /* 地图导航 */
+  .map-navigation {
+    background-color: var(--light-blue);
+    position: relative;
+  }
+  
+  .map-container {
+    height: 500px;
+    background-color: #f5f5f5;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  .map-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    z-index: 2;
+  }
+  
+  .map-overlay h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--dark-blue);
+  }
+  
+  .map-overlay p {
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .map-directions-btn {
+    display: inline-flex;
+    align-items: center;
+    background: var(--gradient-blue);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .map-directions-btn i {
+    margin-right: 10px;
+  }
+  
+  .map-directions-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* 页脚 */
+  footer {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 80px 0 20px;
+    position: relative;
+  }
+  
+  .footer-wave {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2303045e" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .footer-logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .footer-logo i {
+    margin-right: 10px;
+    font-size: 2rem;
+    color: var(--accent-color);
+  }
+  
+  .footer-about p {
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .social-links a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-teal);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  
+  .social-links a:hover::before {
+    opacity: 1;
+  }
+  
+  .social-links a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .footer-links h3,
+  .footer-contact h3,
+  .footer-newsletter h3 {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    color: var(--accent-color);
+    position: relative;
+    padding-bottom: 15px;
+  }
+  
+  .footer-links h3::after,
+  .footer-contact h3::after,
+  .footer-newsletter h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--gradient-teal);
+    border-radius: 2px;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 15px;
+  }
+  
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .footer-links a i {
+    margin-right: 10px;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+  }
+  
+  .footer-links a:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
+  }
+  
+  .contact-info {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .contact-info i {
+    margin-right: 15px;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-top: 5px;
+  }
+  
+  .contact-info-text {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .contact-info-text strong {
+    display: block;
+    color: var(--white);
+    margin-bottom: 5px;
+  }
+  
+  .newsletter-form {
+    display: flex;
+    margin-top: 25px;
+    position: relative;
+  }
+  
+  .newsletter-form input {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    font-size: 1rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .newsletter-form button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    bottom: 5px;
+    padding: 0 20px;
+    background: var(--gradient-teal);
+    color: var(--white);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .newsletter-form button:hover {
+    background: var(--gradient-blue);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  /* 动画 */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0) translateX(-50%);
+    }
+    40% {
+      transform: translateY(-20px) translateX(-50%);
+    }
+    60% {
+      transform: translateY(-10px) translateX(-50%);
+    }
+  }
+  
+  /* 响应式设计 */
+  @media (max-width: 992px) {
+    .guide-hero h1 {
+      font-size: 3.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      position: fixed;
+      top: 80px;
+      left: -100%;
+      width: 100%;
+      height: calc(100vh - 80px);
+      background-color: rgba(255, 255, 255, 0.95);
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 50px;
+      transition: all 0.3s ease;
+      z-index: 999;
+      backdrop-filter: blur(10px);
+    }
+  
+    .nav-links.active {
+      left: 0;
+    }
+  
+    .nav-links li {
+      margin: 20px 0;
+    }
+  
+    .mobile-menu {
+      display: block;
+    }
+  
+    .guide-hero h1 {
+      font-size: 3rem;
+    }
+  
+    .guide-hero-btns {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .route-map-img {
+      height: 300px;
+    }
+  
+    .ticket-selector {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .ticket-price-tag {
+      margin: 10px 0;
+    }
+  
+    .ticket-quantity {
+      width: 100%;
+      justify-content: flex-end;
+    }
+  
+    .map-overlay {
+      position: relative;
+      top: 0;
+      left: 0;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    h2 {
+      font-size: 2.2rem;
+    }
+  
+    .guide-hero h1 {
+      font-size: 2.5rem;
+    }
+  
+    .guide-hero p {
+      font-size: 1.1rem;
+    }
+  
+    .info-card-header h3 {
+      font-size: 1.5rem;
+    }
+  
+    .route-timeline::before {
+      left: 15px;
+    }
+  
+    .route-step {
+      padding-left: 50px;
+    }
+  
+    .route-step-number {
+      width: 30px;
+      height: 30px;
+      font-size: 1rem;
+    }
+  
+    .ticket-total {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .total-price {
+      margin-top: 10px;
+    }
+  }
+  
