@@ -65,23 +65,6 @@
             });
         });
 
-        // 展示区动画
-        const showcaseItems = document.querySelectorAll('.showcase-item');
-
-        function checkScroll() {
-            showcaseItems.forEach(item => {
-                const itemTop = item.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-
-                if (itemTop < windowHeight - 100) {
-                    item.classList.add('show');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', checkScroll);
-        window.addEventListener('load', checkScroll);
-
         // 数字动画
         const statNumbers = document.querySelectorAll('.stat-number');
         let animated = false;
@@ -150,7 +133,7 @@
                 }
             });
         }
--
+
         // 点击上一张按钮
         prevBtn.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + totalItems) % totalItems; // 索引向前移动一位，使用模运算确保结果为正数
@@ -255,75 +238,62 @@
             }
         ];
 
-        // 点击轮播图项目打开弹窗
-        document.querySelectorAll('.arc-carousel-item-inner').forEach(item => { //选择元素后执行回调函数
-            item.addEventListener('click', function () {
-                const id = parseInt(this.parentElement.getAttribute('data-id')); //获取data-id后转换为整数类型
-                const marineInfo = marineData.find(item => item.id === id); //通过id查找对应的marineData
-
-                if (marineInfo) {
-                    //构建弹窗内容
-                    let modalContent = `
-                        <div class="marine-modal-header">
-                            <img src="${marineInfo.image}" alt="${marineInfo.name}">
-                            <div class="marine-modal-header-content">
-                                <h2>${marineInfo.name}</h2>
-                                <p><em>${marineInfo.scientificName}</em></p>
-                            </div>
-                        </div>
-                        <div class="marine-modal-info">
-                            <p>${marineInfo.description}</p>
-                            
-                            <div class="marine-modal-stats">
-                                ${marineInfo.stats.map(stat => `
-                                    <div class="marine-modal-stat">
-                                        <h4>${stat.name}</h4>
-                                        <p>${stat.value}</p>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            
-                            <h3>栖息地</h3>
-                            <p>${marineInfo.habitat}</p>
-                            
-                            <h3>饮食习惯</h3>
-                            <p>${marineInfo.diet}</p>
-                            
-                            <h3>保护状况</h3>
-                            <p>${marineInfo.conservation}</p>
-                            
-                            <div class="marine-modal-gallery">
-                                <div class="marine-modal-gallery-item">
-                                    <img src="${marineInfo.image}" alt="${marineInfo.name} 1">
-                                </div>
-                                <div class="marine-modal-gallery-item">
-                                    <img src="${marineInfo.image.replace('w=1350', 'w=1351')}" alt="${marineInfo.name} 2">
-                                </div>
-                                <div class="marine-modal-gallery-item">
-                                    <img src="${marineInfo.image.replace('w=1350', 'w=1352')}" alt="${marineInfo.name} 3">
-                                </div>
-                            </div>
-                        </div>
-                    `;
-
-                    modalBody.innerHTML = modalContent; //更新弹窗
-                    marineModal.classList.add('active'); //显示弹窗
-                    document.body.style.overflow = 'hidden'; // 防止背景滚动
+        // 为每个轮播图项目添加点击事件
+        arcCarouselItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const id = parseInt(this.getAttribute('data-id'));
+                const marine = marineData.find(m => m.id === id);
+                
+                if (marine) {
+                    showMarineDetails(marine);
                 }
             });
         });
 
+        // 显示海洋生物详情
+        function showMarineDetails(marine) {
+            const content = `
+                <div class="marine-details">
+                    <div class="marine-image">
+                        <img src="${marine.image}" alt="${marine.name}">
+                    </div>
+                    <div class="marine-info">
+                        <h2>${marine.name}</h2>
+                        <p class="scientific-name">${marine.scientificName}</p>
+                        <p class="description">${marine.description}</p>
+                        <div class="marine-stats">
+                            ${marine.stats.map(stat => `
+                                <div class="stat">
+                                    <span class="stat-name">${stat.name}</span>
+                                    <span class="stat-value">${stat.value}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="marine-details-content">
+                            <h3>栖息地</h3>
+                            <p>${marine.habitat}</p>
+                            <h3>饮食习性</h3>
+                            <p>${marine.diet}</p>
+                            <h3>保护现状</h3>
+                            <p>${marine.conservation}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modalBody.innerHTML = content;
+            marineModal.classList.add('active');
+        }
+
         // 关闭弹窗
         modalClose.addEventListener('click', () => {
             marineModal.classList.remove('active');
-            document.body.style.overflow = ''; // 恢复背景滚动
         });
 
-        // 点击弹窗外部关闭弹窗
+        // 点击弹窗外部关闭
         marineModal.addEventListener('click', (e) => {
             if (e.target === marineModal) {
                 marineModal.classList.remove('active');
-                document.body.style.overflow = '';
             }
         });
 
@@ -361,9 +331,6 @@
 
         // 页面加载完成后初始化
         window.addEventListener('load', function () {
-            // 检查展示区动画
-            checkScroll();
-
             // 检查数字动画
             animateNumbers();
 

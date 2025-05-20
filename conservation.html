@@ -8,30 +8,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/conservation.css">
     
 </head>
 
 <body>
-    <!-- 导航栏 -->
-    <header id="header">
-        <div class="container">
-            <nav>
-                <a href="#" class="logo"><i class="fas fa-water"></i>海洋世界</a>
-                <ul class="nav-links">
-                    <li><a href="index.html">首页</a></li>
-                    <li><a href="marine-species.html">海洋生物</a></li>
-                    <li><a href="conservation.html">生态保护</a></li>
-                    <li><a href="science-education.html">科普教育</a></li>
-                    <li><a href="visitor-guide.html" class="active">参观指南</a></li>
-                    <li><a href="about.html">联系我们</a></li>
-                </ul>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
+  <!-- 导航栏 -->
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="#" class="logo" data-aos="fade-right"><i class="fas fa-water"></i>海洋世界</a>
+        <ul class="nav-links">
+          <li data-aos="fade-down" data-aos-delay="100"><a href="index.html">首页</a></li>
+          <li data-aos="fade-down" data-aos-delay="200"><a href="marine-species.html">海洋生物</a></li>
+          <li data-aos="fade-down" data-aos-delay="300"><a href="conservation.html">生态保护</a></li>
+          <li data-aos="fade-down" data-aos-delay="400"><a href="science-education.html">科普教育</a></li>
+          <li data-aos="fade-down" data-aos-delay="500"><a href="visitor-guide.html">参观指南</a></li>
+          <li data-aos="fade-down" data-aos-delay="600"><a href="about.html">关于我们</a></li>
+        </ul>
+        <div class="mobile-menu" data-aos="fade-left">
+          <i class="fas fa-bars"></i>
         </div>
-    </header>
+      </nav>
+    </div>
+  </header>
 
     <!-- 英雄区 -->
     <section class="hero">
@@ -44,7 +48,7 @@
             <div class="floating-icon"><i class="fas fa-tint"></i></div>
         </div>
         <div class="container">
-            <div class="hero-content">
+            <div class="hero-content" data-aos="fade-up">
                 <h1>守护蔚蓝 <span>拯救海洋</span></h1>
                 <p>海洋是地球的命脉，覆盖了地球表面的71%。每一片海洋都孕育着丰富的生命，维持着地球的生态平衡。现在，它们比以往任何时候都更需要我们的保护。</p>
                 <div class="hero-buttons">
@@ -59,10 +63,10 @@
     <!-- 海洋现状部分 -->
     <section class="section ocean-status" id="status">
         <div class="container">
-            <h2 class="section-title">海洋现状</h2>
-            <p class="section-subtitle">全球海洋正面临数千年来最严峻的挑战，从污染到过度捕捞，从气候变化到栖息地丧失，海洋生态系统正在快速恶化。</p>
+            <h2 class="section-title" data-aos="fade-up">海洋现状</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">全球海洋正面临数千年来最严峻的挑战，从污染到过度捕捞，从气候变化到栖息地丧失，海洋生态系统正在快速恶化。</p>
             <div class="status-grid">
-                <div class="status-card">
+                <div class="status-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="status-icon">
                         <i class="fas fa-trash-alt"></i>
                     </div>
@@ -73,7 +77,7 @@
                         <div class="status-stat-desc">万吨塑料每年进入海洋</div>
                     </div>
                 </div>
-                <div class="status-card">
+                <div class="status-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="status-icon">
                         <i class="fas fa-fish"></i>
                     </div>
@@ -84,7 +88,7 @@
                         <div class="status-stat-desc">%的鱼类种群被过度捕捞</div>
                     </div>
                 </div>
-                <div class="status-card">
+                <div class="status-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="status-icon">
                         <i class="fas fa-temperature-high"></i>
                     </div>
@@ -103,10 +107,10 @@
     <!-- 威胁部分 -->
     <section class="section threats" id="threats">
         <div class="container">
-            <h2 class="section-title">主要威胁</h2>
-            <p class="section-subtitle">海洋生态环境面临的威胁是多方面的，每一种威胁都在不同程度上危害着海洋生态系统的健康。</p>
+            <h2 class="section-title" data-aos="fade-up">主要威胁</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">海洋生态环境面临的威胁是多方面的，每一种威胁都在不同程度上危害着海洋生态系统的健康。</p>
             <div class="threats-container">
-                <div class="threat-item">
+                <div class="threat-item" data-aos="fade-up" data-aos-delay="200">
                     <div class="threat-image">
                         <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                             alt="海洋污染">
@@ -130,7 +134,7 @@
                 <div class="threat-item">
                     <div class="threat-image">
                         <img src="https://ts1.tc.mm.bing.net/th/id/R-C.f1d9c07b1867787d2dc09ff5ec7f00a5?rik=c7VPSzGOiJVTwQ&riu=http%3a%2f%2faoc.ouc.edu.cn%2f_upload%2farticle%2fimages%2f81%2f62%2f6e779cca4f02a0253f3791bc285b%2fff821a5c-e9f9-47d5-8e9f-f9978fe549d2_d.jpg&ehk=qzCVpxLRMPHLBQKOBlwlJEzQx51KRgSVYXTV09Qbwug%3d&risl=&pid=ImgRaw&r=0"
-                            alt="过度捕捞">
+                        alt="过度捕捞">
                     </div>
                     <div class="threat-content">
                         <h3>过度捕捞</h3>
@@ -151,7 +155,7 @@
                 <div class="threat-item">
                     <div class="threat-image">
                         <img src="https://ts1.tc.mm.bing.net/th/id/R-C.cab7c02ae1ec55993bab0b0fdbf4b25a?rik=X4NTlBnaz98bpA&riu=http%3a%2f%2fwww.geog.com.cn%2farticle%2f2021%2f0375-5444%2f0375-5444-76-8-1895%2fimg_2.png&ehk=TcUwKoSe1XlSM6FZvCeCWdfyL3tyPzBsA0wrpnjqD%2fQ%3d&risl=&pid=ImgRaw&r=0"
-                            alt="气候变化">
+                        alt="气候变化">
                     </div>
                     <div class="threat-content">
                         <h3>气候变化</h3>
@@ -172,7 +176,7 @@
                 <div class="threat-item">
                     <div class="threat-image">
                         <img src="https://ts1.tc.mm.bing.net/th/id/R-C.15795203a916e7de0a099434d59c6015?rik=g6eCB1UdeBUZ6Q&riu=http%3a%2f%2fp0.ifengimg.com%2fpmop%2f2018%2f0323%2fE77EC5596113823B11725C7F363AD7CD71140A78_size64_w630_h464.jpeg&ehk=IqLsnl8xIVO483ASvoYbonsUCrGkI6hWBONi0C2Zr0g%3d&risl=&pid=ImgRaw&r=0"
-                            alt="栖息地丧失">
+                        alt="栖息地丧失">
                     </div>
                     <div class="threat-content">
                         <h3>栖息地丧失</h3>
@@ -207,10 +211,10 @@
     <section class="section importance" id="importance">
         <div class="parallax-bg"></div>
         <div class="container">
-            <h2 class="section-title">保护海洋的重要性</h2>
-            <p class="section-subtitle">海洋不仅是地球上最大的生态系统，也是人类生存和发展的重要支撑。保护海洋生态环境对于维护地球生态平衡和人类可持续发展具有重要意义。</p>
+            <h2 class="section-title" data-aos="fade-up">保护海洋的重要性</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">海洋不仅是地球上最大的生态系统，也是人类生存和发展的重要支撑。保护海洋生态环境对于维护地球生态平衡和人类可持续发展具有重要意义。</p>
             <div class="importance-grid">
-                <div class="importance-card">
+                <div class="importance-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="importance-icon">
                         <i class="fas fa-lungs"></i>
                     </div>
@@ -250,9 +254,9 @@
     <!-- 保护项目部分 -->
     <section class="section projects" id="projects">
         <div class="container">
-            <h2 class="section-title">我们的保护项目</h2>
-            <p class="section-subtitle">海洋世界水族馆积极参与各种海洋保护项目，致力于通过研究、教育和实际行动保护海洋生态环境。</p>
-            <div class="project-tabs">
+            <h2 class="section-title" data-aos="fade-up">我们的保护项目</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">海洋世界水族馆积极参与各种海洋保护项目，致力于通过研究、教育和实际行动保护海洋生态环境。</p>
+            <div class="project-tabs" data-aos="fade-up" data-aos-delay="200">
                 <button class="project-tab active" data-tab="all">全部项目</button>
                 <button class="project-tab" data-tab="research">科学研究</button>
                 <button class="project-tab" data-tab="rescue">救助与康复</button>
@@ -261,7 +265,7 @@
             </div>
             <div class="project-content active" id="all">
                 <div class="project-grid">
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="300">
                         <div class="project-image">
                             <img src="https://ts1.tc.mm.bing.net/th/id/R-C.c6ba58cfdfb037d2802fa3132ee45505?rik=o9SI8lAGMgJ2Sw&riu=http%3a%2f%2fwww.cafs.ac.cn%2f__local%2fC%2f6B%2fA5%2f8CFDFB037D2802FA3132EE45505_6E83247F_15D0B5.png&ehk=aHNh5%2fgGC9KV%2bbrtKee90Ixv%2fq98d%2fpiNGJbUxATBMM%3d&risl=&pid=ImgRaw&r=0"
                                 alt="鲸类研究项目">
@@ -278,7 +282,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="400">
                         <div class="project-image">
                             <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.PNSDwTYqFSFqIEyd0ptnqQHaFI?cb=iwc2&rs=1&pid=ImgDetMain"
                                 alt="海龟救助项目">
@@ -295,7 +299,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="500">
                         <div class="project-image">
                             <img src="https://n.sinaimg.cn/spider20220921/439/w708h531/20220921/bf49-aef992373b3bab249696845a44baaac9.jpg"
                                 alt="珊瑚礁修复项目">
@@ -312,7 +316,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="600">
                         <div class="project-image">
                             <img src="https://www.sony.com.cn/content/sonyportal_csr/Environment/OBOP/_jcr_content/root/responsivegrid/image_715189842/image.img.jpg/1644554397291.jpg"
                                 alt="海洋垃圾清理项目">
@@ -329,7 +333,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="700">
                         <div class="project-image">
                             <img src="https://ts1.tc.mm.bing.net/th/id/R-C.dd57d35c2eb5620a3bee6419af205bf3?rik=U5tn32ld6EM8Iw&riu=http%3a%2f%2fwww.ecsf.ac.cn%2f__local%2fD%2fD5%2f7D%2f35C2EB5620A3BEE6419AF205BF3_3CA5F45A_FDD7C.jpg&ehk=ydYqsi07RA7a41BO3yFyJfaBBsA0akl3Ut0Bk0EzUfU%3d&risl=&pid=ImgRaw&r=0"
                                 alt="海洋教育项目">
@@ -346,7 +350,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="800">
                         <div class="project-image">
                             <img src="https://p8.itc.cn/q_70/images03/20220214/5254ed5152fc42a695a9f98c497fc07b.png"
                                 alt="可持续渔业项目">
@@ -368,7 +372,7 @@
             <div class="project-content" id="research">
                 <!-- 科学研究项目内容 -->
                 <div class="project-grid">
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="300">
                         <div class="project-image">
                             <img src="https://ts1.tc.mm.bing.net/th/id/R-C.c6ba58cfdfb037d2802fa3132ee45505?rik=o9SI8lAGMgJ2Sw&riu=http%3a%2f%2fwww.cafs.ac.cn%2f__local%2fC%2f6B%2fA5%2f8CFDFB037D2802FA3132EE45505_6E83247F_15D0B5.png&ehk=aHNh5%2fgGC9KV%2bbrtKee90Ixv%2fq98d%2fpiNGJbUxATBMM%3d&risl=&pid=ImgRaw&r=0"
                                 alt="鲸类研究项目">
@@ -385,7 +389,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="400">
                         <div class="project-image">
                             <img src="https://p8.itc.cn/q_70/images03/20220214/5254ed5152fc42a695a9f98c497fc07b.png"
                                 alt="可持续渔业项目">
@@ -402,7 +406,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="500">
                         <div class="project-image">
                             <img src="https://p8.itc.cn/q_70/images03/20220214/5254ed5152fc42a695a9f98c497fc07b.png"
                                 alt="海洋生物基因组计划">
@@ -424,7 +428,7 @@
             <div class="project-content" id="rescue">
                 <!-- 救助与康复项目内容 -->
                 <div class="project-grid">
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="300">
                         <div class="project-image">
                             <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.PNSDwTYqFSFqIEyd0ptnqQHaFI?cb=iwc2&rs=1&pid=ImgDetMain"
                                 alt="海龟救助项目">
@@ -441,7 +445,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="400">
                         <div class="project-image">
                             <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.PNSDwTYqFSFqIEyd0ptnqQHaFI?cb=iwc2&rs=1&pid=ImgDetMain"
                                 alt="搁浅海洋哺乳动物救援">
@@ -458,7 +462,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="500">
                         <div class="project-image">
                             <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.PNSDwTYqFSFqIEyd0ptnqQHaFI?cb=iwc2&rs=1&pid=ImgDetMain"
                                 alt="海鸟救助站">
@@ -480,7 +484,7 @@
             <div class="project-content" id="habitat">
                 <!-- 栖息地保护项目内容 -->
                 <div class="project-grid">
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="300">
                         <div class="project-image">
                             <img src="https://n.sinaimg.cn/spider20220921/439/w708h531/20220921/bf49-aef992373b3bab249696845a44baaac9.jpg"
                                 alt="珊瑚礁修复项目">
@@ -497,7 +501,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="400">
                         <div class="project-image">
                             <img src="https://www.sony.com.cn/content/sonyportal_csr/Environment/OBOP/_jcr_content/root/responsivegrid/image_715189842/image.img.jpg/1644554397291.jpg"
                                 alt="海洋垃圾清理项目">
@@ -514,7 +518,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="500">
                         <div class="project-image">
                             <img src="https://n.sinaimg.cn/spider20220921/439/w708h531/20220921/bf49-aef992373b3bab249696845a44baaac9.jpg"
                                 alt="红树林保护与恢复">
@@ -536,7 +540,7 @@
             <div class="project-content" id="education">
                 <!-- 教育宣传项目内容 -->
                 <div class="project-grid">
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="300">
                         <div class="project-image">
                             <img src="https://ts1.tc.mm.bing.net/th/id/R-C.dd57d35c2eb5620a3bee6419af205bf3?rik=U5tn32ld6EM8Iw&riu=http%3a%2f%2fwww.ecsf.ac.cn%2f__local%2fD%2fD5%2f7D%2f35C2EB5620A3BEE6419AF205BF3_3CA5F45A_FDD7C.jpg&ehk=ydYqsi07RA7a41BO3yFyJfaBBsA0akl3Ut0Bk0EzUfU%3d&risl=&pid=ImgRaw&r=0"
                                 alt="海洋教育项目">
@@ -553,7 +557,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="400">
                         <div class="project-image">
                             <img src="https://ts1.tc.mm.bing.net/th/id/R-C.dd57d35c2eb5620a3bee6419af205bf3?rik=U5tn32ld6EM8Iw&riu=http%3a%2f%2fwww.ecsf.ac.cn%2f__local%2fD%2fD5%2f7D%2f35C2EB5620A3BEE6419AF205BF3_3CA5F45A_FDD7C.jpg&ehk=ydYqsi07RA7a41BO3yFyJfaBBsA0akl3Ut0Bk0EzUfU%3d&risl=&pid=ImgRaw&r=0"
                                 alt="海洋保护展览">
@@ -570,7 +574,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="500">
                         <div class="project-image">
                             <img src="https://ts1.tc.mm.bing.net/th/id/R-C.dd57d35c2eb5620a3bee6419af205bf3?rik=U5tn32ld6EM8Iw&riu=http%3a%2f%2fwww.ecsf.ac.cn%2f__local%2fD%2fD5%2f7D%2f35C2EB5620A3BEE6419AF205BF3_3CA5F45A_FDD7C.jpg&ehk=ydYqsi07RA7a41BO3yFyJfaBBsA0akl3Ut0Bk0EzUfU%3d&risl=&pid=ImgRaw&r=0"
                                 alt="海洋保护公众参与计划">
@@ -595,10 +599,10 @@
     <!-- 保护建议部分 -->
     <section class="section tips" id="tips">
         <div class="container tips-container">
-            <h2 class="section-title">海洋保护行动指南</h2>
-            <p class="section-subtitle">每个人都可以为保护海洋生态环境做出贡献。以下是一些简单但有效的行动建议，帮助您在日常生活中保护海洋。</p>
+            <h2 class="section-title" data-aos="fade-up">海洋保护行动指南</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">每个人都可以为保护海洋生态环境做出贡献。以下是一些简单但有效的行动建议，帮助您在日常生活中保护海洋。</p>
             <div class="tips-grid">
-                <div class="tip-card">
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="tip-header">
                         <div class="tip-icon">
                             <i class="fas fa-shopping-bag"></i>
@@ -613,7 +617,7 @@
                         <a href="#" class="tip-action">查看详细指南 <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="tip-card">
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="tip-header">
                         <div class="tip-icon">
                             <i class="fas fa-fish"></i>
@@ -628,7 +632,7 @@
                         <a href="#" class="tip-action">下载海鲜指南 <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="tip-card">
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="tip-header">
                         <div class="tip-icon">
                             <i class="fas fa-tint-slash"></i>
@@ -643,7 +647,7 @@
                         <a href="#" class="tip-action">了解更多节水技巧 <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="tip-card">
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="tip-header">
                         <div class="tip-icon">
                             <i class="fas fa-broom"></i>
@@ -669,10 +673,10 @@
     <!-- 捐赠部分 -->
     <section class="section donation" id="donation">
         <div class="container">
-            <h2 class="section-title">支持我们的保护工作</h2>
-            <p class="section-subtitle">您的捐赠将直接用于支持我们的海洋保护项目，包括科学研究、栖息地保护、救助康复和教育宣传工作。</p>
+            <h2 class="section-title" data-aos="fade-up">支持我们的保护工作</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">您的捐赠将直接用于支持我们的海洋保护项目，包括科学研究、栖息地保护、救助康复和教育宣传工作。</p>
             <div class="donation-container">
-                <div class="donation-content">
+                <div class="donation-content" data-aos="fade-right">
                     <p>海洋世界水族馆是一个非营利组织，我们的保护工作主要依靠公众的捐赠支持。无论金额大小，每一笔捐款都对我们的工作至关重要。</p>
                     <p>您的捐赠将用于：</p>
                     <ul>
@@ -720,7 +724,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="donation-form-container">
+                <div class="donation-form-container" data-aos="fade-left" data-aos-delay="200">
                     <form class="donation-form">
                         <h3>捐赠表单</h3>
                         <div class="form-group">
@@ -764,7 +768,7 @@
     <section class="section volunteer" id="volunteer">
         <div class="container">
             <div class="volunteer-container">
-                <div class="volunteer-content">
+                <div class="volunteer-content" data-aos="fade-right">
                     <h2 class="section-title">成为志愿者</h2>
                     <p>志愿者是我们海洋保护工作的重要力量。无论您是学生、专业人士还是退休人员，只要您热爱海洋，愿意为海洋保护贡献时间和精力，都可以成为我们的志愿者。</p>
                     <p>作为志愿者，您将有机会：</p>
@@ -778,7 +782,7 @@
                     <p>我们提供专业培训和指导，帮助您掌握必要的知识和技能。加入我们，一起为保护海洋生态环境贡献力量！</p>
                     <a href="#" class="btn btn-accent"><i class="fas fa-user-plus"></i> 申请成为志愿者</a>
                 </div>
-                <div class="volunteer-opportunities">
+                <div class="volunteer-opportunities" data-aos="fade-left" data-aos-delay="200">
                     <h3>当前志愿机会</h3>
                     <div class="opportunity-card">
                         <h4 class="opportunity-title">海滩清理志愿者</h4>
@@ -848,18 +852,18 @@
         <div class="footer-wave"></div>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-about">
+                <div class="footer-about" data-aos="fade-up">
                     <a href="#" class="footer-logo"><i class="fas fa-water"></i>海洋世界</a>
                     <p>我们致力于通过教育和保护行动，促进海洋生态系统的可持续发展，保护海洋生物多样性。海洋世界水族馆是一个集科普教育、科学研究和生态保护于一体的综合性海洋主题场馆。</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="100"><i class="fab fa-weixin"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="200"><i class="fab fa-weibo"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="300"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="400"><i class="fab fa-youtube"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="500"><i class="fab fa-bilibili"></i></a>
                     </div>
                 </div>
-                <div class="footer-links">
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="100">
                     <h3>快速链接</h3>
                     <ul>
                         <li><a href="#home"><i class="fas fa-chevron-right"></i> 首页</a></li>
@@ -871,7 +875,7 @@
                         <li><a href="#"><i class="fas fa-chevron-right"></i> 参观指南</a></li>
                     </ul>
                 </div>
-                <div class="footer-contact">
+                <div class="footer-contact" data-aos="fade-up" data-aos-delay="200">
                     <h3>联系我们</h3>
                     <div class="contact-info">
                         <i class="fas fa-map-marker-alt"></i>
@@ -898,7 +902,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-newsletter">
+                <div class="footer-newsletter" data-aos="fade-up" data-aos-delay="300">
                     <h3>订阅通讯</h3>
                     <p>订阅我们的电子通讯，获取最新的海洋资讯、保护项目进展和活动信息。我们每月发送一次通讯，您可以随时取消订阅。</p>
                     <form class="newsletter-form">
@@ -907,17 +911,32 @@
                     </form>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 海洋世界水族馆. 保留所有权利.</p>
+            <div class="footer-bottom" data-aos="fade-up" data-aos-delay="400">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 海洋世界水族馆. 保留所有权利.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">隐私政策</a>
+                        <a href="#">使用条款</a>
+                        <a href="#">网站地图</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
 
-
     <!-- JavaScript -->
     <script src="js/conservation.js"></script>
-    
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // 初始化 AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 
 </html>

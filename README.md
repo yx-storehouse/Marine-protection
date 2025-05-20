@@ -17,6 +17,7 @@
 - 交互式3D展示效果
 - 优化的页面加载性能
 - 完善的访客服务系统
+- 流畅的滚动动画效果
 
 ## 技术栈
 - HTML5
@@ -24,6 +25,7 @@
 - JavaScript
 - Swiper.js (轮播组件)
 - Font Awesome (图标库)
+- AOS (Animate On Scroll) - 滚动动画库
 - 响应式设计框架
 
 ## 项目结构

@@ -13,7 +13,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/about.css">
 </head>
 
@@ -21,20 +24,18 @@
   <!-- 导航栏 -->
   <header id="header">
     <div class="container">
-      <nav class="navbar navbar-expand-lg">
-        <a href="#" class="navbar-brand logo"><i class="fas fa-water"></i>海洋世界</a>
-        <button class="navbar-toggler mobile-menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <nav>
+        <a href="#" class="logo" data-aos="fade-right"><i class="fas fa-water"></i>海洋世界</a>
+        <ul class="nav-links">
+          <li data-aos="fade-down" data-aos-delay="100"><a href="index.html">首页</a></li>
+          <li data-aos="fade-down" data-aos-delay="200"><a href="marine-species.html">海洋生物</a></li>
+          <li data-aos="fade-down" data-aos-delay="300"><a href="conservation.html">生态保护</a></li>
+          <li data-aos="fade-down" data-aos-delay="400"><a href="science-education.html">科普教育</a></li>
+          <li data-aos="fade-down" data-aos-delay="500"><a href="visitor-guide.html">参观指南</a></li>
+          <li data-aos="fade-down" data-aos-delay="600"><a href="about.html">关于我们</a></li>
+        </ul>
+        <div class="mobile-menu" data-aos="fade-left">
           <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto nav-links">
-            <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
-            <li class="nav-item"><a class="nav-link" href="marine-species.html">海洋生物</a></li>
-            <li class="nav-item"><a class="nav-link" href="conservation.html">生态保护</a></li>
-            <li class="nav-item"><a class="nav-link" href="science-education.html">科普教育</a></li>
-            <li class="nav-item"><a class="nav-link" href="visitor-guide.html">参观指南</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">关于我们</a></li>
-          </ul>
         </div>
       </nav>
     </div>
@@ -49,8 +50,8 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-              <h1 class="animate-fadeIn">关于 海洋世界</h1>
-              <p class="animate-fadeIn delay-200">
+              <h1 data-aos="fade-up">关于 海洋世界</h1>
+              <p data-aos="fade-up" data-aos-delay="200">
                 我们致力于为游客提供最优质的海洋探索体验，让每一次参观都成为难忘的回忆。
               </p>
             </div>
@@ -63,14 +64,14 @@
     <section class="content-section" id="our-story">
       <div class="container">
         <div class="row align-items-center g-4">
-          <div class="col-md-6 animate-fadeIn">
+          <div class="col-md-6" data-aos="fade-right">
             <h2 class="mb-4 section-title">我们的故事</h2>
             <p class="text-gray-300 mb-3">
               海洋世界水族馆成立于2010年，是由一群热爱海洋的人创立的。我们的创始团队有着共同的愿景：打造一个让游客沉浸在海洋魅力中的场所，不仅仅是参观，更是一种体验。</p>
             <p class="text-gray-300 mb-3">经过多年的发展，海洋世界已经成为城市中最受欢迎的水族馆之一，拥有多个展示区域和先进的设施，为游客提供高品质的参观体验。</p>
             <p class="text-gray-300">我们不断创新，致力于海洋保育和教育，努力满足游客日益增长的需求，让每一位走进海洋世界的游客都能感受到我们的热情和专业。</p>
           </div>
-          <div class="col-md-6 animate-fadeIn delay-200">
+          <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
             <div class="video-container">
               <video class="rounded shadow w-100" controls autoplay muted>
                 <source src="./video/WeChat_20250516100720.mp4" type="video/mp4">
@@ -84,13 +85,15 @@
 
     <!-- 第二个视差部分 -->
     <section class="parallax-section" id="section2">
-      <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1582967788606-a171c1080cb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+      <div class="parallax-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1582967788606-a171c1080cb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+      </div>
       <div class="parallax-content">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-              <h1 class="animate-fadeIn" >发展的历程</h1>
-              <p class="animate-fadeIn delay-200">
+              <h1 data-aos="fade-up">发展的历程</h1>
+              <p data-aos="fade-up" data-aos-delay="200">
                 从创立至今，我们不断成长与创新
               </p>
             </div>
@@ -102,46 +105,46 @@
     <!-- 发展历程部分 -->
     <section class="content-section" id="history">
       <div class="container">
-        <h2 class="mb-5 text-center section-title">发展历程</h2>
+        <h2 class="mb-5 text-center section-title" data-aos="fade-up">发展历程</h2>
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <div class="timeline">
-              <div class="timeline-item">
+              <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                   <h3 class="text-blue-300 fw-bold">2010年</h3>
                   <p class="text-gray-300">海洋世界水族馆成立，首个场馆在市中心开业，拥有4个展示区。</p>
                 </div>
               </div>
-              <div class="timeline-item">
+              <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                   <h3 class="text-blue-300 fw-bold">2013年</h3>
                   <p class="text-gray-300">扩建为8个展示区，引入深海探索区，年访客量突破100万。</p>
                 </div>
               </div>
-              <div class="timeline-item">
+              <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                   <h3 class="text-blue-300 fw-bold">2016年</h3>
                   <p class="text-gray-300">第二个海洋世界在商业区开业，引入珊瑚礁生态系统，提供更震撼的互动体验。</p>
                 </div>
               </div>
-              <div class="timeline-item">
+              <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                   <h3 class="text-blue-300 fw-bold">2019年</h3>
                   <p class="text-gray-300">推出会员制度和在线票务系统，大大提升了用户体验。</p>
                 </div>
               </div>
-              <div class="timeline-item">
+              <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                   <h3 class="text-blue-300 fw-bold">2022年</h3>
                   <p class="text-gray-300">第三个海洋世界开业，全市场馆总数达到3个，年游客量突破300万。</p>
                 </div>
               </div>
-              <div class="timeline-item">
+              <div class="timeline-item" data-aos="fade-up" data-aos-delay="500">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                   <h3 class="text-blue-300 fw-bold">2025年</h3>
@@ -156,13 +159,15 @@
 
     <!-- 第三个视差部分 -->
     <section class="parallax-section" id="section3">
-      <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1551244072-5d12893278ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+      <div class="parallax-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1551244072-5d12893278ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+      </div>
       <div class="parallax-content">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-              <h1 class="animate-fadeIn">我们的特色</h1>
-              <p class="animate-fadeIn delay-200">
+              <h1 data-aos="fade-up">我们的特色</h1>
+              <p data-aos="fade-up" data-aos-delay="200">
                 独特的体验，专业的服务
               </p>
             </div>
@@ -174,10 +179,10 @@
     <!-- 我们的特色部分 -->
     <section class="content-section" id="features">
       <div class="container">
-        <h2 class="mb-5 text-center section-title">我们的特色</h2>
+        <h2 class="mb-5 text-center section-title" data-aos="fade-up">我们的特色</h2>
         <div class="row g-4">
-          <div class="col-md-4">
-            <div class="feature-card p-4 animate-fadeIn">
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="feature-card p-4">
               <div class="icon-container rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
                 <i class="fas fa-tv"></i>
               </div>
@@ -186,8 +191,8 @@
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="feature-card p-4 animate-fadeIn delay-100">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-card p-4">
               <div class="icon-container rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
                 <i class="fas fa-headset"></i>
               </div>
@@ -196,8 +201,8 @@
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="feature-card p-4 animate-fadeIn delay-200">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-card p-4">
               <div class="icon-container rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4">
                 <i class="fas fa-hand-holding-water"></i>
               </div>
@@ -211,13 +216,15 @@
 
     <!-- 第四个视差部分 -->
     <section class="parallax-section" id="section4">
-      <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+      <div class="parallax-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+      </div>
       <div class="parallax-content">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-              <h1 class="animate-fadeIn">我们的团队</h1>
-              <p class="animate-fadeIn delay-200">
+              <h1 data-aos="fade-up">我们的团队</h1>
+              <p data-aos="fade-up" data-aos-delay="200">
                 专业的人才，共同的热情
               </p>
             </div>
@@ -229,10 +236,10 @@
     <!-- 我们的团队部分 -->
     <section class="content-section" id="team">
       <div class="container">
-        <h2 class="mb-5 text-center section-title">我们的团队</h2>
+        <h2 class="mb-5 text-center section-title" data-aos="fade-up">我们的团队</h2>
         <div class="row g-4">
-          <div class="col-6 col-md-3">
-            <div class="text-center animate-fadeIn team-member">
+          <div class="col-6 col-md-3" data-aos="fade-up">
+            <div class="text-center team-member">
               <div class="team-img-container">
                 <img src="./src/BOOS.jpg" alt="团队成员" class="rounded-circle mx-auto mb-3 team-img">
               </div>
@@ -240,8 +247,8 @@
               <p class="text-gray-400">创始人 & CEO</p>
             </div>
           </div>
-          <div class="col-6 col-md-3">
-            <div class="text-center animate-fadeIn delay-100 team-member">
+          <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="text-center team-member">
               <div class="team-img-container">
                 <img src="./src/me.jpg" alt="团队成员" class="rounded-circle mx-auto mb-3 team-img">
               </div>
@@ -249,8 +256,8 @@
               <p class="text-gray-400">海洋保育总监</p>
             </div>
           </div>
-          <div class="col-6 col-md-3">
-            <div class="text-center animate-fadeIn delay-200 team-member">
+          <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-center team-member">
               <div class="team-img-container">
                 <img src="./src/yjx.jpg" alt="团队成员" class="rounded-circle mx-auto mb-3 team-img">
               </div>
@@ -258,8 +265,8 @@
               <p class="text-gray-400">科普教育总监</p>
             </div>
           </div>
-          <div class="col-6 col-md-3">
-            <div class="text-center animate-fadeIn delay-300 team-member">
+          <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="text-center team-member">
               <div class="team-img-container">
                 <img src="./src/lcl.jpg" alt="团队成员" class="rounded-circle mx-auto mb-3 team-img">
               </div>
@@ -273,13 +280,15 @@
 
     <!-- 第五个视差部分 -->
     <section class="parallax-section" id="section5">
-      <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1551244072-5d12893278ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+      <div class="parallax-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1551244072-5d12893278ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+      </div>
       <div class="parallax-content">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-              <h1 class="animate-fadeIn">联系我们</h1>
-              <p class="animate-fadeIn delay-200">
+              <h1 data-aos="fade-up">联系我们</h1>
+              <p data-aos="fade-up" data-aos-delay="200">
                 期待与您沟通交流
               </p>
             </div>
@@ -291,87 +300,83 @@
     <!-- 联系我们部分 -->
     <section class="content-section" id="contact-section">
       <div class="container">
-        <h2 class="mb-5 text-center section-title">联系我们</h2>
+        <h2 class="mb-5 text-center section-title" data-aos="fade-up">联系我们</h2>
         <div class="row g-4">
-          <div class="col-md-6">
-            <div class="animate-fadeIn">
-              <div class="contact-card mb-4">
-                <h3 class="text-blue-300 fw-bold mb-4">联系方式</h3>
-                <ul class="list-unstyled contact-list">
-                  <li class="d-flex mb-4">
-                    <div class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
-                      <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div>
-                      <div class="fw-bold text-white mb-2">地址</div>
-                      <div class="text-gray-300">海岸大道123号，海洋世界水族馆，OW 12345</div>
-                    </div>
-                  </li>
-                  <li class="d-flex mb-4">
-                    <div class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
-                      <i class="fas fa-phone"></i>
-                    </div>
-                    <div>
-                      <div class="fw-bold text-white mb-2">电话</div>
-                      <div class="text-gray-300">+86 755 1234 5678</div>
-                    </div>
-                  </li>
-                  <li class="d-flex">
-                    <div class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
-                      <i class="fas fa-envelope"></i>
-                    </div>
-                    <div>
-                      <div class="fw-bold text-white mb-2">电子邮箱</div>
-                      <div class="text-gray-300">info@oceanworld.com</div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="contact-card">
-                <h3 class="text-blue-300 fw-bold mb-4">开放时间</h3>
-                <ul class="list-unstyled opening-hours">
-                  <li class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-3 mb-3">
-                    <span class="text-gray-300">周一至周五</span>
-                    <span class="time-badge">09:00 - 18:00</span>
-                  </li>
-                  <li class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-3 mb-3">
-                    <span class="text-gray-300">周六至周日</span>
-                    <span class="time-badge">09:00 - 20:00</span>
-                  </li>
-                  <li class="d-flex justify-content-between align-items-center">
-                    <span class="text-gray-300">节假日</span>
-                    <span class="time-badge">09:00 - 20:00</span>
-                  </li>
-                </ul>
-              </div>
+          <div class="col-md-6" data-aos="fade-right">
+            <div class="contact-card mb-4">
+              <h3 class="text-blue-300 fw-bold mb-4">联系方式</h3>
+              <ul class="list-unstyled contact-list">
+                <li class="d-flex mb-4">
+                  <div class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div>
+                    <div class="fw-bold text-white mb-2">地址</div>
+                    <div class="text-gray-300">海岸大道123号，海洋世界水族馆，OW 12345</div>
+                  </div>
+                </li>
+                <li class="d-flex mb-4">
+                  <div class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div>
+                    <div class="fw-bold text-white mb-2">电话</div>
+                    <div class="text-gray-300">+86 755 1234 5678</div>
+                  </div>
+                </li>
+                <li class="d-flex">
+                  <div class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div>
+                    <div class="fw-bold text-white mb-2">电子邮箱</div>
+                    <div class="text-gray-300">info@oceanworld.com</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="contact-card">
+              <h3 class="text-blue-300 fw-bold mb-4">开放时间</h3>
+              <ul class="list-unstyled opening-hours">
+                <li class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-3 mb-3">
+                  <span class="text-gray-300">周一至周五</span>
+                  <span class="time-badge">09:00 - 18:00</span>
+                </li>
+                <li class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-3 mb-3">
+                  <span class="text-gray-300">周六至周日</span>
+                  <span class="time-badge">09:00 - 20:00</span>
+                </li>
+                <li class="d-flex justify-content-between align-items-center">
+                  <span class="text-gray-300">节假日</span>
+                  <span class="time-badge">09:00 - 20:00</span>
+                </li>
+              </ul>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="animate-fadeIn delay-200">
-              <div class="contact-card">
-                <h3 class="text-blue-300 fw-bold mb-4">给我们留言</h3>
-                <form id="contact-form">
-                  <div class="row g-3 mb-3">
-                    <div class="col-md-6">
-                      <label for="name" class="form-label">姓名</label>
-                      <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="email" class="form-label">电子邮箱</label>
-                      <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
+          <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="contact-card">
+              <h3 class="text-blue-300 fw-bold mb-4">给我们留言</h3>
+              <form id="contact-form">
+                <div class="row g-3 mb-3">
+                  <div class="col-md-6">
+                    <label for="name" class="form-label">姓名</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
                   </div>
-                  <div class="mb-3">
-                    <label for="subject" class="form-label">主题</label>
-                    <input type="text" id="subject" name="subject" class="form-control" required>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">电子邮箱</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
                   </div>
-                  <div class="mb-4">
-                    <label for="message" class="form-label">留言内容</label>
-                    <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary w-100">发送留言</button>
-                </form>
-              </div>
+                </div>
+                <div class="mb-3">
+                  <label for="subject" class="form-label">主题</label>
+                  <input type="text" id="subject" name="subject" class="form-control" required>
+                </div>
+                <div class="mb-4">
+                  <label for="message" class="form-label">留言内容</label>
+                  <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">发送留言</button>
+              </form>
             </div>
           </div>
         </div>
@@ -381,7 +386,7 @@
     <!-- 留言板部分 -->
     <section class="content-section" id="message-board-section">
       <div class="container">
-        <div class="contact-card">
+        <div class="contact-card" data-aos="fade-up">
           <h2 class="text-blue-300 fw-bold mb-4 text-center">留言板</h2>
           <p class="text-gray-400 text-center mb-4">以下是访客的留言和反馈</p>
           <hr class="mb-4" style="border-color: rgba(255,255,255,0.1);">
@@ -397,93 +402,99 @@
     </section>
   </div>
 
-  <!-- 页脚 -->
-  <footer id="contact">
-    <div class="footer-wave"></div>
-    <div class="container">
-      <div class="row footer-content g-4">
-        <div class="col-lg-3 col-md-6">
-          <div class="footer-about">
-            <a href="#" class="footer-logo"><i class="fas fa-water"></i>海洋世界</a>
-            <p>我们致力于通过教育和保护行动，促进海洋生态系统的可持续发展，保护海洋生物多样性。海洋世界水族馆是一个集科普教育、科学研究和生态保护于一体的综合性海洋主题场馆。</p>
-            <div class="social-links">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-youtube"></i></a>
-              <a href="#"><i class="fab fa-weixin"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="footer-links">
-            <h3>快速链接</h3>
-            <ul>
-              <li><a href="index.html"><i class="fas fa-chevron-right"></i> 首页</a></li>
-              <li><a href="marine-species.html"><i class="fas fa-chevron-right"></i> 海洋生物</a></li>
-              <li><a href="#arc-carousel"><i class="fas fa-chevron-right"></i> 生物图鉴</a></li>
-              <li><a href="conservation.html"><i class="fas fa-chevron-right"></i> 生态保护</a></li>
-              <li><a href="#news-events"><i class="fas fa-chevron-right"></i> 新闻活动</a></li>
-              <li><a href="about.html"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
-              <li><a href="visitor-guide.html"><i class="fas fa-chevron-right"></i> 参观指南</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="footer-contact">
-            <h3>联系我们</h3>
-            <div class="contact-info">
-              <i class="fas fa-map-marker-alt"></i>
-              <div class="contact-info-text">
-                <strong>地址</strong>
-                <p>海洋世界水族馆</p>
-                <p>中国深圳市南山区海岸大道100号</p>
+    <!-- 页脚 -->
+    <footer id="contact">
+      <div class="footer-wave"></div>
+      <div class="container">
+          <div class="footer-content">
+              <div class="footer-about" data-aos="fade-up">
+                  <a href="#" class="footer-logo"><i class="fas fa-water"></i>海洋世界</a>
+                  <p>我们致力于通过教育和保护行动，促进海洋生态系统的可持续发展，保护海洋生物多样性。海洋世界水族馆是一个集科普教育、科学研究和生态保护于一体的综合性海洋主题场馆。</p>
+                  <div class="social-links">
+                      <a href="#" data-aos="zoom-in" data-aos-delay="100"><i class="fab fa-weixin"></i></a>
+                      <a href="#" data-aos="zoom-in" data-aos-delay="200"><i class="fab fa-weibo"></i></a>
+                      <a href="#" data-aos="zoom-in" data-aos-delay="300"><i class="fab fa-tiktok"></i></a>
+                      <a href="#" data-aos="zoom-in" data-aos-delay="400"><i class="fab fa-youtube"></i></a>
+                      <a href="#" data-aos="zoom-in" data-aos-delay="500"><i class="fab fa-bilibili"></i></a>
+                  </div>
               </div>
-            </div>
-            <div class="contact-info">
-              <i class="fas fa-phone"></i>
-              <div class="contact-info-text">
-                <strong>电话</strong>
-                <p>+86 755-1234-5678</p>
-                <p>周一至周日: 9:00 - 18:00</p>
+              <div class="footer-links" data-aos="fade-up" data-aos-delay="100">
+                  <h3>快速链接</h3>
+                  <ul>
+                      <li><a href="#home"><i class="fas fa-chevron-right"></i> 首页</a></li>
+                      <li><a href="#showcase"><i class="fas fa-chevron-right"></i> 海洋生物</a></li>
+                      <li><a href="#arc-carousel"><i class="fas fa-chevron-right"></i> 生物图鉴</a></li>
+                      <li><a href="#conservation"><i class="fas fa-chevron-right"></i> 生态保护</a></li>
+                      <li><a href="#news-events"><i class="fas fa-chevron-right"></i> 新闻活动</a></li>
+                      <li><a href="#"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                      <li><a href="#"><i class="fas fa-chevron-right"></i> 参观指南</a></li>
+                  </ul>
               </div>
-            </div>
-            <div class="contact-info">
-              <i class="fas fa-envelope"></i>
-              <div class="contact-info-text">
-                <strong>邮箱</strong>
-                <p>info@oceanworld.com</p>
-                <p>support@oceanworld.com</p>
+              <div class="footer-contact" data-aos="fade-up" data-aos-delay="200">
+                  <h3>联系我们</h3>
+                  <div class="contact-info">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <div class="contact-info-text">
+                          <strong>地址</strong>
+                          <p>海洋世界水族馆</p>
+                          <p>中国深圳市南山区海岸大道100号</p>
+                      </div>
+                  </div>
+                  <div class="contact-info">
+                      <i class="fas fa-phone"></i>
+                      <div class="contact-info-text">
+                          <strong>电话</strong>
+                          <p>+86 755-1234-5678</p>
+                          <p>周一至周日: 9:00 - 18:00</p>
+                      </div>
+                  </div>
+                  <div class="contact-info">
+                      <i class="fas fa-envelope"></i>
+                      <div class="contact-info-text">
+                          <strong>邮箱</strong>
+                          <p>info@oceanworld.com</p>
+                          <p>support@oceanworld.com</p>
+                      </div>
+                  </div>
               </div>
-            </div>
+              <div class="footer-newsletter" data-aos="fade-up" data-aos-delay="300">
+                  <h3>订阅通讯</h3>
+                  <p>订阅我们的电子通讯，获取最新的海洋资讯、保护项目进展和活动信息。我们每月发送一次通讯，您可以随时取消订阅。</p>
+                  <form class="newsletter-form">
+                      <input type="email" placeholder="您的电子邮箱" required>
+                      <button type="submit">订阅</button>
+                  </form>
+              </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="footer-newsletter">
-            <h3>订阅通讯</h3>
-            <p>订阅我们的电子通讯，获取最新的海洋资讯、保护项目进展和活动信息。我们每月发送一次通讯，您可以随时取消订阅。</p>
-            <form class="newsletter-form">
-              <input type="email" placeholder="您的电子邮箱" required>
-              <button type="submit">订阅</button>
-            </form>
+          <div class="footer-bottom" data-aos="fade-up" data-aos-delay="400">
+              <div class="footer-bottom-content">
+                  <p>&copy; 2024 海洋世界水族馆. 保留所有权利.</p>
+                  <div class="footer-bottom-links">
+                      <a href="#">隐私政策</a>
+                      <a href="#">使用条款</a>
+                      <a href="#">网站地图</a>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2023 海洋世界水族馆. 保留所有权利.</p>
-      </div>
-    </div>
   </footer>
 
-  <!-- 返回顶部按钮 -->
-  <div id="back-to-top" class="back-to-top">
-    <i class="fas fa-arrow-up"></i>
-  </div>
+
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <!-- Custom JS -->
   <script src="js/about.js"></script>
+  <script>
+    // 初始化 AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+  </script>
 </body>
 
 </html>

@@ -7,29 +7,31 @@
     <title>海洋世界 - 探索海洋奇迹，守护蓝色星球</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
-    <!-- 导航栏 -->
-    <header id="header">
-        <div class="container">
-            <nav>
-                <a href="#" class="logo"><i class="fas fa-water"></i>海洋世界</a>
-                <ul class="nav-links">
-                    <li><a href="index.html">首页</a></li>
-                    <li><a href="marine-species.html">海洋生物</a></li>
-                    <li><a href="conservation.html">生态保护</a></li>
-                    <li><a href="science-education.html">科普教育</a></li>
-                    <li><a href="visitor-guide.html" class="active">参观指南</a></li>
-                    <li><a href="about.html">关于我们</a></li>
-                </ul>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
+  <!-- 导航栏 -->
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="#" class="logo" data-aos="fade-right"><i class="fas fa-water"></i>海洋世界</a>
+        <ul class="nav-links">
+          <li data-aos="fade-down" data-aos-delay="100"><a href="index.html">首页</a></li>
+          <li data-aos="fade-down" data-aos-delay="200"><a href="marine-species.html">海洋生物</a></li>
+          <li data-aos="fade-down" data-aos-delay="300"><a href="conservation.html">生态保护</a></li>
+          <li data-aos="fade-down" data-aos-delay="400"><a href="science-education.html">科普教育</a></li>
+          <li data-aos="fade-down" data-aos-delay="500"><a href="visitor-guide.html">参观指南</a></li>
+          <li data-aos="fade-down" data-aos-delay="600"><a href="about.html">关于我们</a></li>
+        </ul>
+        <div class="mobile-menu" data-aos="fade-left">
+          <i class="fas fa-bars"></i>
         </div>
-    </header>
+      </nav>
+    </div>
+  </header>
 
     <!-- 视频背景 -->
     <section class="hero" id="home">
@@ -40,7 +42,7 @@
             </video>
         </div>
         <div class="container">
-            <div class="hero-content">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
                 <h1>探索<span>海洋奇迹</span>，守护<span>蓝色星球</span></h1>
                 <p>欢迎来到海洋世界，这里有丰富多彩的海洋生物和令人惊叹的水下景观。加入我们，一起了解海洋生态，保护我们共同的蓝色家园。</p>
                 <div class="hero-btns">
@@ -71,10 +73,10 @@
     <!-- 展示区 -->
     <section class="showcase" id="showcase">
         <div class="container">
-            <h2>海洋生物展示</h2>
-            <p class="section-subtitle">探索海洋中令人惊叹的生物多样性，了解它们独特的生存方式和在生态系统中的重要作用</p>
+            <h2 data-aos="fade-up">海洋生物展示</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">探索海洋中令人惊叹的生物多样性，了解它们独特的生存方式和在生态系统中的重要作用</p>
             <div class="showcase-container">
-                <div class="showcase-item">
+                <div class="showcase-item" data-aos="fade-up" data-aos-delay="300">
                     <span class="showcase-tag">珊瑚礁</span>
                     <div class="showcase-img">
                         <img src="https://pic.52112.com/180518/JPG-180518_378/Tdcr9roNHi_small.jpg"
@@ -86,7 +88,7 @@
                         <a href="#">了解更多 <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="showcase-item">
+                <div class="showcase-item" data-aos="fade-up" data-aos-delay="400">
                     <span class="showcase-tag">哺乳动物</span>
                     <div class="showcase-img">
                         <img src="https://pic.52112.com/180713/JPG-180713_531/4HRwEM77G8_small.jpg"
@@ -98,7 +100,7 @@
                         <a href="#">了解更多 <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="showcase-item">
+                <div class="showcase-item" data-aos="fade-up" data-aos-delay="500">
                     <span class="showcase-tag">深海</span>
                     <div class="showcase-img">
                         <img src="https://images.unsplash.com/photo-1580019542155-247062e19ce4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
@@ -110,7 +112,7 @@
                         <a href="#">了解更多 <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="showcase-item">
+                <div class="showcase-item" data-aos="fade-up" data-aos-delay="600">
                     <span class="showcase-tag">鱼类</span>
                     <div class="showcase-img">
                         <img src="https://images.unsplash.com/photo-1504472478235-9bc48ba4d60f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
@@ -122,7 +124,7 @@
                         <a href="#">了解更多 <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="showcase-item">
+                <div class="showcase-item" data-aos="fade-up" data-aos-delay="700">
                     <span class="showcase-tag">软体动物</span>
                     <div class="showcase-img">
                         <img src="https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
@@ -134,7 +136,7 @@
                         <a href="#">了解更多 <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="showcase-item">
+                <div class="showcase-item" data-aos="fade-up" data-aos-delay="800">
                     <span class="showcase-tag">爬行动物</span>
                     <div class="showcase-img">
                         <img src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
@@ -161,8 +163,8 @@
     <!-- 弧形轮播图 -->
     <section class="arc-carousel-section" id="arc-carousel">
         <div class="container">
-            <h2>海洋生物图鉴</h2>
-            <p class="section-subtitle">点击卡片探索更多关于这些神奇海洋生物的详细信息</p>
+            <h2 data-aos="fade-up">海洋生物图鉴</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">点击卡片探索更多关于这些神奇海洋生物的详细信息</p>
             <div class="arc-carousel-container">
                 <!-- 添加波浪装饰 -->
                 <div class="arc-carousel-waves"></div>
@@ -286,16 +288,16 @@
             <div class="bubble"></div>
         </div>
         <div class="container">
-            <h2>保护海洋生态</h2>
-            <p class="section-subtitle">了解海洋面临的威胁以及我们如何共同努力保护这个蓝色星球的未来</p>
+            <h2 data-aos="fade-up">保护海洋生态</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">了解海洋面临的威胁以及我们如何共同努力保护这个蓝色星球的未来</p>
             <div class="conservation-container">
-                <div class="conservation-content">
+                <div class="conservation-content" data-aos="fade-right" data-aos-delay="300">
                     <p>海洋覆盖了地球表面的71%，是地球上最大的生态系统。然而，海洋正面临着前所未有的威胁，包括塑料污染、过度捕捞、气候变化和海洋酸化等。</p>
                     <p>我们的使命是通过教育、研究和保护行动，促进海洋生态系统的可持续发展。每个人都可以为保护海洋做出贡献，从减少塑料使用到支持可持续渔业，每一个小行动都很重要。</p>
                     <p>海洋健康与人类福祉密切相关，海洋不仅提供了食物和经济资源，还调节气候，产生我们呼吸的氧气，并支持地球上丰富的生物多样性。</p>
                     <a href="#" class="btn">加入我们的保护行动</a>
                 </div>
-                <div class="conservation-stats">
+                <div class="conservation-stats" data-aos="fade-left" data-aos-delay="400">
                     <div class="stat-item">
                         <div class="stat-icon"><i class="fas fa-trash-alt"></i></div>
                         <div class="stat-number" data-count="8" data-symbol="M">0</div>
@@ -319,7 +321,7 @@
                 </div>
             </div>
             <div class="conservation-actions">
-                <div class="conservation-action">
+                <div class="conservation-action" data-aos="fade-up" data-aos-delay="300">
                     <div class="conservation-action-icon">
                         <i class="fas fa-recycle"></i>
                     </div>
@@ -327,7 +329,7 @@
                     <p>塑料污染是海洋生物面临的最大威胁之一。使用可重复使用的水瓶、购物袋和餐具，避免使用一次性塑料制品，正确回收塑料废物。</p>
                     <a href="#">了解更多 <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="conservation-action">
+                <div class="conservation-action" data-aos="fade-up" data-aos-delay="400">
                     <div class="conservation-action-icon">
                         <i class="fas fa-fish"></i>
                     </div>
@@ -335,7 +337,7 @@
                     <p>选择经过可持续认证的海鲜，了解您购买的海鲜来源，支持采用可持续捕捞方法的渔业，避免消费濒危或过度捕捞的物种。</p>
                     <a href="#">了解更多 <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="conservation-action">
+                <div class="conservation-action" data-aos="fade-up" data-aos-delay="500">
                     <div class="conservation-action-icon">
                         <i class="fas fa-hand-holding-water"></i>
                     </div>
@@ -343,7 +345,7 @@
                     <p>参与海滩清理活动，保护沿海湿地和红树林，这些生态系统是许多海洋生物的育儿场所，同时也能防止海岸侵蚀和过滤污染物。</p>
                     <a href="#">了解更多 <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="conservation-action">
+                <div class="conservation-action" data-aos="fade-up" data-aos-delay="600">
                     <div class="conservation-action-icon">
                         <i class="fas fa-seedling"></i>
                     </div>
@@ -372,15 +374,15 @@
     <!-- 新闻活动区 -->
     <section class="news-events" id="news-events">
         <div class="container">
-            <h2>新闻与活动</h2>
-            <p class="section-subtitle">了解最新的海洋研究发现、保护项目进展以及即将举行的活动</p>
-            <div class="tabs">
+            <h2 data-aos="fade-up">新闻与活动</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">了解最新的海洋研究发现、保护项目进展以及即将举行的活动</p>
+            <div class="tabs" data-aos="fade-up" data-aos-delay="300">
                 <button class="tab-btn active" data-tab="news">最新新闻</button>
                 <button class="tab-btn" data-tab="events">活动预告</button>
             </div>
             <div class="tab-content active" id="news">
                 <div class="news-grid">
-                    <div class="news-item">
+                    <div class="news-item" data-aos="fade-up" data-aos-delay="400">
                         <span class="news-tag">研究发现</span>
                         <div class="news-img">
                             <img src="https://hb.hainanu.edu.cn/__local/B/7E/DB/7F6144103788A29D8C779A9F63E_BD1D04AE_1822A3.png"
@@ -393,7 +395,7 @@
                             <a href="#">阅读全文 <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <div class="news-item">
+                    <div class="news-item" data-aos="fade-up" data-aos-delay="500">
                         <span class="news-tag">保护成果</span>
                         <div class="news-img">
                             <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.jsxfsAjeezw4KgnY0Ntj7gHaD_?cb=iwc2&rs=1&pid=ImgDetMain"
@@ -406,7 +408,7 @@
                             <a href="#">阅读全文 <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <div class="news-item">
+                    <div class="news-item" data-aos="fade-up" data-aos-delay="600">
                         <span class="news-tag">技术创新</span>
                         <div class="news-img">
                             <img src="https://ts1.tc.mm.bing.net/th/id/R-C.275b9adf3e362564ad493c2720cef79d?rik=iYjDnN9YUeTGWQ&riu=http%3a%2f%2fwww.imaydesign.com%2fuploads%2fallimg%2f220805%2f2329445225-1.jpg&ehk=AWnSfbgMUirS6ICYcju%2fK5mUVUxU%2bm1BbHcVyQOehc4%3d&risl=&pid=ImgRaw&r=0"
@@ -423,7 +425,7 @@
             </div>
             <div class="tab-content" id="events">
                 <div class="events-grid">
-                    <div class="event-item">
+                    <div class="event-item" data-aos="fade-up" data-aos-delay="400">
                         <span class="event-tag">特别展览</span>
                         <div class="event-img">
                             <img src="https://www.sio.org.cn/uploads/20230611/8702b6af3a30bcae09d8cbadd6d5fd97.jpg"
@@ -437,7 +439,7 @@
                             <a href="#" class="btn">报名参加</a>
                         </div>
                     </div>
-                    <div class="event-item">
+                    <div class="event-item" data-aos="fade-up" data-aos-delay="500">
                         <span class="event-tag">志愿活动</span>
                         <div class="event-img">
                             <img src="https://p8.itc.cn/q_70/images03/20230614/6c69e714f7554da080f250d5f8a7cb85.jpeg"
@@ -451,7 +453,7 @@
                             <a href="#" class="btn">报名参加</a>
                         </div>
                     </div>
-                    <div class="event-item">
+                    <div class="event-item" data-aos="fade-up" data-aos-delay="600">
                         <span class="event-tag">科普讲座</span>
                         <div class="event-img">
                             <img src="https://ts1.tc.mm.bing.net/th/id/R-C.0c9adbc9138e2f56d4289b0b4e0be376?rik=%2fZUoQeJZNc3QSA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20180930%2f63bafda4ec584261a4370366c4a37205.jpeg&ehk=rXkK4QipeSQhTtq5jDtRvTQ3Iw95VLfh5dEIRfHkeag%3d&risl=&pid=ImgRaw&r=0"
@@ -484,18 +486,18 @@
         <div class="footer-wave"></div>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-about">
+                <div class="footer-about" data-aos="fade-up">
                     <a href="#" class="footer-logo"><i class="fas fa-water"></i>海洋世界</a>
                     <p>我们致力于通过教育和保护行动，促进海洋生态系统的可持续发展，保护海洋生物多样性。海洋世界水族馆是一个集科普教育、科学研究和生态保护于一体的综合性海洋主题场馆。</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="100"><i class="fab fa-weixin"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="200"><i class="fab fa-weibo"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="300"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="400"><i class="fab fa-youtube"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="500"><i class="fab fa-bilibili"></i></a>
                     </div>
                 </div>
-                <div class="footer-links">
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="100">
                     <h3>快速链接</h3>
                     <ul>
                         <li><a href="#home"><i class="fas fa-chevron-right"></i> 首页</a></li>
@@ -507,7 +509,7 @@
                         <li><a href="#"><i class="fas fa-chevron-right"></i> 参观指南</a></li>
                     </ul>
                 </div>
-                <div class="footer-contact">
+                <div class="footer-contact" data-aos="fade-up" data-aos-delay="200">
                     <h3>联系我们</h3>
                     <div class="contact-info">
                         <i class="fas fa-map-marker-alt"></i>
@@ -534,7 +536,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-newsletter">
+                <div class="footer-newsletter" data-aos="fade-up" data-aos-delay="300">
                     <h3>订阅通讯</h3>
                     <p>订阅我们的电子通讯，获取最新的海洋资讯、保护项目进展和活动信息。我们每月发送一次通讯，您可以随时取消订阅。</p>
                     <form class="newsletter-form">
@@ -543,8 +545,15 @@
                     </form>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 海洋世界水族馆. 保留所有权利.</p>
+            <div class="footer-bottom" data-aos="fade-up" data-aos-delay="400">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 海洋世界水族馆. 保留所有权利.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">隐私政策</a>
+                        <a href="#">使用条款</a>
+                        <a href="#">网站地图</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -563,8 +572,16 @@
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="js/index.js"></script>
-    
+    <script>
+        // 初始化 AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 
 </html>
