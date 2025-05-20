@@ -1,0 +1,2740 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海洋世界 - 参观指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary-color: #0077b6;
+            --secondary-color: #00b4d8;
+            --accent-color: #48cae4;
+            --dark-blue: #03045e;
+            --medium-blue: #023e8a;
+            --light-blue: #caf0f8;
+            --white: #ffffff;
+            --gradient-blue: linear-gradient(135deg, var(--dark-blue), var(--primary-color));
+            --gradient-teal: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light-blue);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--gradient-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 119, 182, 0.4);
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--dark-blue);
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-teal);
+            border-radius: 2px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+            z-index: 1;
+        }
+
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+
+        .wave-divider.white .shape-fill {
+            fill: #FFFFFF;
+        }
+
+        .wave-divider.light-blue .shape-fill {
+            fill: var(--light-blue);
+        }
+
+        .wave-divider.dark-blue .shape-fill {
+            fill: var(--dark-blue);
+        }
+
+        .wave-divider.medium-blue .shape-fill {
+            fill: var(--medium-blue);
+        }
+
+        .bg-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 导航栏 */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(3, 4, 94, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        header.scrolled .logo {
+            color: var(--white);
+        }
+
+        header.scrolled .nav-links a {
+            color: var(--white);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-teal);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 80px 0 20px;
+            position: relative;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2303045e" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .footer-about p {
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-teal);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .social-links a:hover::before {
+            opacity: 1;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-links h3,
+        .footer-contact h3,
+        .footer-newsletter h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-links h3::after,
+        .footer-contact h3::after,
+        .footer-newsletter h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-teal);
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-info i {
+            margin-right: 15px;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .contact-info-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info-text strong {
+            display: block;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 25px;
+            position: relative;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+            font-size: 1rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter-form button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            padding: 0 20px;
+            background: var(--gradient-teal);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--gradient-blue);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* 参观指南页面特定样式 */
+        /* 英雄区 */
+        .guide-hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guide-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPjxjaXJjbGUgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjMpIiBjeD0iNSIgY3k9IjUiIHI9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
+            opacity: 0.3;
+        }
+
+        .guide-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        .guide-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .guide-hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .guide-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .guide-hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .guide-hero-scroll {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 1;
+        }
+
+        .guide-hero-scroll a {
+            color: var(--white);
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .guide-hero-scroll a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 信息卡片样式 */
+        .info-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            margin-bottom: 30px;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .info-card.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-card-header {
+            background: var(--gradient-blue);
+            color: var(--white);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .info-card:hover .info-card-header::before {
+            opacity: 1;
+        }
+
+        .info-card-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card-header h3 i {
+            margin-right: 15px;
+            font-size: 2rem;
+        }
+
+        .info-card-body {
+            padding: 30px;
+        }
+
+        /* 开放时间和门票 */
+        .hours-tickets {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .hours-tickets-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .hours-table th, .hours-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hours-table th {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            font-weight: bold;
+        }
+
+        .hours-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .hours-table tr:hover td {
+            background-color: #f9f9f9;
+        }
+
+        .special-note {
+            background-color: rgba(255, 247, 214, 0.5);
+            border-left: 4px solid #ffd166;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .special-note i {
+            color: #ffd166;
+            margin-right: 10px;
+        }
+
+        /* 票价表格 */
+        .ticket-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .ticket-table th, .ticket-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ticket-table th {
+            background: var(--gradient-blue);
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .ticket-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .ticket-table tr:hover td {
+            background-color: #f9f9f9;
+        }
+
+        .ticket-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .ticket-discount {
+            display: inline-block;
+            background-color: #e63946;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        /* 购票方式 */
+        .ticket-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .ticket-method {
+            background-color: var(--light-blue);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .ticket-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-method-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .ticket-method h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        /* 交通指南 */
+        .transportation {
+            background-color: var(--light-blue);
+            position: relative;
+        }
+
+        .transportation-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .transport-option {
+            margin-bottom: 30px;
+        }
+
+        .transport-option h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+        }
+
+        .transport-option h4 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .transport-route {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .transport-route:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .transport-route h5 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .route-steps {
+            list-style: none;
+        }
+
+        .route-steps li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .route-steps li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .route-steps li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .route-steps li:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 20px;
+            width: 1px;
+            height: calc(100% - 15px);
+            background-color: var(--accent-color);
+        }
+
+        /* 停车场信息 */
+        .parking-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .parking-item {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .parking-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .parking-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .parking-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .parking-item p {
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* 馆内设施 */
+        .facilities {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .facility-card {
+            background-color: var(--light-blue);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .facility-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .facility-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .facility-card:hover .facility-img img {
+            transform: scale(1.1);
+        }
+
+        .facility-content {
+            padding: 25px;
+        }
+
+        .facility-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+        }
+
+        .facility-content h3 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .facility-content p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .facility-details {
+            list-style: none;
+        }
+
+        .facility-details li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .facility-details li i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        /* 游览路线 */
+        .tour-routes {
+            background-color: var(--light-blue);
+            position: relative;
+        }
+
+        .routes-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+
+        .route-tab {
+            padding: 12px 25px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 10px 10px;
+            position: relative;
+        }
+
+        .route-tab::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-teal);
+            transition: width 0.3s ease;
+        }
+
+        .route-tab:hover::before {
+            width: 100%;
+        }
+
+        .route-tab.active {
+            color: var(--primary-color);
+        }
+
+        .route-tab.active::before {
+            width: 100%;
+        }
+
+        .route-content {
+            display: none;
+        }
+
+        .route-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .route-map {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .route-map-img {
+            width: 100%;
+            height: 400px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .route-map-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .route-point {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .route-point:hover {
+            transform: scale(1.2);
+            background-color: var(--accent-color);
+        }
+
+        .route-point-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .route-point-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--dark-blue) transparent transparent transparent;
+        }
+
+        .route-point:hover .route-point-tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: calc(100% + 10px);
+        }
+
+        .route-timeline {
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .route-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-blue);
+            border-radius: 2px;
+        }
+
+        .route-step {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 30px;
+        }
+
+        .route-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .route-step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .route-step-content {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .route-step-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .route-step-content p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .route-step-time {
+            display: inline-block;
+            background-color: var(--light-blue);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dark-blue);
+            font-weight: bold;
+        }
+
+        .route-step-time i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+
+        /* 在线购票 */
+        .online-tickets {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .ticket-form {
+            background-color: var(--light-blue);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--dark-blue);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.2);
+            outline: none;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .ticket-selector {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .ticket-info {
+            flex: 1;
+        }
+
+        .ticket-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--dark-blue);
+        }
+
+        .ticket-info p {
+            color: #666;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .ticket-price-tag {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-right: 20px;
+        }
+
+        .ticket-quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            background-color: var(--light-blue);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 35px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 0 10px;
+            font-size: 1rem;
+        }
+
+        .ticket-total {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+        }
+
+        .total-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .payment-method {
+            flex: 1;
+            min-width: 120px;
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-method.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-method-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .payment-method p {
+            margin-bottom: 0;
+            font-weight: bold;
+            color: var(--dark-blue);
+        }
+
+        /* 地图导航 */
+        .map-navigation {
+            background-color: var(--light-blue);
+            position: relative;
+        }
+
+        .map-container {
+            height: 500px;
+            background-color: #f5f5f5;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            z-index: 2;
+        }
+
+        .map-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        .map-overlay p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .map-directions-btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--gradient-blue);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-directions-btn i {
+            margin-right: 10px;
+        }
+
+        .map-directions-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 动画 */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .guide-hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: all 0.3s ease;
+                z-index: 999;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .guide-hero h1 {
+                font-size: 3rem;
+            }
+
+            .guide-hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .route-map-img {
+                height: 300px;
+            }
+
+            .ticket-selector {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .ticket-price-tag {
+                margin: 10px 0;
+            }
+
+            .ticket-quantity {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .map-overlay {
+                position: relative;
+                top: 0;
+                left: 0;
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .guide-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .guide-hero p {
+                font-size: 1.1rem;
+            }
+
+            .info-card-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .route-timeline::before {
+                left: 15px;
+            }
+
+            .route-step {
+                padding-left: 50px;
+            }
+
+            .route-step-number {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+
+            .payment-methods {
+                flex-direction: column;
+            }
+
+            .payment-method {
+                width: 100%;
+            }
+
+            .ticket-total {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .total-price {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><i class="fas fa-water"></i>海洋世界</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="marine-species.html">海洋生物</a></li>
+                    <li><a href="conservation.html">生态保护</a></li>
+                    <li><a href="science-education.html">科普教育</a></li>
+                    <li><a href="visitor-guide.html" class="active">参观指南</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="guide-hero" id="guide-hero">
+        <div class="bg-particles" id="guide-particles"></div>
+        <div class="container">
+            <div class="guide-hero-content">
+                <h1>参观<span>指南</span></h1>
+                <p>欢迎来到海洋世界水族馆，这里有详细的参观信息，帮助您规划一次完美的海洋探索之旅。</p>
+                <div class="guide-hero-btns">
+                    <a href="#hours-tickets" class="btn">查看开放时间和门票</a>
+                    <a href="#online-tickets" class="btn">立即购票</a>
+                </div>
+            </div>
+        </div>
+        <div class="guide-hero-scroll">
+            <a href="#hours-tickets"><i class="fas fa-chevron-down"></i></a>
+        </div>
+        <div class="wave-divider white">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 开放时间和门票 -->
+    <section class="hours-tickets" id="hours-tickets">
+        <div class="container">
+            <h2>开放时间与门票</h2>
+            <p class="section-subtitle">了解我们的开放时间、门票价格和购票方式，提前规划您的海洋之旅</p>
+            
+            <div class="hours-tickets-container">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <h3><i class="far fa-clock"></i> 开放时间</h3>
+                        <p>全年开放，为您提供丰富的海洋体验</p>
+                    </div>
+                    <div class="info-card-body">
+                        <table class="hours-table">
+                            <tr>
+                                <th>日期</th>
+                                <th>开放时间</th>
+                            </tr>
+                            <tr>
+                                <td>周一至周五</td>
+                                <td>09:00 - 18:00</td>
+                            </tr>
+                            <tr>
+                                <td>周六、周日</td>
+                                <td>09:00 - 20:00</td>
+                            </tr>
+                            <tr>
+                                <td>法定节假日</td>
+                                <td>09:00 - 21:00</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="special-note">
+                            <i class="fas fa-exclamation-circle"></i> 特别提示：最后入场时间为闭馆前1小时，每周二上午进行设备维护，部分展区可能暂时关闭。
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <h3><i class="fas fa-ticket-alt"></i> 门票价格</h3>
+                        <p>多种票型选择，满足不同需求</p>
+                    </div>
+                    <div class="info-card-body">
+                        <table class="ticket-table">
+                            <tr>
+                                <th>票型</th>
+                                <th>价格</th>
+                                <th>说明</th>
+                            </tr>
+                            <tr>
+                                <td>成人票</td>
+                                <td><span class="ticket-price">¥180</span></td>
+                                <td>18-65周岁</td>
+                            </tr>
+                            <tr>
+                                <td>儿童票</td>
+                                <td><span class="ticket-price">¥90</span> <span class="ticket-discount">半价</span></td>
+                                <td>1.2-1.5米儿童</td>
+                            </tr>
+                            <tr>
+                                <td>老人票</td>
+                                <td><span class="ticket-price">¥90</span> <span class="ticket-discount">半价</span></td>
+                                <td>65周岁以上老人（凭有效证件）</td>
+                            </tr>
+                            <tr>
+                                <td>家庭套票</td>
+                                <td><span class="ticket-price">¥380</span> <span class="ticket-discount">优惠</span></td>
+                                <td>2成人+1儿童</td>
+                            </tr>
+                            <tr>
+                                <td>VIP体验票</td>
+                                <td><span class="ticket-price">¥280</span></td>
+                                <td>包含专属导览和互动体验</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="special-note">
+                            <i class="fas fa-exclamation-circle"></i> 特别提示：1.2米以下儿童免票；现役军人、残疾人凭有效证件免票；团体票（20人以上）享受8折优惠。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin-top: 50px; margin-bottom: 30px; color: var(--dark-blue);">购票方式</h3>
+            
+            <div class="ticket-methods">
+                <div class="ticket-method">
+                    <div class="ticket-method-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>线上购票</h4>
+                    <p>通过官方网站、微信公众号或第三方平台购买，享受在线优惠</p>
+                    <a href="#online-tickets" class="btn">立即购票</a>
+                </div>
+                
+                <div class="ticket-method">
+                    <div class="ticket-method-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h4>现场购票</h4>
+                    <p>可在水族馆入口处的售票窗口现场购买门票</p>
+                    <p style="color: #e63946; font-weight: bold;">高峰期可能需要排队</p>
+                </div>
+                
+                <div class="ticket-method">
+                    <div class="ticket-method-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>团体预订</h4>
+                    <p>20人以上团体可提前预订，享受专属优惠和服务</p>
+                    <a href="tel:+8675512345678" class="btn">电话预订</a>
+                </div>
+            </div>
+        </div>
+        <div class="wave-divider light-blue">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 交通指南 -->
+    <section class="transportation" id="transportation">
+        <div class="container">
+            <h2>交通指南</h2>
+            <p class="section-subtitle">多种交通方式可达，轻松抵达海洋世界水族馆</p>
+            
+            <div class="transportation-container">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <h3><i class="fas fa-bus"></i> 公共交通</h3>
+                        <p>便捷的公共交通网络，轻松到达</p>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="transport-option">
+                            <h4><i class="fas fa-subway"></i> 地铁路线</h4>
+                            <div class="transport-route">
+                                <h5>路线1：2号线</h5>
+                                <ul class="route-steps">
+                                    <li>乘坐2号线至"海岸城"站</li>
+                                    <li>从D出口出站</li>
+                                    <li>步行约800米即可到达海洋世界</li>
+                                </ul>
+                            </div>
+                            <div class="transport-route">
+                                <h5>路线2：11号线</h5>
+                                <ul class="route-steps">
+                                    <li>乘坐11号线至"南山站"</li>
+                                    <li>从A出口出站</li>
+                                    <li>转乘公交车226路至"海洋世界站"下车</li>
+                                    <li>步行约200米即可到达</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="transport-option">
+                            <h4><i class="fas fa-bus"></i> 公交路线</h4>
+                            <div class="transport-route">
+                                <h5>直达公交</h5>
+                                <ul class="route-steps">
+                                    <li>226路、K105路、M371路、M372路</li>
+                                    <li>在"海洋世界站"下车</li>
+                                    <li>步行约200米即可到达</li>
+                                </ul>
+                            </div>
+                            <div class="transport-route">
+                                <h5>周边换乘</h5>
+                                <ul class="route-steps">
+                                    <li>K1路、81路至"南山文体中心站"下车</li>
+                                    <li>步行约500米至海洋世界</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <h3><i class="fas fa-car"></i> 自驾路线</h3>
+                        <p>多条便捷路线，轻松自驾前往</p>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="transport-option">
+                            <h4><i class="fas fa-road"></i> 主要路线</h4>
+                            <div class="transport-route">
+                                <h5>从市中心出发</h5>
+                                <ul class="route-steps">
+                                    <li>沿滨海大道向南行驶</li>
+                                    <li>经过海岸城后右转进入海德三道</li>
+                                    <li>直行约1公里即可到达海洋世界</li>
+                                </ul>
+                            </div>
+                            <div class="transport-route">
+                                <h5>从高速公路出发</h5>
+                                <ul class="route-steps">
+                                    <li>从南坪快速路下"科苑立交"出口</li>
+                                    <li>沿科苑路向南行驶</li>
+                                    <li>左转进入海德三道</li>
+                                    <li>直行约800米即可到达海洋世界</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h4><i class="fas fa-parking"></i> 停车场信息</h4>
+                        <div class="parking-info">
+                            <div class="parking-item">
+                                <div class="parking-icon">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <h4>地下停车场</h4>
+                                <p>500个车位</p>
+                                <p>¥10/小时</p>
+                            </div>
+                            <div class="parking-item">
+                                <div class="parking-icon">
+                                    <i class="fas fa-car-side"></i>
+                                </div>
+                                <h4>室外停车场</h4>
+                                <p>200个车位</p>
+                                <p>¥8/小时</p>
+                            </div>
+                            <div class="parking-item">
+                                <div class="parking-icon">
+                                    <i class="fas fa-wheelchair"></i>
+                                </div>
+                                <h4>无障碍车位</h4>
+                                <p>20个专用车位</p>
+                                <p>凭证免费</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wave-divider white">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 馆内设施 -->
+    <section class="facilities" id="facilities">
+        <div class="container">
+            <h2>馆内设施</h2>
+            <p class="section-subtitle">为您提供舒适便捷的参观体验，各类设施一应俱全</p>
+            
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="餐厅">
+                    </div>
+                    <div class="facility-content">
+                        <h3><i class="fas fa-utensils"></i> 餐厅</h3>
+                        <p>海洋世界内设有多家特色餐厅，提供各类美食，满足您的味蕾需求。</p>
+                        <ul class="facility-details">
+                            <li><i class="fas fa-map-marker-alt"></i> 位置：一层中央区域和三层观景区</li>
+                            <li><i class="far fa-clock"></i> 营业时间：09:30 - 20:00</li>
+                            <li><i class="fas fa-info-circle"></i> 特色：海洋主题餐厅，提供中西式美食</li>
+                            <li><i class="fas fa-wheelchair"></i> 无障碍设施：有</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.6XRwr_NnnpiF1-QF9MfaPgHaFj?cb=iwc2&rs=1&pid=ImgDetMain" alt="休息区">
+                    </div>
+                    <div class="facility-content">
+                        <h3><i class="fas fa-couch"></i> 休息区</h3>
+                        <p>馆内设有多处舒适的休息区，让您在参观过程中得到充分的休息。</p>
+                        <ul class="facility-details">
+                            <li><i class="fas fa-map-marker-alt"></i> 位置：各展区之间的连接处</li>
+                            <li><i class="fas fa-wifi"></i> 免费WiFi：有</li>
+                            <li><i class="fas fa-charging-station"></i> 充电设施：有</li>
+                            <li><i class="fas fa-wheelchair"></i> 无障碍设施：有</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.ceee69958543fdf1c9febe8834417da6?rik=cgJkWHkqeYtyCg&riu=http%3a%2f%2fwww.szyuan.cn%2fkindeditor%2fattached%2fimage%2f20171028%2f20171028160120472047.jpg&ehk=ZBg%2bcs%2b1easkfYcIJWizoQ4eCJtisHvbyjGVDjNX65I%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" alt="母婴室">
+                    </div>
+                    <div class="facility-content">
+                        <h3><i class="fas fa-baby"></i> 母婴室</h3>
+                        <p>为带婴幼儿的家庭提供私密、舒适的哺乳和换尿布空间。</p>
+                        <ul class="facility-details">
+                            <li><i class="fas fa-map-marker-alt"></i> 位置：一层和二层的卫生间旁</li>
+                            <li><i class="fas fa-temperature-low"></i> 空调：有</li>
+                            <li><i class="fas fa-chair"></i> 设施：哺乳椅、尿布台、热水器</li>
+                            <li><i class="fas fa-lock"></i> 隐私保护：有</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.257ea9f187121d03699ac03b7f41496c?rik=7v4ZFat3iZPaYg&riu=http%3a%2f%2fwww.shhaio.net%2fupload%2fimages%2f20201021%2f1603264657426038.jpg&ehk=gwgOrjDZ9p3GtfyTG345adXbhK5H8yHLnjx3cqOA1no%3d&risl=&pid=ImgRaw&r=0" alt="纪念品商店">
+                    </div>
+                    <div class="facility-content">
+                        <h3><i class="fas fa-shopping-bag"></i> 纪念品商店</h3>
+                        <p>提供各类海洋主题纪念品，让您带走美好的参观回忆。</p>
+                        <ul class="facility-details">
+                            <li><i class="fas fa-map-marker-alt"></i> 位置：出口处和二层中央区域</li>
+                            <li><i class="far fa-clock"></i> 营业时间：09:00 - 21:00</li>
+                            <li><i class="fas fa-tags"></i> 商品：毛绒玩具、模型、服装、文具等</li>
+                            <li><i class="far fa-credit-card"></i> 支付方式：现金、银行卡、移动支付</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.pcun2RQpcB1BhkpgH7T5ugHaFj?cb=iwc2&rs=1&pid=ImgDetMain" alt="洗手间">
+                    </div>
+                    <div class="facility-content">
+                        <h3><i class="fas fa-restroom"></i> 洗手间</h3>
+                        <p>馆内各区域均设有洁净舒适的洗手间，方便您的参观需求。</p>
+                        <ul class="facility-details">
+                            <li><i class="fas fa-map-marker-alt"></i> 位置：各展区附近均有标识</li>
+                            <li><i class="fas fa-wheelchair"></i> 无障碍洗手间：每层均有</li>
+                            <li><i class="fas fa-child"></i> 儿童设施：有儿童专用洗手台和坐便器</li>
+                            <li><i class="fas fa-hands-wash"></i> 洗手液和纸巾：提供</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-img">
+                        <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1947871855,3542253759&fm=199&app=68&f=JPEG?w=750&h=562&s=F892489ACA6E060D3615D8A40300F001" alt="急救站">
+                    </div>
+                    <div class="facility-content">
+                        <h3><i class="fas fa-first-aid"></i> 急救站</h3>
+                        <p>提供基本医疗服务，确保您在参观过程中的安全与健康。</p>
+                        <ul class="facility-details">
+                            <li><i class="fas fa-map-marker-alt"></i> 位置：一层服务中心旁</li>
+                            <li><i class="far fa-clock"></i> 服务时间：全天开放</li>
+                            <li><i class="fas fa-user-md"></i> 人员：专业医护人员值班</li>
+                            <li><i class="fas fa-ambulance"></i> 紧急服务：可联系120急救</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wave-divider light-blue">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 游览路线 -->
+    <section class="tour-routes" id="tour-routes">
+        <div class="container">
+            <h2>推荐游览路线</h2>
+            <p class="section-subtitle">根据您的兴趣和时间，选择最适合的游览路线，获得最佳参观体验</p>
+            
+            <div class="routes-tabs">
+                <button class="route-tab active" data-route="family">亲子互动之旅</button>
+                <button class="route-tab" data-route="science">海洋科普之旅</button>
+                <button class="route-tab" data-route="photography">摄影精选之旅</button>
+                <button class="route-tab" data-route="quick">快速精华之旅</button>
+            </div>
+            
+            <div class="route-content active" id="family-route">
+                <div class="route-map">
+                    <div class="route-map-img">
+                        <img src="./src/地图.jpg" alt="亲子互动之旅地图">
+                        
+                        <div class="route-point" style="top: 30%; left: 20%;">
+                            1
+                            <div class="route-point-tooltip">互动触摸池</div>
+                        </div>
+                        <div class="route-point" style="top: 45%; left: 40%;">
+                            2
+                            <div class="route-point-tooltip">海豚表演馆</div>
+                        </div>
+                        <div class="route-point" style="top: 35%; left: 60%;">
+                            3
+                            <div class="route-point-tooltip">儿童海洋乐园</div>
+                        </div>
+                        <div class="route-point" style="top: 55%; left: 70%;">
+                            4
+                            <div class="route-point-tooltip">海底隧道</div>
+                        </div>
+                        <div class="route-point" style="top: 65%; left: 50%;">
+                            5
+                            <div class="route-point-tooltip">海洋科普教室</div>
+                        </div>
+                        <div class="route-point" style="top: 70%; left: 25%;">
+                            6
+                            <div class="route-point-tooltip">纪念品商店</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="route-timeline">
+                    <div class="route-step">
+                        <div class="route-step-number">1</div>
+                        <div class="route-step-content">
+                            <h4>互动触摸池</h4>
+                            <p>让孩子们近距离接触海星、海胆等温顺的海洋生物，在专业人员的指导下安全互动，培养对海洋生物的兴趣和爱护意识。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：30分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">2</div>
+                        <div class="route-step-content">
+                            <h4>海豚表演馆</h4>
+                            <p>观看精彩的海豚表演，了解这些聪明生物的习性和技能。表演结束后有机会与海豚合影（需另付费）。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：45分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">3</div>
+                        <div class="route-step-content">
+                            <h4>儿童海洋乐园</h4>
+                            <p>专为儿童设计的互动区域，有海洋主题的游乐设施、科普游戏和创意工作坊，让孩子们在玩乐中学习海洋知识。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：60分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">4</div>
+                        <div class="route-step-content">
+                            <h4>海底隧道</h4>
+                            <p>穿过透明的海底隧道，360度欣赏各种海洋生物在您头顶和身边游弋，仿佛置身海底世界，给孩子们带来震撼的视觉体验。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：40分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">5</div>
+                        <div class="route-step-content">
+                            <h4>海洋科普教室</h4>
+                            <p>参加互动科普课程，通过有趣的实验和游戏，了解海洋生态系统和保护知识，培养环保意识。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：45分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">6</div>
+                        <div class="route-step-content">
+                            <h4>纪念品商店</h4>
+                            <p>为孩子挑选一份海洋主题的纪念品，延续参观的美好记忆。商店提供各种适合不同年龄段儿童的玩具、图书和文创产品。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：20分钟</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <p><strong>总游览时间：</strong> 约4小时</p>
+                    <p><strong>适合人群：</strong> 家庭亲子游客，特别是5-12岁的儿童</p>
+                    <p><strong>特别提示：</strong> 海豚表演每天有固定场次，请提前查询时间安排</p>
+                </div>
+            </div>
+            
+            <div class="route-content" id="science-route">
+                <div class="route-map">
+                    <div class="route-map-img">
+                        <img src="https://images.unsplash.com/photo-1580019542155-247062e19ce4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="海洋科普之旅地图">
+                        
+                        <div class="route-point" style="top: 25%; left: 30%;">
+                            1
+                            <div class="route-point-tooltip">海洋生态展区</div>
+                        </div>
+                        <div class="route-point" style="top: 40%; left: 50%;">
+                            2
+                            <div class="route-point-tooltip">深海生物馆</div>
+                        </div>
+                        <div class="route-point" style="top: 60%; left: 65%;">
+                            3
+                            <div class="route-point-tooltip">珊瑚礁展示区</div>
+                        </div>
+                        <div class="route-point" style="top: 70%; left: 40%;">
+                            4
+                            <div class="route-point-tooltip">海洋科技馆</div>
+                        </div>
+                        <div class="route-point" style="top: 55%; left: 20%;">
+                            5
+                            <div class="route-point-tooltip">海洋保护展区</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="route-timeline">
+                    <div class="route-step">
+                        <div class="route-step-number">1</div>
+                        <div class="route-step-content">
+                            <h4>海洋生态展区</h4>
+                            <p>了解海洋生态系统的构成和运作机制，通过互动展示和多媒体演示，深入认识海洋食物链和生物多样性。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：50分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">2</div>
+                        <div class="route-step-content">
+                            <h4>深海生物馆</h4>
+                            <p>探索神秘的深海世界，观察适应极端环境的奇特生物，了解它们的特殊生存策略和进化历程。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：60分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">3</div>
+                        <div class="route-step-content">
+                            <h4>珊瑚礁展示区</h4>
+                            <p>欣赏色彩斑斓的珊瑚礁生态系统，了解珊瑚的生长过程、重要性以及面临的威胁，认识珊瑚礁保护的紧迫性。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：45分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">4</div>
+                        <div class="route-step-content">
+                            <h4>海洋科技馆</h4>
+                            <p>了解最新的海洋研究技术和成果，体验海洋探测设备的模拟操作，认识海洋科学对人类未来的重要意义。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：50分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">5</div>
+                        <div class="route-step-content">
+                            <h4>海洋保护展区</h4>
+                            <p>了解海洋面临的环境问题和保护措施，参与互动展示，学习个人如何为海洋保护做出贡献。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：45分钟</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <p><strong>总游览时间：</strong> 约4.5小时</p>
+                    <p><strong>适合人群：</strong> 对海洋科学有浓厚兴趣的青少年和成人</p>
+                    <p><strong>特别提示：</strong> 每天下午3点有专家讲解活动，建议提前预约</p>
+                </div>
+            </div>
+            
+            <div class="route-content" id="photography-route">
+                <!-- 摄影精选之旅内容 -->
+                <div class="route-map">
+                    <div class="route-map-img">
+                        <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="摄影精选之旅地图">
+                        
+                        <div class="route-point" style="top: 30%; left: 25%;">
+                            1
+                            <div class="route-point-tooltip">热带鱼展区</div>
+                        </div>
+                        <div class="route-point" style="top: 20%; left: 60%;">
+                            2
+                            <div class="route-point-tooltip">水母馆</div>
+                        </div>
+                        <div class="route-point" style="top: 50%; left: 75%;">
+                            3
+                            <div class="route-point-tooltip">海底隧道</div>
+                        </div>
+                        <div class="route-point" style="top: 65%; left: 55%;">
+                            4
+                            <div class="route-point-tooltip">企鹅馆</div>
+                        </div>
+                        <div class="route-point" style="top: 70%; left: 30%;">
+                            5
+                            <div class="route-point-tooltip">观景平台</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="route-timeline">
+                    <div class="route-step">
+                        <div class="route-step-number">1</div>
+                        <div class="route-step-content">
+                            <h4>热带鱼展区</h4>
+                            <p>捕捉色彩斑斓的热带鱼群，这里的灯光设计特别适合拍摄，可以拍出鱼群的动态美和色彩对比。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：40分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">2</div>
+                        <div class="route-step-content">
+                            <h4>水母馆</h4>
+                            <p>这里的蓝色背景灯光和优雅游动的水母创造出梦幻般的画面，是拍摄艺术照片的绝佳场所。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：45分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">3</div>
+                        <div class="route-step-content">
+                            <h4>海底隧道</h4>
+                            <p>透明的隧道提供了独特的拍摄角度，可以捕捉到鲨鱼和大型鱼类从头顶游过的壮观场景。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：50分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">4</div>
+                        <div class="route-step-content">
+                            <h4>企鹅馆</h4>
+                            <p>可爱的企鹅是极佳的拍摄对象，特别是它们在水中游泳或在冰上滑行的瞬间，充满生命力和趣味性。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：40分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">5</div>
+                        <div class="route-step-content">
+                            <h4>观景平台</h4>
+                            <p>位于顶层的观景平台可以俯瞰整个水族馆和周边海景，是拍摄全景和日落的理想地点。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：30分钟</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <p><strong>总游览时间：</strong> 约3.5小时</p>
+                    <p><strong>适合人群：</strong> 摄影爱好者和想要拍摄精美照片的游客</p>
+                    <p><strong>特别提示：</strong> 部分区域可能禁止使用闪光灯，请注意标识</p>
+                </div>
+            </div>
+            
+            <div class="route-content" id="quick-route">
+                <!-- 快速精华之旅内容 -->
+                <div class="route-map">
+                    <div class="route-map-img">
+                        <img src="https://images.unsplash.com/photo-1534570122623-99e8378a9aa7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="快速精华之旅地图">
+                        
+                        <div class="route-point" style="top: 30%; left: 30%;">
+                            1
+                            <div class="route-point-tooltip">海底隧道</div>
+                        </div>
+                        <div class="route-point" style="top: 45%; left: 60%;">
+                            2
+                            <div class="route-point-tooltip">海豚表演馆</div>
+                        </div>
+                        <div class="route-point" style="top: 65%; left: 40%;">
+                            3
+                            <div class="route-point-tooltip">珊瑚礁展示区</div>
+                        </div>
+                        <div class="route-point" style="top: 55%; left: 20%;">
+                            4
+                            <div class="route-point-tooltip">纪念品商店</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="route-timeline">
+                    <div class="route-step">
+                        <div class="route-step-number">1</div>
+                        <div class="route-step-content">
+                            <h4>海底隧道</h4>
+                            <p>体验水族馆最具代表性的海底隧道，观赏各种海洋生物在您周围游弋的壮观场景。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：30分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">2</div>
+                        <div class="route-step-content">
+                            <h4>海豚表演馆</h4>
+                            <p>观看精彩的海豚表演，这是水族馆最受欢迎的节目之一，不容错过。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：45分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">3</div>
+                        <div class="route-step-content">
+                            <h4>珊瑚礁展示区</h4>
+                            <p>欣赏色彩斑斓的珊瑚礁生态系统，了解这一海洋"热带雨林"的魅力。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：30分钟</span>
+                        </div>
+                    </div>
+                    
+                    <div class="route-step">
+                        <div class="route-step-number">4</div>
+                        <div class="route-step-content">
+                            <h4>纪念品商店</h4>
+                            <p>挑选一份海洋主题的纪念品，留下美好的参观回忆。</p>
+                            <span class="route-step-time"><i class="far fa-clock"></i> 建议游览时间：15分钟</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <p><strong>总游览时间：</strong> 约2小时</p>
+                    <p><strong>适合人群：</strong> 时间有限的游客或初次参观者</p>
+                    <p><strong>特别提示：</strong> 建议提前查询海豚表演时间，合理安排行程</p>
+                </div>
+            </div>
+        </div>
+        <div class="wave-divider white">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 在线购票 -->
+    <section class="online-tickets" id="online-tickets">
+        <div class="container">
+            <h2>在线购票</h2>
+            <p class="section-subtitle">提前购票，避免排队，享受更便捷的参观体验</p>
+            
+            <div class="ticket-form">
+                <div class="form-group">
+                    <label for="visit-date">选择参观日期</label>
+                    <input type="date" id="visit-date" class="form-control" min="2023-05-15">
+                </div>
+                
+                <div class="form-group">
+                    <label>选择票型和数量</label>
+                    
+                    <div class="ticket-selector">
+                        <div class="ticket-info">
+                            <h4>成人票</h4>
+                            <p>18-65周岁游客</p>
+                        </div>
+                        <div class="ticket-price-tag">¥180</div>
+                        <div class="ticket-quantity">
+                            <button class="quantity-btn minus-btn" data-ticket="adult">-</button>
+                            <input type="number" class="quantity-input" value="0" min="0" max="10" data-ticket="adult" data-price="180">
+                            <button class="quantity-btn plus-btn" data-ticket="adult">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-selector">
+                        <div class="ticket-info">
+                            <h4>儿童票</h4>
+                            <p>1.2-1.5米儿童</p>
+                        </div>
+                        <div class="ticket-price-tag">¥90</div>
+                        <div class="ticket-quantity">
+                            <button class="quantity-btn minus-btn" data-ticket="child">-</button>
+                            <input type="number" class="quantity-input" value="0" min="0" max="10" data-ticket="child" data-price="90">
+                            <button class="quantity-btn plus-btn" data-ticket="child">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-selector">
+                        <div class="ticket-info">
+                            <h4>老人票</h4>
+                            <p>65周岁以上老人（凭有效证件）</p>
+                        </div>
+                        <div class="ticket-price-tag">¥90</div>
+                        <div class="ticket-quantity">
+                            <button class="quantity-btn minus-btn" data-ticket="senior">-</button>
+                            <input type="number" class="quantity-input" value="0" min="0" max="10" data-ticket="senior" data-price="90">
+                            <button class="quantity-btn plus-btn" data-ticket="senior">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-selector">
+                        <div class="ticket-info">
+                            <h4>家庭套票</h4>
+                            <p>2成人+1儿童</p>
+                        </div>
+                        <div class="ticket-price-tag">¥380</div>
+                        <div class="ticket-quantity">
+                            <button class="quantity-btn minus-btn" data-ticket="family">-</button>
+                            <input type="number" class="quantity-input" value="0" min="0" max="5" data-ticket="family" data-price="380">
+                            <button class="quantity-btn plus-btn" data-ticket="family">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>联系信息</label>
+                    <div class="form-row">
+                        <div>
+                            <input type="text" class="form-control" placeholder="姓名" required>
+                        </div>
+                        <div>
+                            <input type="tel" class="form-control" placeholder="手机号码" required>
+                        </div>
+                        <div>
+                            <input type="email" class="form-control" placeholder="电子邮箱">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-total">
+                    <div class="total-text">总计金额：</div>
+                    <div class="total-price">¥0</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>选择支付方式</label>
+                    <div class="payment-methods">
+                        <div class="payment-method active">
+                            <div class="payment-method-icon">
+                                <i class="fab fa-weixin"></i>
+                            </div>
+                            <p>微信支付</p>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-icon">
+                                <i class="fab fa-alipay"></i>
+                            </div>
+                            <p>支付宝</p>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-icon">
+                                <i class="far fa-credit-card"></i>
+                            </div>
+                            <p>银行卡</p>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <p>现场支付</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn" style="padding: 15px 40px; font-size: 1.2rem;">确认购票</button>
+                </div>
+            </div>
+        </div>
+        <div class="wave-divider light-blue">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 地图导航 -->
+    <section class="map-navigation" id="map-navigation">
+        <div class="container">
+            <h2>地图导航</h2>
+            <p class="section-subtitle">查找海洋世界水族馆的位置，规划您的出行路线</p>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.9259798546376!2d114.0603!3d22.5257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDMxJzMyLjUiTiAxMTTCsDAzJzM3LjEiRQ!5e0!3m2!1sen!2sus!4v1621451537084!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                
+                <div class="map-overlay">
+                    <h3>海洋世界水族馆</h3>
+                    <p>地址：中国深圳市南山区海岸大道100号</p>
+                    <p>电话：+86 755-1234-5678</p>
+                    <a href="#" class="map-directions-btn"><i class="fas fa-directions"></i> 获取导航路线</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <p><strong>GPS坐标：</strong> 22.5257° N, 114.0603° E</p>
+                <p><strong>周边地标：</strong> 海岸城购物中心、深圳湾公园、南山文体中心</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-wave"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo"><i class="fas fa-water"></i>海洋世界</a>
+                    <p>我们致力于通过教育和保护行动，促进海洋生态系统的可持续发展，保护海洋生物多样性。海洋世界水族馆是一个集科普教育、科学研究和生态保护于一体的综合性海洋主题场馆。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> 首页</a></li>
+                        <li><a href="#showcase"><i class="fas fa-chevron-right"></i> 海洋生物</a></li>
+                        <li><a href="#arc-carousel"><i class="fas fa-chevron-right"></i> 生物图鉴</a></li>
+                        <li><a href="#conservation"><i class="fas fa-chevron-right"></i> 生态保护</a></li>
+                        <li><a href="#news-events"><i class="fas fa-chevron-right"></i> 新闻活动</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 参观指南</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>联系我们</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-info-text">
+                            <strong>地址</strong>
+                            <p>海洋世界水族馆</p>
+                            <p>中国深圳市南山区海岸大道100号</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-info-text">
+                            <strong>电话</strong>
+                            <p>+86 755-1234-5678</p>
+                            <p>周一至周日: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-info-text">
+                            <strong>邮箱</strong>
+                            <p>info@oceanworld.com</p>
+                            <p>support@oceanworld.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>订阅通讯</h3>
+                    <p>订阅我们的电子通讯，获取最新的海洋资讯、保护项目进展和活动信息。我们每月发送一次通讯，您可以随时取消订阅。</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="您的电子邮箱" required>
+                        <button type="submit">订阅</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 海洋世界水族馆. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 移动端菜单
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            if (mobileMenu.classList.contains('active')) {
+                mobileMenu.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                        mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // 信息卡片动画
+        const infoCards = document.querySelectorAll('.info-card');
+        
+        function checkScroll() {
+            infoCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight - 100) {
+                    card.classList.add('show');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
+        // 游览路线标签页切换
+        const routeTabs = document.querySelectorAll('.route-tab');
+        const routeContents = document.querySelectorAll('.route-content');
+
+        routeTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const routeId = this.getAttribute('data-route');
+                
+                routeTabs.forEach(tab => tab.classList.remove('active'));
+                routeContents.forEach(content => content.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.getElementById(routeId + '-route').classList.add('active');
+            });
+        });
+
+        // 票价计算
+        const quantityInputs = document.querySelectorAll('.quantity-input');
+        const minusBtns = document.querySelectorAll('.minus-btn');
+        const plusBtns = document.querySelectorAll('.plus-btn');
+        const totalPrice = document.querySelector('.total-price');
+
+        function updateTotal() {
+            let total = 0;
+            quantityInputs.forEach(input => {
+                const price = parseInt(input.getAttribute('data-price'));
+                const quantity = parseInt(input.value);
+                total += price * quantity;
+            });
+            totalPrice.textContent = '¥' + total;
+        }
+
+        quantityInputs.forEach(input => {
+            input.addEventListener('change', updateTotal);
+        });
+
+        minusBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const ticket = this.getAttribute('data-ticket');
+                const input = document.querySelector(`.quantity-input[data-ticket="${ticket}"]`);
+                if (parseInt(input.value) > 0) {
+                    input.value = parseInt(input.value) - 1;
+                    updateTotal();
+                }
+            });
+        });
+
+        plusBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const ticket = this.getAttribute('data-ticket');
+                const input = document.querySelector(`.quantity-input[data-ticket="${ticket}"]`);
+                if (parseInt(input.value) < parseInt(input.getAttribute('max'))) {
+                    input.value = parseInt(input.value) + 1;
+                    updateTotal();
+                }
+            });
+        });
+
+        // 支付方式选择
+        const paymentMethods = document.querySelectorAll('.payment-method');
+
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', function() {
+                paymentMethods.forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // 设置日期选择器的最小日期为今天
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('visit-date').setAttribute('min', today);
+        document.getElementById('visit-date').value = today;
+
+        // 创建背景粒子效果
+        function createParticles(containerId, count) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机大小
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // 随机透明度
+                particle.style.opacity = (Math.random() * 0.5 + 0.1).toString();
+                
+                // 添加动画
+                particle.style.animation = `float ${Math.random() * 10 + 5}s infinite ease-in-out`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // 创建英雄区背景粒子
+        createParticles('guide-particles', 30);
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', function() {
+            // 检查信息卡片动画
+            checkScroll();
+            
+            // 设置默认日期
+            document.getElementById('visit-date').value = today;
+        });
+    </script>
+</body>
+</html>

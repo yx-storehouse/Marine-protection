@@ -1,0 +1,2583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海洋世界 - 科普教育</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary-color: #0077b6;
+            --secondary-color: #00b4d8;
+            --accent-color: #48cae4;
+            --dark-blue: #03045e;
+            --medium-blue: #023e8a;
+            --light-blue: #caf0f8;
+            --white: #ffffff;
+            --gradient-blue: linear-gradient(135deg, var(--dark-blue), var(--primary-color));
+            --gradient-teal: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --purple: #7209b7;
+            --pink: #f72585;
+            --teal: #4cc9f0;
+            --yellow: #ffd166;
+            --orange: #fb8500;
+            --green: #2ec4b6;
+        }
+
+        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--gradient-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 119, 182, 0.4);
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--dark-blue);
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-teal);
+            border-radius: 2px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 导航栏 */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(3, 4, 94, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        header.scrolled .logo {
+            color: var(--white);
+        }
+
+        header.scrolled .nav-links a {
+            color: var(--white);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-teal);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 80px 0 20px;
+            position: relative;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2303045e" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .footer-about p {
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-teal);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .social-links a:hover::before {
+            opacity: 1;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-links h3,
+        .footer-contact h3,
+        .footer-newsletter h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-links h3::after,
+        .footer-contact h3::after,
+        .footer-newsletter h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-teal);
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-info i {
+            margin-right: 15px;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .contact-info-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info-text strong {
+            display: block;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 25px;
+            position: relative;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+            font-size: 1rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter-form button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            padding: 0 20px;
+            background: var(--gradient-teal);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--gradient-blue);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* 科普教育页面特定样式 */
+        /* 英雄区 */
+        .edu-hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1582967788606-a171c1080cb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edu-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .edu-hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .edu-hero h1::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: var(--gradient-teal);
+            animation: lineGrow 1.5s ease 1.5s forwards;
+        }
+
+        .edu-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .edu-hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .edu-hero-scroll {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 1;
+        }
+
+        .edu-hero-scroll a {
+            color: var(--white);
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .edu-hero-scroll a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 海洋生物动画 */
+        .ocean-creatures {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .creature {
+            position: absolute;
+            opacity: 0.6;
+            filter: brightness(1.5);
+            pointer-events: none;
+        }
+
+        .fish1 {
+            top: 20%;
+            left: -100px;
+            width: 80px;
+            animation: swimRight 25s linear infinite;
+        }
+
+        .fish2 {
+            top: 40%;
+            right: -80px;
+            width: 60px;
+            animation: swimLeft 20s linear infinite;
+        }
+
+        .jellyfish {
+            top: 60%;
+            left: 30%;
+            width: 70px;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .turtle {
+            bottom: 15%;
+            right: -150px;
+            width: 120px;
+            animation: swimLeft 40s linear infinite;
+        }
+
+        .bubbles {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: rise linear infinite;
+        }
+
+        /* 年龄分类科普 */
+        .age-categories {
+            background-color: #f8f9fa;
+            position: relative;
+            overflow: visible;
+        }
+
+        .age-categories::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23f8f9fa" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,197.3C672,224,768,224,864,208C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .age-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+
+        .age-tab {
+            padding: 15px 30px;
+            background-color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 10px 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .age-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-teal);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .age-tab:hover::before {
+            opacity: 1;
+        }
+
+        .age-tab:hover {
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .age-tab.active {
+            background: var(--gradient-blue);
+            color: var(--white);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .age-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .age-content.active {
+            display: block;
+        }
+
+        /* 儿童内容 */
+        .children-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .children-video {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: perspective(1000px) rotateY(5deg);
+            transition: all 0.5s ease;
+        }
+
+        .children-video:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+
+        .children-video::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 183, 255, 0.2), rgba(0, 119, 182, 0.2));
+            z-index: 1;
+        }
+
+        .children-video img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .video-play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background-color: var(--white);
+        }
+
+        .video-play-btn i {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        .children-text {
+            padding: 30px;
+        }
+
+        .children-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--purple);
+            position: relative;
+            display: inline-block;
+        }
+
+        .children-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--purple);
+            border-radius: 2px;
+        }
+
+        .children-features {
+            margin-top: 30px;
+        }
+
+        .children-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-icon i {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .feature-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .feature-text p {
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* 青少年内容 */
+        .teen-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .article-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .article-card:hover .article-img img {
+            transform: scale(1.1);
+        }
+
+        .article-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--teal);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover .article-content h3 {
+            color: var(--primary-color);
+        }
+
+        .article-content p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .article-date {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        /* 成人内容 */
+        .adult-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .research-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .research-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .research-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .research-card:hover .research-img img {
+            transform: scale(1.1);
+        }
+
+        .research-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 15px;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .research-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .research-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+            transition: all 0.3s ease;
+        }
+
+        .research-card:hover .research-content h3 {
+            color: var(--primary-color);
+        }
+
+        .research-content p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .research-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .research-institute {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .research-date {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .research-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .research-link i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .research-link:hover {
+            color: var(--dark-blue);
+        }
+
+        .research-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* 教育活动 */
+        .edu-activities {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .edu-activities::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .activities-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .activity-card {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .activity-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .activity-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .activity-card:hover .activity-img img {
+            transform: scale(1.1);
+        }
+
+        .activity-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .activity-date {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            z-index: 1;
+        }
+
+        .activity-date span {
+            display: block;
+        }
+
+        .activity-date .day {
+            font-size: 1.5rem;
+        }
+
+        .activity-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+            transition: all 0.3s ease;
+        }
+
+        .activity-card:hover .activity-content h3 {
+            color: var(--primary-color);
+        }
+
+        .activity-content p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .activity-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .activity-info i {
+            color: var(--orange);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .activity-info span {
+            color: #666;
+        }
+
+        .activity-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--gradient-teal);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .activity-btn:hover {
+            background: var(--gradient-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 科普问答 */
+        .edu-quiz {
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        .edu-quiz::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23f8f9fa" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .quiz-header {
+            background: var(--gradient-blue);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .quiz-header h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .quiz-header p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+        }
+
+        .quiz-content {
+            padding: 30px;
+        }
+
+        .quiz-question {
+            margin-bottom: 30px;
+        }
+
+        .question-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+            display: inline;
+        }
+
+        .quiz-options {
+            margin-top: 20px;
+            margin-left: 55px;
+        }
+
+        .quiz-option {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .quiz-option:hover {
+            background-color: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .option-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: var(--white);
+            color: var(--dark-blue);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover .option-letter {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .option-text {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .quiz-option.correct {
+            background-color: rgba(46, 196, 182, 0.2);
+            border-left: 4px solid var(--green);
+        }
+
+        .quiz-option.incorrect {
+            background-color: rgba(247, 37, 133, 0.1);
+            border-left: 4px solid var(--pink);
+        }
+
+        .quiz-option.selected .option-letter {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background-color: rgba(46, 196, 182, 0.1);
+            border-left: 4px solid var(--green);
+            color: var(--green);
+        }
+
+        .quiz-feedback.incorrect {
+            background-color: rgba(247, 37, 133, 0.1);
+            border-left: 4px solid var(--pink);
+            color: var(--pink);
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .quiz-btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-btn.prev {
+            background-color: #e9ecef;
+            color: var(--dark-blue);
+        }
+
+        .quiz-btn.prev:hover {
+            background-color: #dee2e6;
+        }
+
+        .quiz-btn.next {
+            background: var(--gradient-teal);
+            color: var(--white);
+        }
+
+        .quiz-btn.next:hover {
+            background: var(--gradient-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-progress {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-teal);
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+
+        .result-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .result-icon i {
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .result-score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+        }
+
+        .result-message {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .result-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .result-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 教育资源 */
+        .edu-resources {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .edu-resources::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23ffffff" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .resources-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .resource-card {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .resource-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-icon::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            top: -25%;
+            left: -25%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .resource-card:hover .resource-icon::before {
+            opacity: 1;
+        }
+
+        .resource-icon i {
+            font-size: 3rem;
+            color: var(--white);
+            z-index: 1;
+        }
+
+        .resource-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover .resource-content h3 {
+            color: var(--primary-color);
+        }
+
+        .resource-content p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .resource-type {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .resource-size {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .resource-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px 0;
+            background: var(--gradient-teal);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .resource-download i {
+            margin-right: 10px;
+        }
+
+        .resource-download:hover {
+            background: var(--gradient-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes lineGrow {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        @keyframes swimRight {
+            from {
+                left: -100px;
+            }
+
+            to {
+                left: calc(100% + 100px);
+            }
+        }
+
+        @keyframes swimLeft {
+            from {
+                right: -100px;
+            }
+
+            to {
+                right: calc(100% + 100px);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes rise {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-1000px);
+                opacity: 0;
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .edu-hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .children-content {
+                grid-template-columns: 1fr;
+            }
+
+            .children-video {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: all 0.3s ease;
+                z-index: 999;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .edu-hero h1 {
+                font-size: 3rem;
+            }
+
+            .edu-hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .age-tab {
+                width: 100%;
+                margin: 0 0 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .edu-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .edu-hero p {
+                font-size: 1.1rem;
+            }
+
+            .children-text h3 {
+                font-size: 1.8rem;
+            }
+
+            .quiz-header h3 {
+                font-size: 1.8rem;
+            }
+
+            .question-text {
+                font-size: 1.1rem;
+            }
+
+            .quiz-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .quiz-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><i class="fas fa-water"></i>海洋世界</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="marine-species.html">海洋生物</a></li>
+                    <li><a href="conservation.html">生态保护</a></li>
+                    <li><a href="science-education.html" class="active">科普教育</a></li>
+                    <li><a href="visitor-guide.html">参观指南</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="edu-hero" id="edu-hero">
+        <div class="ocean-creatures">
+            <img src="./src/鱼 (1).png"
+                alt="Fish" class="creature fish1">
+            <img src="./src/鱼.png"
+                alt="Fish" class="creature fish2">
+            <img src="./src/水母.png"
+                alt="Jellyfish" class="creature jellyfish">
+            <img src="./src/乌龟.png"
+                alt="Turtle" class="creature turtle">
+            <div class="bubbles" id="bubbles"></div>
+        </div>
+        <div class="container">
+            <div class="edu-hero-content">
+                <h1>探索海洋科普世界</h1>
+                <p>通过互动体验、科普知识和教育活动，发现海洋的奥秘，培养保护海洋的意识</p>
+                <div class="edu-hero-btns">
+                    <a href="#age-categories" class="btn">开始探索</a>
+                    <a href="#edu-quiz" class="btn">参与科普问答</a>
+                </div>
+            </div>
+        </div>
+        <div class="edu-hero-scroll">
+            <a href="#age-categories"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- 年龄分类科普 -->
+    <section class="age-categories" id="age-categories">
+        <div class="container">
+            <h2>分龄海洋科普</h2>
+            <p class="section-subtitle">针对不同年龄段的游客，提供丰富多彩的海洋科普知识</p>
+
+            <div class="age-tabs">
+                <button class="age-tab active" data-age="children">儿童科普</button>
+                <button class="age-tab" data-age="teen">青少年科普</button>
+                <button class="age-tab" data-age="adult">成人科普</button>
+            </div>
+
+            <div class="age-content active" id="children-content">
+                <div class="children-content">
+                    <div class="children-video">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="海洋生物动画视频">
+                        <div class="video-play-btn" id="children-video-play">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="children-text">
+                        <h3>海洋生物奇妙之旅</h3>
+                        <p>通过生动有趣的动画视频，带领孩子们认识海洋生物的基本知识，激发他们对海洋世界的好奇心和探索欲。</p>
+                        <div class="children-features">
+                            <div class="children-feature">
+                                <div class="feature-icon">
+                                    <i class="fas fa-fish"></i>
+                                </div>
+                                <div class="feature-text">
+                                    <h4>认识海洋朋友</h4>
+                                    <p>通过可爱的卡通形象，介绍各种海洋生物的特点和生活习性</p>
+                                </div>
+                            </div>
+                            <div class="children-feature">
+                                <div class="feature-icon">
+                                    <i class="fas fa-water"></i>
+                                </div>
+                                <div class="feature-text">
+                                    <h4>海洋环境探索</h4>
+                                    <p>了解不同海洋环境的特点，如珊瑚礁、深海、极地等</p>
+                                </div>
+                            </div>
+                            <div class="children-feature">
+                                <div class="feature-icon">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
+                                <div class="feature-text">
+                                    <h4>保护海洋行动</h4>
+                                    <p>学习如何从小事做起，保护我们的海洋环境</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 50px;">
+                    <h3 style="text-align: center; margin-bottom: 30px; color: var(--purple);">更多儿童科普内容</h3>
+                    <div class="teen-content">
+                        <div class="article-card">
+                            <div class="article-img">
+                                <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.ksmbsELQB-p4DQBfOc-nVwHaFj?cb=iwc2&rs=1&pid=ImgDetMain"
+                                    alt="海洋生物绘本">
+                            </div>
+                            <div class="article-content">
+                                <span class="article-tag" style="background-color: var(--purple);">绘本故事</span>
+                                <h3>《小海豚的冒险》</h3>
+                                <p>跟随小海豚波波一起探索海洋世界，结交新朋友，学习海洋知识。适合3-6岁儿童阅读。</p>
+                                <a href="#" class="btn" style="width: 100%; text-align: center;">在线阅读</a>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-img">
+                                <img src="https://ts1.tc.mm.bing.net/th/id/R-C.d9a71e59bf93545a6adb06ddc5810438?rik=SUyNlgT7hD1VdA&riu=http%3a%2f%2fpic.8liuxing.com%2fforum%2f201307%2f02%2f152944hsjkkkpxky5pmszz.jpg&ehk=FWlsGRzdF5mujrg7ozAypPsMs08FtzkWTsgQ20kxqR0%3d&risl=&pid=ImgRaw&r=0"
+                                    alt="海洋生物手工">
+                            </div>
+                            <div class="article-content">
+                                <span class="article-tag" style="background-color: var(--purple);">互动手工</span>
+                                <h3>海洋生物折纸教程</h3>
+                                <p>简单有趣的折纸教程，教孩子们如何制作各种海洋生物，如鲸鱼、海龟、章鱼等。</p>
+                                <a href="#" class="btn" style="width: 100%; text-align: center;">查看教程</a>
+                            </div>
+                        </div>
+                        <div class="article-card">
+                            <div class="article-img">
+                                <img src="https://cdn.biubiu001.com/p/ping/20220917/img/1697cb6f224bc9d0ae56b89550501a79.png?x-oss-process=image/resize,w_480/quality,Q_90"
+                                    alt="海洋生物游戏">
+                            </div>
+                            <div class="article-content">
+                                <span class="article-tag" style="background-color: var(--purple);">益智游戏</span>
+                                <h3>海洋生物配对游戏</h3>
+                                <p>通过有趣的配对游戏，帮助孩子们记忆不同海洋生物的名称和特征，提高观察力和记忆力。</p>
+                                <a href="#" class="btn" style="width: 100%; text-align: center;">开始游戏</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="age-content" id="teen-content">
+                <div class="teen-content">
+                    <div class="article-card">
+                        <div class="article-img">
+                            <img src="https://pic.616pic.com/photoone/00/07/07/6197615949d2f2916.jpg!/fw/1120"
+                                alt="海洋生态系统">
+                        </div>
+                        <div class="article-content">
+                            <span class="article-tag">生态系统</span>
+                            <h3>珊瑚礁：海洋中的热带雨林</h3>
+                            <p>珊瑚礁是地球上生物多样性最丰富的生态系统之一，它们不仅为无数海洋生物提供栖息地，还能保护海岸线免受风暴侵袭。</p>
+                            <div class="article-meta">
+                                <div class="article-author">
+                                    <div class="author-img">
+                                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="作者">
+                                    </div>
+                                    <span class="author-name">李海洋 博士</span>
+                                </div>
+                                <span class="article-date">2023-05-10</span>
+                            </div>
+                            <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">阅读全文</a>
+                        </div>
+                    </div>
+                    <div class="article-card">
+                        <div class="article-img">
+                            <img src="https://p7.itc.cn/images01/20210127/6443ae31327048d1b00e68343be2f2f9.jpeg"
+                                alt="海洋污染">
+                        </div>
+                        <div class="article-content">
+                            <span class="article-tag">环境保护</span>
+                            <h3>塑料污染：海洋生物的隐形杀手</h3>
+                            <p>每年有数百万吨塑料垃圾流入海洋，对海洋生态系统造成严重威胁。了解塑料污染的来源、影响以及我们能做些什么。</p>
+                            <div class="article-meta">
+                                <div class="article-author">
+                                    <div class="author-img">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="作者">
+                                    </div>
+                                    <span class="author-name">王环保 教授</span>
+                                </div>
+                                <span class="article-date">2023-04-22</span>
+                            </div>
+                            <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">阅读全文</a>
+                        </div>
+                    </div>
+                    <div class="article-card">
+                        <div class="article-img">
+                            <img src="https://img.qufair.com/upload/keditor/20200923/5f6aafe271dd7.jpg"
+                                alt="海洋科技">
+                        </div>
+                        <div class="article-content">
+                            <span class="article-tag">科技创新</span>
+                            <h3>海洋探测技术的新进展</h3>
+                            <p>从水下机器人到卫星遥感，现代科技如何帮助我们更好地了解和探索海洋世界，揭示海洋的奥秘。</p>
+                            <div class="article-meta">
+                                <div class="article-author">
+                                    <div class="author-img">
+                                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="作者">
+                                    </div>
+                                    <span class="author-name">张科技 研究员</span>
+                                </div>
+                                <span class="article-date">2023-03-15</span>
+                            </div>
+                            <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="age-content" id="adult-content">
+                <div class="adult-content">
+                    <div class="research-card">
+                        <div class="research-img">
+                            <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.yrfAKuHsVZk7qwsP2_SyWgHaEI?cb=iwc2&rs=1&pid=ImgDetMain"
+                                alt="气候变化研究">
+                            <span class="research-category">气候变化</span>
+                        </div>
+                        <div class="research-content">
+                            <h3>气候变化对海洋生态系统的影响</h3>
+                            <p>本研究报告详细分析了全球气候变化如何影响海洋温度、酸化程度和海平面上升，以及这些变化对海洋生态系统的深远影响。</p>
+                            <div class="research-meta">
+                                <span class="research-institute">国家海洋研究中心</span>
+                                <span class="research-date">2023-01-15</span>
+                            </div>
+                            <a href="#" class="research-link">查看完整报告 <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="resource-download"><i class="fas fa-download"></i> 下载 PDF</a>
+                        </div>
+                    </div>
+                    <div class="research-card">
+                        <div class="research-img">
+                            <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                                alt="海洋保护区研究">
+                            <span class="research-category">保护策略</span>
+                        </div>
+                        <div class="research-content">
+                            <h3>海洋保护区的有效性评估</h3>
+                            <p>本报告评估了全球主要海洋保护区的设立效果，分析了保护区对海洋生物多样性恢复和渔业资源可持续利用的贡献。</p>
+                            <div class="research-meta">
+                                <span class="research-institute">世界自然保护联盟</span>
+                                <span class="research-date">2022-11-20</span>
+                            </div>
+                            <a href="#" class="research-link">查看完整报告 <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="resource-download"><i class="fas fa-download"></i> 下载 PDF</a>
+                        </div>
+                    </div>
+                    <div class="research-card">
+                        <div class="research-img">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.7b99af2ee8df1a35f9cbb8f44dbe757a?rik=oQeZkgXgeFQK7A&riu=http%3a%2f%2ffile.xdf.cn%2fuploads%2f210425%2f1458_2104251057461YTlwB8JhOgoYz21.jpg&ehk=y%2fMYnIn0nd2AIedsIoVyeCKkxllitJxjP63OOKibldc%3d&risl=&pid=ImgRaw&r=0"
+                                alt="海洋生物多样性研究">
+                            <span class="research-category">生物多样性</span>
+                        </div>
+                        <div class="research-content">
+                            <h3>深海生物多样性调查最新发现</h3>
+                            <p>基于最新的深海探测技术，科学家们在马里亚纳海沟发现了多种新的海洋生物物种，这些发现对我们理解海洋生物多样性具有重要意义。</p>
+                            <div class="research-meta">
+                                <span class="research-institute">深海探索研究所</span>
+                                <span class="research-date">2022-09-05</span>
+                            </div>
+                            <a href="#" class="research-link">查看完整报告 <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="resource-download"><i class="fas fa-download"></i> 下载 PDF</a>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- 科普问答 -->
+    <section class="edu-quiz" id="edu-quiz">
+        <div class="container">
+            <h2>海洋科普问答</h2>
+            <p class="section-subtitle">测试您的海洋知识，巩固所学内容</p>
+
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h3>海洋知识挑战</h3>
+                    <p>完成以下问题，测试您对海洋世界的了解程度</p>
+                </div>
+                <div class="quiz-content">
+                    <div class="quiz-question" id="question-1">
+                        <span class="question-number">1</span>
+                        <span class="question-text">地球表面约有多少比例被海洋覆盖？</span>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-answer="A">
+                                <span class="option-letter">A</span>
+                                <span class="option-text">约50%</span>
+                            </div>
+                            <div class="quiz-option" data-answer="B">
+                                <span class="option-letter">B</span>
+                                <span class="option-text">约60%</span>
+                            </div>
+                            <div class="quiz-option" data-answer="C">
+                                <span class="option-letter">C</span>
+                                <span class="option-text">约70%</span>
+                            </div>
+                            <div class="quiz-option" data-answer="D">
+                                <span class="option-letter">D</span>
+                                <span class="option-text">约80%</span>
+                            </div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback-1"></div>
+                    </div>
+
+                    <div class="quiz-question" id="question-2" style="display: none;">
+                        <span class="question-number">2</span>
+                        <span class="question-text">以下哪种海洋生物不是哺乳动物？</span>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-answer="A">
+                                <span class="option-letter">A</span>
+                                <span class="option-text">海豚</span>
+                            </div>
+                            <div class="quiz-option" data-answer="B">
+                                <span class="option-letter">B</span>
+                                <span class="option-text">鲸鱼</span>
+                            </div>
+                            <div class="quiz-option" data-answer="C">
+                                <span class="option-letter">C</span>
+                                <span class="option-text">海龟</span>
+                            </div>
+                            <div class="quiz-option" data-answer="D">
+                                <span class="option-letter">D</span>
+                                <span class="option-text">海狮</span>
+                            </div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback-2"></div>
+                    </div>
+
+                    <div class="quiz-question" id="question-3" style="display: none;">
+                        <span class="question-number">3</span>
+                        <span class="question-text">珊瑚礁主要由什么生物构成？</span>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-answer="A">
+                                <span class="option-letter">A</span>
+                                <span class="option-text">藻类</span>
+                            </div>
+                            <div class="quiz-option" data-answer="B">
+                                <span class="option-letter">B</span>
+                                <span class="option-text">珊瑚虫</span>
+                            </div>
+                            <div class="quiz-option" data-answer="C">
+                                <span class="option-letter">C</span>
+                                <span class="option-text">海绵</span>
+                            </div>
+                            <div class="quiz-option" data-answer="D">
+                                <span class="option-letter">D</span>
+                                <span class="option-text">贝类</span>
+                            </div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback-3"></div>
+                    </div>
+
+                    <div class="quiz-question" id="question-4" style="display: none;">
+                        <span class="question-number">4</span>
+                        <span class="question-text">海洋中最深的地方是哪里？</span>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-answer="A">
+                                <span class="option-letter">A</span>
+                                <span class="option-text">马里亚纳海沟</span>
+                            </div>
+                            <div class="quiz-option" data-answer="B">
+                                <span class="option-letter">B</span>
+                                <span class="option-text">波多黎各海沟</span>
+                            </div>
+                            <div class="quiz-option" data-answer="C">
+                                <span class="option-letter">C</span>
+                                <span class="option-text">日本海沟</span>
+                            </div>
+                            <div class="quiz-option" data-answer="D">
+                                <span class="option-letter">D</span>
+                                <span class="option-text">菲律宾海沟</span>
+                            </div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback-4"></div>
+                    </div>
+
+                    <div class="quiz-result" id="quiz-result">
+                        <div class="result-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="result-score">0/4</div>
+                        <div class="result-message">感谢参与海洋知识问答！继续学习，探索更多海洋奥秘。</div>
+                        <a href="#" class="result-btn" id="restart-quiz">再次挑战</a>
+                    </div>
+
+                    <div class="quiz-navigation">
+                        <button class="quiz-btn prev" id="prev-btn" style="visibility: hidden;">上一题</button>
+                        <button class="quiz-btn next" id="next-btn">下一题</button>
+                    </div>
+
+                    <div class="quiz-progress">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教育资源 -->
+    <section class="edu-resources" id="edu-resources">
+        <div class="container">
+            <h2>科普教育资源</h2>
+            <p class="section-subtitle">下载丰富的海洋科普教育资源，随时随地学习海洋知识</p>
+
+            <div class="resources-container">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>海洋生物图鉴</h3>
+                        <p>包含500多种常见海洋生物的详细介绍，配有高清图片和生物特征说明，是认识海洋生物的权威参考资料。</p>
+                        <div class="resource-meta">
+                            <span class="resource-type">PDF</span>
+                            <span class="resource-size">25MB</span>
+                        </div>
+                        <a href="#" class="resource-download"><i class="fas fa-download"></i> 下载资源</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>海洋科普文章合集</h3>
+                        <p>精选50篇海洋科普文章，涵盖海洋生物、海洋环境、海洋保护等多个主题，适合青少年和成人阅读。</p>
+                        <div class="resource-meta">
+                            <span class="resource-type">PDF</span>
+                            <span class="resource-size">18MB</span>
+                        </div>
+                        <a href="#" class="resource-download"><i class="fas fa-download"></i> 下载资源</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>海洋生物涂色本</h3>
+                        <p>包含30幅海洋生物线描图，配有生物知识介绍，适合儿童通过涂色活动认识海洋生物。</p>
+                        <div class="resource-meta">
+                            <span class="resource-type">PDF</span>
+                            <span class="resource-size">10MB</span>
+                        </div>
+                        <a href="#" class="resource-download"><i class="fas fa-download"></i> 下载资源</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>海洋生物纪录片</h3>
+                        <p>高清海洋生物纪录片《深海奇观》，带您探索神秘的深海世界，了解深海生物的奇特生存方式。</p>
+                        <div class="resource-meta">
+                            <span class="resource-type">MP4</span>
+                            <span class="resource-size">1.2GB</span>
+                        </div>
+                        <a href="#" class="resource-download"><i class="fas fa-download"></i> 下载资源</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>海洋知识游戏包</h3>
+                        <p>包含多种海洋主题的益智游戏，如海洋生物拼图、海洋知识问答卡片等，寓教于乐，适合家庭和学校使用。</p>
+                        <div class="resource-meta">
+                            <span class="resource-type">ZIP</span>
+                            <span class="resource-size">45MB</span>
+                        </div>
+                        <a href="#" class="resource-download"><i class="fas fa-download"></i> 下载资源</a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>海洋科普教案</h3>
+                        <p>为教师和家长提供的海洋科普教育教案，包含20个主题的课程设计、活动方案和教学资源，适合不同年龄段的教学需求。</p>
+                        <div class="resource-meta">
+                            <span class="resource-type">PDF</span>
+                            <span class="resource-size">30MB</span>
+                        </div>
+                        <a href="#" class="resource-download"><i class="fas fa-download"></i> 下载资源</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-wave"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo"><i class="fas fa-water"></i>海洋世界</a>
+                    <p>我们致力于通过教育和保护行动，促进海洋生态系统的可持续发展，保护海洋生物多样性。海洋世界水族馆是一个集科普教育、科学研究和生态保护于一体的综合性海洋主题场馆。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> 首页</a></li>
+                        <li><a href="#showcase"><i class="fas fa-chevron-right"></i> 海洋生物</a></li>
+                        <li><a href="#arc-carousel"><i class="fas fa-chevron-right"></i> 生物图鉴</a></li>
+                        <li><a href="#conservation"><i class="fas fa-chevron-right"></i> 生态保护</a></li>
+                        <li><a href="#news-events"><i class="fas fa-chevron-right"></i> 新闻活动</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 参观指南</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>联系我们</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-info-text">
+                            <strong>地址</strong>
+                            <p>海洋世界水族馆</p>
+                            <p>中国深圳市南山区海岸大道100号</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-info-text">
+                            <strong>电话</strong>
+                            <p>+86 755-1234-5678</p>
+                            <p>周一至周日: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-info-text">
+                            <strong>邮箱</strong>
+                            <p>info@oceanworld.com</p>
+                            <p>support@oceanworld.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>订阅通讯</h3>
+                    <p>订阅我们的电子通讯，获取最新的海洋资讯、保护项目进展和活动信息。我们每月发送一次通讯，您可以随时取消订阅。</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="您的电子邮箱" required>
+                        <button type="submit">订阅</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 海洋世界水族馆. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 移动端菜单
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+
+            if (mobileMenu.classList.contains('active')) {
+                mobileMenu.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // 关闭移动端菜单
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                        mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // 年龄分类标签页切换
+        const ageTabs = document.querySelectorAll('.age-tab');
+        const ageContents = document.querySelectorAll('.age-content');
+
+        ageTabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                const ageId = this.getAttribute('data-age');
+
+                ageTabs.forEach(tab => tab.classList.remove('active'));
+                ageContents.forEach(content => content.classList.remove('active'));
+
+                this.classList.add('active');
+                document.getElementById(ageId + '-content').classList.add('active');
+            });
+        });
+
+        // 视频播放按钮
+        const videoPlayBtn = document.getElementById('children-video-play');
+        if (videoPlayBtn) {
+            videoPlayBtn.addEventListener('click', function () {
+                alert('视频播放功能将在实际环境中启用');
+            });
+        }
+
+        // 科普问答功能
+        const quizQuestions = document.querySelectorAll('.quiz-question');
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const quizResult = document.getElementById('quiz-result');
+        const restartQuizBtn = document.getElementById('restart-quiz');
+
+        let currentQuestion = 0;
+        let score = 0;
+        const correctAnswers = ['C', 'C', 'B', 'A'];
+
+        // 初始化进度条
+        progressBar.style.width = `${(currentQuestion + 1) / quizQuestions.length * 100}%`;
+
+        // 选项点击事件
+        quizOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                const questionIndex = Math.floor(Array.from(quizOptions).indexOf(this) / 4);
+                const currentQuestionElement = document.getElementById(`question-${questionIndex + 1}`);
+                const feedbackElement = document.getElementById(`feedback-${questionIndex + 1}`);
+
+                // 移除之前的选择
+                currentQuestionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                    opt.classList.remove('correct');
+                    opt.classList.remove('incorrect');
+                });
+
+                // 添加当前选择
+                this.classList.add('selected');
+
+                // 检查答案
+                const selectedAnswer = this.getAttribute('data-answer');
+                const isCorrect = selectedAnswer === correctAnswers[questionIndex];
+
+                if (isCorrect) {
+                    this.classList.add('correct');
+                    feedbackElement.classList.add('correct');
+                    feedbackElement.classList.remove('incorrect');
+                    feedbackElement.innerHTML = '<i class="fas fa-check-circle"></i> 回答正确！';
+                    feedbackElement.style.display = 'block';
+
+                    // 更新分数（如果之前没有回答正确）
+                    if (!localStorage.getItem(`q${questionIndex + 1}`)) {
+                        localStorage.setItem(`q${questionIndex + 1}`, 'correct');
+                        score++;
+                    }
+                } else {
+                    this.classList.add('incorrect');
+
+                    // 显示正确答案
+                    currentQuestionElement.querySelector(`.quiz-option[data-answer="${correctAnswers[questionIndex]}"]`).classList.add('correct');
+
+                    feedbackElement.classList.add('incorrect');
+                    feedbackElement.classList.remove('correct');
+                    feedbackElement.innerHTML = `<i class="fas fa-times-circle"></i> 回答错误！正确答案是 ${correctAnswers[questionIndex]}`;
+                    feedbackElement.style.display = 'block';
+
+                    // 更新分数（如果之前回答正确，现在回答错误）
+                    if (localStorage.getItem(`q${questionIndex + 1}`) === 'correct') {
+                        localStorage.setItem(`q${questionIndex + 1}`, 'incorrect');
+                        score--;
+                    }
+                }
+            });
+        });
+
+        // 下一题按钮
+        nextBtn.addEventListener('click', function () {
+            if (currentQuestion < quizQuestions.length - 1) {
+                // 隐藏当前问题
+                quizQuestions[currentQuestion].style.display = 'none';
+
+                // 显示下一个问题
+                currentQuestion++;
+                quizQuestions[currentQuestion].style.display = 'block';
+
+                // 更新按钮状态
+                prevBtn.style.visibility = 'visible';
+
+                if (currentQuestion === quizQuestions.length - 1) {
+                    nextBtn.textContent = '完成';
+                }
+            } else {
+                // 显示结果
+                quizQuestions.forEach(question => {
+                    question.style.display = 'none';
+                });
+
+                // 计算最终分数
+                score = 0;
+                for (let i = 0; i < quizQuestions.length; i++) {
+                    if (localStorage.getItem(`q${i + 1}`) === 'correct') {
+                        score++;
+                    }
+                }
+
+                document.querySelector('.result-score').textContent = `${score}/${quizQuestions.length}`;
+
+                quizResult.style.display = 'block';
+                prevBtn.style.visibility = 'hidden';
+                nextBtn.style.visibility = 'hidden';
+            }
+
+            // 更新进度条
+            progressBar.style.width = `${(currentQuestion + 1) / quizQuestions.length * 100}%`;
+        });
+
+        // 上一题按钮
+        prevBtn.addEventListener('click', function () {
+            if (currentQuestion > 0) {
+                // 隐藏当前问题
+                quizQuestions[currentQuestion].style.display = 'none';
+
+                // 显示上一个问题
+                currentQuestion--;
+                quizQuestions[currentQuestion].style.display = 'block';
+
+                // 更新按钮状态
+                nextBtn.textContent = '下一题';
+
+                if (currentQuestion === 0) {
+                    prevBtn.style.visibility = 'hidden';
+                }
+            }
+
+            // 更新进度条
+            progressBar.style.width = `${(currentQuestion + 1) / quizQuestions.length * 100}%`;
+        });
+
+        // 重新开始问答
+        restartQuizBtn.addEventListener('click', function () {
+            // 重置问题显示
+            quizQuestions.forEach((question, index) => {
+                question.style.display = index === 0 ? 'block' : 'none';
+
+                // 重置选项状态
+                question.querySelectorAll('.quiz-option').forEach(option => {
+                    option.classList.remove('selected', 'correct', 'incorrect');
+                });
+
+                // 重置反馈
+                document.getElementById(`feedback-${index + 1}`).style.display = 'none';
+            });
+
+            // 重置按钮和进度条
+            currentQuestion = 0;
+            prevBtn.style.visibility = 'hidden';
+            nextBtn.style.visibility = 'visible';
+            nextBtn.textContent = '下一题';
+            progressBar.style.width = `${(currentQuestion + 1) / quizQuestions.length * 100}%`;
+
+            // 隐藏结果
+            quizResult.style.display = 'none';
+
+            // 清除本地存储
+            for (let i = 1; i <= quizQuestions.length; i++) {
+                localStorage.removeItem(`q${i}`);
+            }
+
+            // 重置分数
+            score = 0;
+        });
+
+        // 创建气泡效果
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles');
+            if (!bubblesContainer) return;
+
+            for (let i = 0; i < 50; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                // 随机大小
+                const size = Math.random() * 20 + 5;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+
+                // 随机位置
+                bubble.style.left = `${Math.random() * 100}%`;
+
+                // 随机动画持续时间
+                const duration = Math.random() * 10 + 5;
+                bubble.style.animation = `rise ${duration}s linear infinite`;
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', function () {
+            // 创建气泡效果
+            createBubbles();
+
+            // 初始化问答
+            for (let i = 1; i <= quizQuestions.length; i++) {
+                localStorage.removeItem(`q${i}`);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,2751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>守护蔚蓝 - 海洋生态保护计划</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary-color: #0077b6;
+            --secondary-color: #00b4d8;
+            --accent-color: #48cae4;
+            --dark-blue: #03045e;
+            --medium-blue: #023e8a;
+            --light-blue: #caf0f8;
+            --white: #ffffff;
+            --gradient-blue: linear-gradient(135deg, var(--dark-blue), var(--primary-color));
+            --gradient-teal: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --primary-dark: #003459;
+            --primary-medium: #00a8e8;
+            --primary-light: #90e0ef;
+            --accent-coral: #ff5a5f;
+            --accent-green: #2ec4b6;
+            --dark-text: #00171f;
+            --light-text: #f8f9fa;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 10px 30px rgba(0, 52, 89, 0.1);
+            --card-hover-shadow: 0 15px 50px rgba(0, 52, 89, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-medium) var(--light-bg);
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        .section-title:hover::after {
+            width: 100%;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--primary-medium);
+            max-width: 800px;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            border-radius: 50px;
+            background: var(--gradient-blue);
+            color: var(--light-text);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 168, 232, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.4);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%) rotate(45deg);
+            transition: transform 0.6s ease;
+        }
+
+        .btn:hover::before {
+            transform: translateX(100%) rotate(45deg);
+        }
+
+        .btn-accent {
+            background: var(--gradient-accent);
+            box-shadow: 0 4px 15px rgba(255, 90, 95, 0.3);
+        }
+
+        .btn-accent:hover {
+            box-shadow: 0 8px 25px rgba(255, 90, 95, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-medium);
+            color: var(--primary-medium);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-medium);
+            color: var(--light-text);
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.3);
+        }
+
+        .btn i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary-light) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0.4;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .section-alt {
+            background-color: #f0f7ff;
+        }
+
+        .section-dark {
+            background-color: var(--primary-dark);
+            color: var(--light-text);
+        }
+
+        .section-dark .section-title::after {
+            background: var(--gradient-accent);
+        }
+
+
+        /* 导航栏 */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(3, 4, 94, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        header.scrolled .logo {
+            color: var(--white);
+        }
+
+        header.scrolled .nav-links a {
+            color: var(--white);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-teal);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+    
+
+        /* 英雄区 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(to bottom, rgba(0, 23, 31, 0.7), rgba(0, 52, 89, 0.7)), url('https://www.2008php.com/2014_Website_appreciate/2014-08-01/20140801115838HMmYfHMmYf.jpg') no-repeat center center/cover;
+            color: var(--light-text);
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, var(--light-bg), transparent);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 span {
+            color: var(--accent-coral);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-icon {
+            position: absolute;
+            opacity: 0.8;
+            animation: float 15s infinite linear;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            font-size: 2rem;
+            color: var(--primary-light);
+            animation-duration: 20s;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 30%;
+            left: 20%;
+            font-size: 1.5rem;
+            color: var(--accent-green);
+            animation-duration: 25s;
+            animation-delay: 2s;
+        }
+
+        .floating-icon:nth-child(3) {
+            top: 15%;
+            right: 30%;
+            font-size: 2.5rem;
+            color: var(--accent-coral);
+            animation-duration: 18s;
+            animation-delay: 5s;
+        }
+
+        .floating-icon:nth-child(4) {
+            top: 40%;
+            right: 15%;
+            font-size: 2rem;
+            color: var(--primary-light);
+            animation-duration: 22s;
+            animation-delay: 3s;
+        }
+
+        .floating-icon:nth-child(5) {
+            bottom: 30%;
+            left: 15%;
+            font-size: 1.8rem;
+            color: var(--accent-green);
+            animation-duration: 23s;
+            animation-delay: 7s;
+        }
+
+        .floating-icon:nth-child(6) {
+            bottom: 20%;
+            right: 25%;
+            font-size: 1.5rem;
+            color: var(--primary-medium);
+            animation-duration: 21s;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0);
+            }
+
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(180deg);
+            }
+
+            75% {
+                transform: translateY(20px) rotate(270deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        /* 海洋现状部分 */
+        .ocean-status {
+            position: relative;
+        }
+
+        .ocean-status::before {
+            top: -150px;
+            left: -150px;
+        }
+
+        .ocean-status::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            right: -150px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary-light) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0.4;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .status-card {
+            background-color: white;
+            border-radius: 20px;
+            overflow: visible;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            height: auto;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-accent);
+            z-index: 2;
+        }
+
+        .status-icon {
+            width: 80px;
+            height: 80px;
+            margin: -40px auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 23, 31, 0.1);
+            position: relative;
+            z-index: 3;
+        }
+
+        .status-content {
+            padding: 0 30px 30px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .status-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+
+        .status-card p {
+            color: #555;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .status-stat {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .status-stat-desc {
+            font-size: 0.9rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        /* 威胁部分 */
+        .threats {
+            background-color: #f0f7ff;
+            position: relative;
+        }
+
+        .threats::before {
+            top: 50%;
+            right: -150px;
+        }
+
+        .threats-container {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .threat-item {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .threat-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .threat-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .threat-image {
+            flex: 0 0 45%;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .threat-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .threat-item:hover .threat-image img {
+            transform: scale(1.05);
+        }
+
+        .threat-content {
+            flex: 0 0 50%;
+        }
+
+        .threat-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .threat-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-accent);
+            transition: width 0.5s ease;
+        }
+
+        .threat-item:hover .threat-content h3::after {
+            width: 100%;
+        }
+
+        .threat-content p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .threat-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .threat-stat {
+            text-align: center;
+        }
+
+        .threat-stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .threat-stat-label {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* 重要性部分 */
+        .importance {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .importance::before {
+            bottom: -150px;
+            left: -150px;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1515865644801-9f248e6c4b14?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            opacity: 0.15;
+            z-index: -1;
+            transform: translateZ(-1px) scale(2);
+        }
+
+        .importance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .importance-card {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .importance-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .importance-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .importance-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-medium);
+            transition: transform 0.5s ease;
+        }
+
+        .importance-card:hover .importance-icon {
+            transform: rotateY(180deg);
+        }
+
+        .importance-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .importance-card p {
+            color: #555;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .importance-link {
+            color: var(--primary-medium);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+
+        .importance-link i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .importance-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .importance-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* 保护项目部分 */
+        .projects {
+            background-color: #f0f7ff;
+            position: relative;
+        }
+
+        .projects::before {
+            top: -150px;
+            right: -150px;
+        }
+
+        .project-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .project-tab {
+            padding: 12px 25px;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 23, 31, 0.05);
+        }
+
+        .project-tab.active,
+        .project-tab:hover {
+            background: var(--gradient-blue);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 168, 232, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .project-content {
+            display: none;
+        }
+
+        .project-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .project-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gradient-blue);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 168, 232, 0.3);
+            z-index: 2;
+        }
+
+        .project-body {
+            padding: 30px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .project-excerpt {
+            color: #555;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .project-stat {
+            display: flex;
+            align-items: center;
+        }
+
+        .project-stat i {
+            margin-right: 5px;
+            color: var(--primary-medium);
+        }
+
+        .project-more {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-medium);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-more:hover {
+            color: var(--primary-dark);
+        }
+
+        .project-more:hover i {
+            transform: translateX(5px);
+        }
+
+        /* 保护建议部分 */
+        .tips {
+            position: relative;
+            overflow: hidden;
+            background-color: var(--primary-dark);
+            color: var(--light-text);
+        }
+
+        .tips::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1584615489955-7d31f106bc56?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .tips-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .tip-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .tip-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tip-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .tip-header {
+            background: var(--gradient-blue);
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .tip-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .tip-card:hover .tip-icon {
+            transform: rotate(360deg);
+        }
+
+        .tip-icon i {
+            font-size: 1.8rem;
+        }
+
+        .tip-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .tip-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .tip-body {
+            padding: 25px;
+            color: var(--dark-text);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tip-body p {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tip-action {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-medium);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+
+        .tip-action i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .tip-action:hover {
+            color: var(--primary-dark);
+        }
+
+        .tip-action:hover i {
+            transform: translateX(5px);
+        }
+
+        .tips-cta {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* 捐赠部分 */
+        .donation {
+            position: relative;
+            background-color: #f0f7ff;
+        }
+
+        .donation::before {
+            bottom: -150px;
+            right: -150px;
+        }
+
+        .donation-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .donation-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .donation-form-container {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .donation-form {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .donation-form:hover {
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .donation-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient-accent);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-medium);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.2);
+        }
+
+        .donation-amounts {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .amount-btn {
+            flex: 1;
+            min-width: 80px;
+            padding: 12px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .amount-btn.active,
+        .amount-btn:hover {
+            background: var(--gradient-blue);
+            color: white;
+            border-color: var(--primary-medium);
+        }
+
+        .custom-amount {
+            display: none;
+            width: 100%;
+        }
+
+        .custom-amount.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .donation-progress {
+            margin-top: 30px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--gradient-accent);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease;
+            position: relative;
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .donors-list {
+            margin-top: 30px;
+        }
+
+        .donor-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .donor-item:last-child {
+            border-bottom: none;
+        }
+
+        .donor-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .donor-info {
+            flex: 1;
+        }
+
+        .donor-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .donor-time {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .donor-amount {
+            font-weight: 600;
+            color: var(--accent-coral);
+        }
+
+        /* 志愿者部分 */
+        .volunteer {
+            position: relative;
+            background: linear-gradient(to bottom, rgba(0, 52, 89, 0.9), rgba(0, 52, 89, 0.9)), url('https://images.unsplash.com/photo-1514483127413-f72f273478c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            color: var(--light-text);
+        }
+
+        .volunteer-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .volunteer-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .volunteer-content h2,
+        .volunteer-content p {
+            color: var(--light-text);
+        }
+
+        .volunteer-opportunities {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .opportunity-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            transform: translateY(50px);
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .opportunity-card.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .opportunity-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        .opportunity-card:hover::before {
+            opacity: 1;
+        }
+
+        .opportunity-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .opportunity-dates {
+            display: inline-block;
+            background-color: rgba(0, 168, 232, 0.3);
+            padding: 5px 15px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .opportunity-description {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .opportunity-requirements {
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .opportunity-requirements h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .requirements-list {
+            list-style: none;
+        }
+
+        .requirements-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 5px;
+        }
+
+        .requirements-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+        }
+
+        .opportunity-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .spots-left {
+            font-size: 0.9rem;
+        }
+
+        .spots-left span {
+            font-weight: 700;
+            color: var(--accent-coral);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 80px 0 20px;
+            position: relative;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2303045e" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,213.3C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .footer-about p {
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-teal);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .social-links a:hover::before {
+            opacity: 1;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-links h3,
+        .footer-contact h3,
+        .footer-newsletter h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-links h3::after,
+        .footer-contact h3::after,
+        .footer-newsletter h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-teal);
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-info i {
+            margin-right: 15px;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .contact-info-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info-text strong {
+            display: block;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 25px;
+            position: relative;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+            font-size: 1rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter-form button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            padding: 0 20px;
+            background: var(--gradient-teal);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--gradient-blue);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-blue);
+            color: var(--light-text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+    
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .threat-item,
+            .threat-item:nth-child(even) {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .threat-image {
+                flex: 0 0 100%;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: rgba(248, 249, 250, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+
+            header.scrolled .nav-links {
+                background-color: rgba(0, 52, 89, 0.95);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .threat-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 在style标签内添加以下CSS样式 */
+        #earth-container {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 600px;
+            height: 600px;
+            z-index: 2;
+        }
+
+        @media (max-width: 1200px) {
+            #earth-container {
+                right: 5%;
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            #earth-container {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                margin: 50px auto;
+                width: 400px;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo"><i class="fas fa-water"></i>海洋世界</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="marine-species.html">海洋生物</a></li>
+                    <li><a href="conservation.html">生态保护</a></li>
+                    <li><a href="science-education.html">科普教育</a></li>
+                    <li><a href="visitor-guide.html" class="active">参观指南</a></li>
+                    <li><a href="about.html">联系我们</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="hero">
+        <div class="floating-icons">
+            <div class="floating-icon"><i class="fas fa-fish"></i></div>
+            <div class="floating-icon"><i class="fas fa-water"></i></div>
+            <div class="floating-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="floating-icon"><i class="fas fa-seedling"></i></div>
+            <div class="floating-icon"><i class="fas fa-recycle"></i></div>
+            <div class="floating-icon"><i class="fas fa-tint"></i></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>守护蔚蓝 <span>拯救海洋</span></h1>
+                <p>海洋是地球的命脉，覆盖了地球表面的71%。每一片海洋都孕育着丰富的生命，维持着地球的生态平衡。现在，它们比以往任何时候都更需要我们的保护。</p>
+                <div class="hero-buttons">
+                    <a href="#donation" class="btn btn-accent"><i class="fas fa-heart"></i> 立即捐赠</a>
+                    <a href="#volunteer" class="btn"><i class="fas fa-hands-helping"></i> 成为志愿者</a>
+                </div>
+            </div>
+            <div id="earth-container"></div>
+        </div>
+    </section>
+
+    <!-- 海洋现状部分 -->
+    <section class="section ocean-status" id="status">
+        <div class="container">
+            <h2 class="section-title">海洋现状</h2>
+            <p class="section-subtitle">全球海洋正面临数千年来最严峻的挑战，从污染到过度捕捞，从气候变化到栖息地丧失，海洋生态系统正在快速恶化。</p>
+            <div class="status-grid">
+                <div class="status-card">
+                    <div class="status-icon">
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
+                    <div class="status-content">
+                        <h3>海洋垃圾</h3>
+                        <p>每年有超过800万吨塑料垃圾进入海洋，相当于每分钟倾倒一辆垃圾卡车的内容物。如果不采取行动，到2050年，海洋中的塑料将比鱼类更多。</p>
+                        <div class="status-stat" data-value="800">0</div>
+                        <div class="status-stat-desc">万吨塑料每年进入海洋</div>
+                    </div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="status-content">
+                        <h3>过度捕捞</h3>
+                        <p>全球约33%的鱼类种群被过度捕捞，另有60%被充分开发。大型商业捕捞船队使用的工业化方法对海洋生态系统造成了严重破坏。</p>
+                        <div class="status-stat" data-value="33">0</div>
+                        <div class="status-stat-desc">%的鱼类种群被过度捕捞</div>
+                    </div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <div class="status-content">
+                        <h3>气候变化</h3>
+                        <p>海洋已吸收了约30%的人类产生的二氧化碳，导致海水酸化。同时，海水温度上升正在破坏珊瑚礁和其他脆弱的海洋生态系统。</p>
+                        <div class="status-stat" data-value="30">0</div>
+                        <div class="status-stat-desc">%的人类二氧化碳被海洋吸收</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 威胁部分 -->
+    <section class="section threats" id="threats">
+        <div class="container">
+            <h2 class="section-title">主要威胁</h2>
+            <p class="section-subtitle">海洋生态环境面临的威胁是多方面的，每一种威胁都在不同程度上危害着海洋生态系统的健康。</p>
+            <div class="threats-container">
+                <div class="threat-item">
+                    <div class="threat-image">
+                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="海洋污染">
+                    </div>
+                    <div class="threat-content">
+                        <h3>海洋污染</h3>
+                        <p>海洋污染包括塑料垃圾、化学污染物、石油泄漏等多种形式。塑料垃圾是最常见的海洋污染物，它们不仅破坏海洋景观，还会被海洋生物误食，导致伤害甚至死亡。</p>
+                        <p>微塑料是一个新兴的威胁，这些直径小于5毫米的塑料颗粒已经渗透到海洋食物链的各个环节，最终可能通过食物链回到人类餐桌。</p>
+                        <div class="threat-stats">
+                            <div class="threat-stat">
+                                <span class="threat-stat-value">50</span>
+                                <span class="threat-stat-label">万吨渔网每年遗弃</span>
+                            </div>
+                            <div class="threat-stat">
+                                <span class="threat-stat-value">700</span>
+                                <span class="threat-stat-label">种海洋生物受塑料威胁</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="threat-item">
+                    <div class="threat-image">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.f1d9c07b1867787d2dc09ff5ec7f00a5?rik=c7VPSzGOiJVTwQ&riu=http%3a%2f%2faoc.ouc.edu.cn%2f_upload%2farticle%2fimages%2f81%2f62%2f6e779cca4f02a0253f3791bc285b%2fff821a5c-e9f9-47d5-8e9f-f9978fe549d2_d.jpg&ehk=qzCVpxLRMPHLBQKOBlwlJEzQx51KRgSVYXTV09Qbwug%3d&risl=&pid=ImgRaw&r=0"
+                            alt="过度捕捞">
+                    </div>
+                    <div class="threat-content">
+                        <h3>过度捕捞</h3>
+                        <p>过度捕捞指渔业捕捞速度超过鱼类自然繁殖速度，导致鱼类种群数量减少。现代渔业装备和技术的发展使捕捞效率大幅提高，加剧了这一问题。</p>
+                        <p>破坏性捕捞方法，如底拖网捕捞，不仅捕获目标鱼类，还会破坏海底栖息地和生态系统。非法、未报告和无管制的捕捞活动每年造成数十亿美元的经济损失。</p>
+                        <div class="threat-stats">
+                            <div class="threat-stat">
+                                <span class="threat-stat-value">90</span>
+                                <span class="threat-stat-label">%的大型鱼类已消失</span>
+                            </div>
+                            <div class="threat-stat">
+                                <span class="threat-stat-value">3</span>
+                                <span class="threat-stat-label">亿人依赖海洋渔业</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="threat-item">
+                    <div class="threat-image">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.cab7c02ae1ec55993bab0b0fdbf4b25a?rik=X4NTlBnaz98bpA&riu=http%3a%2f%2fwww.geog.com.cn%2farticle%2f2021%2f0375-5444%2f0375-5444-76-8-1895%2fimg_2.png&ehk=TcUwKoSe1XlSM6FZvCeCWdfyL3tyPzBsA0wrpnjqD%2fQ%3d&risl=&pid=ImgRaw&r=0"
+                            alt="气候变化">
+                    </div>
+                    <div class="threat-content">
+                        <h3>气候变化</h3>
+                        <p>气候变化导致海水温度上升、海平面上升和海洋酸化，这些变化对海洋生态系统产生了深远影响。海水温度上升导致珊瑚白化，破坏了这些重要的海洋生态系统。</p>
+                        <p>海洋酸化是由于海水吸收过多二氧化碳而导致的pH值下降，这对贝类、珊瑚和其他钙化生物构成威胁，影响它们形成外壳和骨骼的能力。</p>
+                        <div class="threat-stats">
+                            <div class="threat-stat">
+                                <span class="threat-stat-value">93</span>
+                                <span class="threat-stat-label">%的热量被海洋吸收</span>
+                            </div>
+                            <div class="threat-stat">
+                                <span class="threat-stat-value">26</span>
+                                <span class="threat-stat-label">%的珊瑚礁已经消失</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="threat-item">
+                    <div class="threat-image">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/R-C.15795203a916e7de0a099434d59c6015?rik=g6eCB1UdeBUZ6Q&riu=http%3a%2f%2fp0.ifengimg.com%2fpmop%2f2018%2f0323%2fE77EC5596113823B11725C7F363AD7CD71140A78_size64_w630_h464.jpeg&ehk=IqLsnl8xIVO483ASvoYbonsUCrGkI6hWBONi0C2Zr0g%3d&risl=&pid=ImgRaw&r=0"
+                            alt="栖息地丧失">
+                    </div>
+                    <div class="threat-content">
+                        <h3>栖息地丧失</h3>
+                        <p>沿海开发、填海造地、红树林砍伐和珊瑚礁破坏等活动导致重要的海洋栖息地丧失。这些栖息地对许多海洋物种的繁殖、觅食和生存至关重要。</p>
+                        <p>红树林和海草床等沿海生态系统不仅是重要的碳汇，还能保护海岸线免受风暴和侵蚀的影响。它们的丧失不仅影响生物多样性，还减弱了沿海社区的自然防护能力。</p>
+                        <div class="threat-stats">
+                            <div class="threat-stat">
+                                <span class="threat-stat-value">35</span>
+                                <span class="threat-stat-label">%的红树林已被破坏</span>
+                            </div>
+                            <div class="threat-stat">
+                                <span class="threat-stat-value">29</span>
+                                <span class="threat-stat-label">%的海草床已经消失</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 波浪分隔符 -->
+    <div class="divider divider-alt">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+                d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z">
+            </path>
+        </svg>
+    </div>
+
+    <!-- 重要性部分 -->
+    <section class="section importance" id="importance">
+        <div class="parallax-bg"></div>
+        <div class="container">
+            <h2 class="section-title">保护海洋的重要性</h2>
+            <p class="section-subtitle">海洋不仅是地球上最大的生态系统，也是人类生存和发展的重要支撑。保护海洋生态环境对于维护地球生态平衡和人类可持续发展具有重要意义。</p>
+            <div class="importance-grid">
+                <div class="importance-card">
+                    <div class="importance-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <h3>地球之肺</h3>
+                    <p>海洋中的浮游植物通过光合作用产生地球上50-80%的氧气，是地球上最大的氧气来源。同时，海洋吸收了约30%的人类排放的二氧化碳，减缓了全球变暖的速度。</p>
+                    <a href="#" class="importance-link">了解更多 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="importance-card">
+                    <div class="importance-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>食物来源</h3>
+                    <p>海洋为全球超过30亿人提供主要的蛋白质来源。可持续的渔业管理对于确保这一重要食物来源的长期可用性至关重要，也是许多沿海社区经济的支柱。</p>
+                    <a href="#" class="importance-link">了解更多 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="importance-card">
+                    <div class="importance-icon">
+                        <i class="fas fa-cloud-rain"></i>
+                    </div>
+                    <h3>气候调节</h3>
+                    <p>海洋通过吸收和分配热量调节全球气候。洋流将热量从赤道输送到极地地区，影响全球气候模式。健康的海洋对于维持地球的气候平衡至关重要。</p>
+                    <a href="#" class="importance-link">了解更多 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="importance-card">
+                    <div class="importance-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>生物多样性</h3>
+                    <p>海洋是地球上生物多样性最丰富的地方之一，包含了约80%的地球生物。从微小的浮游生物到巨大的鲸类，海洋生物多样性对于维持生态系统的健康和稳定至关重要。</p>
+                    <a href="#" class="importance-link">了解更多 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 保护项目部分 -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">我们的保护项目</h2>
+            <p class="section-subtitle">海洋世界水族馆积极参与各种海洋保护项目，致力于通过研究、教育和实际行动保护海洋生态环境。</p>
+            <div class="project-tabs">
+                <button class="project-tab active" data-tab="all">全部项目</button>
+                <button class="project-tab" data-tab="research">科学研究</button>
+                <button class="project-tab" data-tab="rescue">救助与康复</button>
+                <button class="project-tab" data-tab="habitat">栖息地保护</button>
+                <button class="project-tab" data-tab="education">教育宣传</button>
+            </div>
+            <div class="project-content active" id="all">
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.c6ba58cfdfb037d2802fa3132ee45505?rik=o9SI8lAGMgJ2Sw&riu=http%3a%2f%2fwww.cafs.ac.cn%2f__local%2fC%2f6B%2fA5%2f8CFDFB037D2802FA3132EE45505_6E83247F_15D0B5.png&ehk=aHNh5%2fgGC9KV%2bbrtKee90Ixv%2fq98d%2fpiNGJbUxATBMM%3d&risl=&pid=ImgRaw&r=0"
+                                alt="鲸类研究项目">
+                            <div class="project-category">科学研究</div>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">鲸类迁徙研究项目</h3>
+                            <p class="project-excerpt">通过卫星追踪和声学监测技术研究鲸类的迁徙路线和行为模式，为制定更有效的保护策略提供科学依据。</p>
+                            <div class="project-meta">
+                                <div class="project-stat">
+                                    <i class="fas fa-calendar-alt"></i> 2020年启动
+                                </div>
+                                <a href="#" class="project-more">详细了解 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.PNSDwTYqFSFqIEyd0ptnqQHaFI?cb=iwc2&rs=1&pid=ImgDetMain"
+                                alt="海龟救助项目">
+                            <div class="project-category">救助与康复</div>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">海龟救助与康复中心</h3>
+                            <p class="project-excerpt">救助受伤、生病或被困的海龟，提供医疗护理和康复服务，并在条件允许的情况下将它们放归大自然。</p>
+                            <div class="project-meta">
+                                <div class="project-stat">
+                                    <i class="fas fa-heart"></i> 已救助152只海龟
+                                </div>
+                                <a href="#" class="project-more">详细了解 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://n.sinaimg.cn/spider20220921/439/w708h531/20220921/bf49-aef992373b3bab249696845a44baaac9.jpg"
+                                alt="珊瑚礁修复项目">
+                            <div class="project-category">栖息地保护</div>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">珊瑚礁修复计划</h3>
+                            <p class="project-excerpt">通过珊瑚培育和移植技术修复受损的珊瑚礁生态系统，并监测其恢复情况，为珊瑚礁保护提供科学支持。</p>
+                            <div class="project-meta">
+                                <div class="project-stat">
+                                    <i class="fas fa-water"></i> 已修复5000平方米
+                                </div>
+                                <a href="#" class="project-more">详细了解 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://www.sony.com.cn/content/sonyportal_csr/Environment/OBOP/_jcr_content/root/responsivegrid/image_715189842/image.img.jpg/1644554397291.jpg"
+                                alt="海洋垃圾清理项目">
+                            <div class="project-category">栖息地保护</div>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">海洋垃圾清理行动</h3>
+                            <p class="project-excerpt">组织志愿者定期清理海滩和近海垃圾，并开展海洋垃圾监测和研究，推动减塑和垃圾管理政策的改进。</p>
+                            <div class="project-meta">
+                                <div class="project-stat">
+                                    <i class="fas fa-trash-alt"></i> 已清理50吨垃圾
+                                </div>
+                                <a href="#" class="project-more">详细了解 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.dd57d35c2eb5620a3bee6419af205bf3?rik=U5tn32ld6EM8Iw&riu=http%3a%2f%2fwww.ecsf.ac.cn%2f__local%2fD%2fD5%2f7D%2f35C2EB5620A3BEE6419AF205BF3_3CA5F45A_FDD7C.jpg&ehk=ydYqsi07RA7a41BO3yFyJfaBBsA0akl3Ut0Bk0EzUfU%3d&risl=&pid=ImgRaw&r=0"
+                                alt="海洋教育项目">
+                            <div class="project-category">教育宣传</div>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">海洋教育进校园</h3>
+                            <p class="project-excerpt">为中小学生提供海洋保护教育课程和互动体验活动，培养青少年的海洋保护意识和环保责任感。</p>
+                            <div class="project-meta">
+                                <div class="project-stat">
+                                    <i class="fas fa-school"></i> 已覆盖200所学校
+                                </div>
+                                <a href="#" class="project-more">详细了解 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://p8.itc.cn/q_70/images03/20220214/5254ed5152fc42a695a9f98c497fc07b.png"
+                                alt="可持续渔业项目">
+                            <div class="project-category">科学研究</div>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">可持续渔业推广</h3>
+                            <p class="project-excerpt">与渔业社区合作，推广可持续捕捞方法和认证，减少过度捕捞和破坏性捕捞对海洋生态系统的影响。</p>
+                            <div class="project-meta">
+                                <div class="project-stat">
+                                    <i class="fas fa-fish"></i> 已合作15个渔业社区
+                                </div>
+                                <a href="#" class="project-more">详细了解 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-content" id="research">
+                <!-- 科学研究项目内容 -->
+            </div>
+            <div class="project-content" id="rescue">
+                <!-- 救助与康复项目内容 -->
+            </div>
+            <div class="project-content" id="habitat">
+                <!-- 栖息地保护项目内容 -->
+            </div>
+            <div class="project-content" id="education">
+                <!-- 教育宣传项目内容 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 保护建议部分 -->
+    <section class="section tips" id="tips">
+        <div class="container tips-container">
+            <h2 class="section-title">海洋保护行动指南</h2>
+            <p class="section-subtitle">每个人都可以为保护海洋生态环境做出贡献。以下是一些简单但有效的行动建议，帮助您在日常生活中保护海洋。</p>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <div class="tip-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div>
+                            <div class="tip-number">建议 01</div>
+                            <div class="tip-title">减少塑料使用</div>
+                        </div>
+                    </div>
+                    <div class="tip-body">
+                        <p>塑料是海洋污染的主要来源之一。您可以通过使用可重复使用的购物袋、水瓶和餐具，避免使用一次性塑料产品，减少塑料垃圾进入海洋的机会。</p>
+                        <a href="#" class="tip-action">查看详细指南 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <div class="tip-icon">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                        <div>
+                            <div class="tip-number">建议 02</div>
+                            <div class="tip-title">选择可持续海鲜</div>
+                        </div>
+                    </div>
+                    <div class="tip-body">
+                        <p>购买经过可持续渔业认证的海鲜产品，避免消费过度捕捞或濒危的海洋物种。使用海鲜指南应用程序可以帮助您做出更明智的选择。</p>
+                        <a href="#" class="tip-action">下载海鲜指南 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <div class="tip-icon">
+                            <i class="fas fa-tint-slash"></i>
+                        </div>
+                        <div>
+                            <div class="tip-number">建议 03</div>
+                            <div class="tip-title">节约用水</div>
+                        </div>
+                    </div>
+                    <div class="tip-body">
+                        <p>减少用水量可以降低废水处理厂的负担，减少污染物进入海洋的风险。修复漏水的水龙头，缩短淋浴时间，使用节水设备都是有效的节水方法。</p>
+                        <a href="#" class="tip-action">了解更多节水技巧 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-header">
+                        <div class="tip-icon">
+                            <i class="fas fa-broom"></i>
+                        </div>
+                        <div>
+                            <div class="tip-number">建议 04</div>
+                            <div class="tip-title">参与海滩清理</div>
+                        </div>
+                    </div>
+                    <div class="tip-body">
+                        <p>加入当地的海滩或河岸清理活动，或者在您游览海滩时自发清理垃圾。这不仅可以直接减少海洋垃圾，还能提高公众的环保意识。</p>
+                        <a href="#" class="tip-action">查找附近的清理活动 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tips-cta">
+                <a href="#" class="btn btn-accent"><i class="fas fa-download"></i> 下载完整行动指南</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 捐赠部分 -->
+    <section class="section donation" id="donation">
+        <div class="container">
+            <h2 class="section-title">支持我们的保护工作</h2>
+            <p class="section-subtitle">您的捐赠将直接用于支持我们的海洋保护项目，包括科学研究、栖息地保护、救助康复和教育宣传工作。</p>
+            <div class="donation-container">
+                <div class="donation-content">
+                    <p>海洋世界水族馆是一个非营利组织，我们的保护工作主要依靠公众的捐赠支持。无论金额大小，每一笔捐款都对我们的工作至关重要。</p>
+                    <p>您的捐赠将用于：</p>
+                    <ul>
+                        <li>支持海洋生物救助和康复工作</li>
+                        <li>资助海洋保护科学研究项目</li>
+                        <li>开展海洋环境教育和宣传活动</li>
+                        <li>实施栖息地保护和修复计划</li>
+                        <li>推动海洋保护政策和法规的改进</li>
+                    </ul>
+                    <p>作为感谢，根据您的捐赠金额，您将获得不同级别的会员权益，包括免费参观水族馆、参与特别活动、获得限量纪念品等。</p>
+                    <div class="donation-progress">
+                        <div class="progress-info">
+                            <span>已筹集: ¥850,000</span>
+                            <span>目标: ¥1,000,000</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="donors-list">
+                        <h4>最近捐赠者</h4>
+                        <div class="donor-item">
+                            <div class="donor-avatar">L</div>
+                            <div class="donor-info">
+                                <div class="donor-name">李先生</div>
+                                <div class="donor-time">2小时前</div>
+                            </div>
+                            <div class="donor-amount">¥2,000</div>
+                        </div>
+                        <div class="donor-item">
+                            <div class="donor-avatar">W</div>
+                            <div class="donor-info">
+                                <div class="donor-name">王女士</div>
+                                <div class="donor-time">5小时前</div>
+                            </div>
+                            <div class="donor-amount">¥500</div>
+                        </div>
+                        <div class="donor-item">
+                            <div class="donor-avatar">Z</div>
+                            <div class="donor-info">
+                                <div class="donor-name">张先生</div>
+                                <div class="donor-time">昨天</div>
+                            </div>
+                            <div class="donor-amount">¥1,000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="donation-form-container">
+                    <form class="donation-form">
+                        <h3>捐赠表单</h3>
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" class="form-control" placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">电子邮箱</label>
+                            <input type="email" id="email" class="form-control" placeholder="请输入您的电子邮箱">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">手机号码</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="请输入您的手机号码">
+                        </div>
+                        <div class="form-group">
+                            <label>捐赠金额</label>
+                            <div class="donation-amounts">
+                                <div class="amount-btn" data-amount="100">¥100</div>
+                                <div class="amount-btn" data-amount="500">¥500</div>
+                                <div class="amount-btn active" data-amount="1000">¥1,000</div>
+                                <div class="amount-btn" data-amount="2000">¥2,000</div>
+                                <div class="amount-btn" data-amount="custom">自定义</div>
+                            </div>
+                            <div class="custom-amount">
+                                <input type="number" id="custom-amount" class="form-control" placeholder="请输入捐赠金额">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">留言</label>
+                            <textarea id="message" class="form-control" rows="3" placeholder="可选，请输入您的留言"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-accent btn-block"><i class="fas fa-heart"></i>
+                            立即捐赠</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 志愿者部分 -->
+    <section class="section volunteer" id="volunteer">
+        <div class="container">
+            <div class="volunteer-container">
+                <div class="volunteer-content">
+                    <h2 class="section-title">成为志愿者</h2>
+                    <p>志愿者是我们海洋保护工作的重要力量。无论您是学生、专业人士还是退休人员，只要您热爱海洋，愿意为海洋保护贡献时间和精力，都可以成为我们的志愿者。</p>
+                    <p>作为志愿者，您将有机会：</p>
+                    <ul>
+                        <li>参与海滩清理和环境监测活动</li>
+                        <li>协助海洋生物救助和康复工作</li>
+                        <li>参与海洋保护教育和宣传活动</li>
+                        <li>支持科研人员开展海洋研究项目</li>
+                        <li>协助水族馆的日常运营和特别活动</li>
+                    </ul>
+                    <p>我们提供专业培训和指导，帮助您掌握必要的知识和技能。加入我们，一起为保护海洋生态环境贡献力量！</p>
+                    <a href="#" class="btn btn-accent"><i class="fas fa-user-plus"></i> 申请成为志愿者</a>
+                </div>
+                <div class="volunteer-opportunities">
+                    <h3>当前志愿机会</h3>
+                    <div class="opportunity-card">
+                        <h4 class="opportunity-title">海滩清理志愿者</h4>
+                        <div class="opportunity-dates">每月第一个周六 9:00-12:00</div>
+                        <p class="opportunity-description">参与定期的海滩清理活动，收集和记录海洋垃圾数据，协助开展公众教育活动。</p>
+                        <div class="opportunity-requirements">
+                            <h4>要求：</h4>
+                            <ul class="requirements-list">
+                                <li>年满16岁</li>
+                                <li>身体健康，能够进行户外活动</li>
+                                <li>对海洋保护有热情</li>
+                                <li>能够参加简短的培训课程</li>
+                            </ul>
+                        </div>
+                        <div class="opportunity-footer">
+                            <div class="spots-left">剩余名额：<span>8</span></div>
+                            <a href="#" class="btn btn-outline">立即申请</a>
+                        </div>
+                    </div>
+                    <div class="opportunity-card">
+                        <h4 class="opportunity-title">海洋教育志愿者</h4>
+                        <div class="opportunity-dates">周末和节假日</div>
+                        <p class="opportunity-description">在水族馆内为游客提供海洋知识讲解，开展互动教育活动，协助学校团体参观和教育项目。</p>
+                        <div class="opportunity-requirements">
+                            <h4>要求：</h4>
+                            <ul class="requirements-list">
+                                <li>年满18岁</li>
+                                <li>良好的沟通和表达能力</li>
+                                <li>对海洋生物和保护知识有基本了解</li>
+                                <li>能够参加为期两天的培训课程</li>
+                                <li>每月至少能提供8小时志愿服务</li>
+                            </ul>
+                        </div>
+                        <div class="opportunity-footer">
+                            <div class="spots-left">剩余名额：<span>5</span></div>
+                            <a href="#" class="btn btn-outline">立即申请</a>
+                        </div>
+                    </div>
+                    <div class="opportunity-card">
+                        <h4 class="opportunity-title">海龟救助助理</h4>
+                        <div class="opportunity-dates">工作日 9:00-17:00</div>
+                        <p class="opportunity-description">协助专业人员照料受伤和生病的海龟，参与日常护理、喂食和环境维护工作，记录康复进展数据。</p>
+                        <div class="opportunity-requirements">
+                            <h4>要求：</h4>
+                            <ul class="requirements-list">
+                                <li>年满18岁</li>
+                                <li>生物学、兽医学或相关专业背景优先</li>
+                                <li>能够处理基本的动物护理工作</li>
+                                <li>细心、耐心和责任心</li>
+                                <li>能够参加为期一周的专业培训</li>
+                                <li>每周至少能提供一天的志愿服务</li>
+                            </ul>
+                        </div>
+                        <div class="opportunity-footer">
+                            <div class="spots-left">剩余名额：<span>2</span></div>
+                            <a href="#" class="btn btn-outline">立即申请</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-wave"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo"><i class="fas fa-water"></i>海洋世界</a>
+                    <p>我们致力于通过教育和保护行动，促进海洋生态系统的可持续发展，保护海洋生物多样性。海洋世界水族馆是一个集科普教育、科学研究和生态保护于一体的综合性海洋主题场馆。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> 首页</a></li>
+                        <li><a href="#showcase"><i class="fas fa-chevron-right"></i> 海洋生物</a></li>
+                        <li><a href="#arc-carousel"><i class="fas fa-chevron-right"></i> 生物图鉴</a></li>
+                        <li><a href="#conservation"><i class="fas fa-chevron-right"></i> 生态保护</a></li>
+                        <li><a href="#news-events"><i class="fas fa-chevron-right"></i> 新闻活动</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 参观指南</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>联系我们</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-info-text">
+                            <strong>地址</strong>
+                            <p>海洋世界水族馆</p>
+                            <p>中国深圳市南山区海岸大道100号</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-info-text">
+                            <strong>电话</strong>
+                            <p>+86 755-1234-5678</p>
+                            <p>周一至周日: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-info-text">
+                            <strong>邮箱</strong>
+                            <p>info@oceanworld.com</p>
+                            <p>support@oceanworld.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>订阅通讯</h3>
+                    <p>订阅我们的电子通讯，获取最新的海洋资讯、保护项目进展和活动信息。我们每月发送一次通讯，您可以随时取消订阅。</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="您的电子邮箱" required>
+                        <button type="submit">订阅</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 海洋世界水族馆. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            const backToTop = document.getElementById('back-to-top');
+
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+                backToTop.classList.add('active');
+            } else {
+                header.classList.remove('scrolled');
+                backToTop.classList.remove('active');
+            }
+        });
+
+        // 移动端菜单
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+
+            if (mobileMenu.classList.contains('active')) {
+                mobileMenu.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+
+                    // 关闭移动端菜单
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                        mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // 返回顶部按钮
+        document.getElementById('back-to-top').addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 数字动画
+        function animateStats() {
+            const stats = document.querySelectorAll('.status-stat');
+
+            stats.forEach(stat => {
+                const value = parseInt(stat.getAttribute('data-value'));
+                const duration = 2000; // 动画持续时间（毫秒）
+                const frameRate = 60; // 每秒帧数
+                const totalFrames = duration / 1000 * frameRate;
+                const increment = value / totalFrames;
+
+                let currentValue = 0;
+                let frame = 0;
+
+                const animate = () => {
+                    if (frame < totalFrames) {
+                        currentValue += increment;
+                        stat.textContent = Math.round(currentValue);
+                        frame++;
+                        requestAnimationFrame(animate);
+                    } else {
+                        stat.textContent = value;
+                    }
+                };
+
+                animate();
+            });
+        }
+
+        // 滚动动画
+        function checkScroll() {
+            // 威胁项目动画
+            const threatItems = document.querySelectorAll('.threat-item');
+            threatItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (itemTop < windowHeight - 100) {
+                    item.classList.add('show');
+                }
+            });
+
+            // 重要性卡片动画
+            const importanceCards = document.querySelectorAll('.importance-card');
+            importanceCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (cardTop < windowHeight - 100) {
+                    card.classList.add('show');
+                }
+            });
+
+            // 保护建议卡片动画
+            const tipCards = document.querySelectorAll('.tip-card');
+            tipCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (cardTop < windowHeight - 100) {
+                    card.classList.add('show');
+                }
+            });
+
+            // 志愿者机会卡片动画
+            const opportunityCards = document.querySelectorAll('.opportunity-card');
+            opportunityCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (cardTop < windowHeight - 100) {
+                    card.classList.add('show');
+                }
+            });
+        }
+
+        // 项目标签页
+        const projectTabs = document.querySelectorAll('.project-tab');
+        const projectContents = document.querySelectorAll('.project-content');
+
+        projectTabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                const tabId = this.getAttribute('data-tab');
+
+                projectTabs.forEach(t => t.classList.remove('active'));
+                projectContents.forEach(c => c.classList.remove('active'));
+
+                this.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // 捐赠金额选择
+        const amountBtns = document.querySelectorAll('.amount-btn');
+        const customAmountInput = document.querySelector('.custom-amount');
+
+        amountBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                amountBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                if (this.getAttribute('data-amount') === 'custom') {
+                    customAmountInput.classList.add('show');
+                } else {
+                    customAmountInput.classList.remove('show');
+                }
+            });
+        });
+
+        // 进度条动画
+        function animateProgressBar() {
+            const progressBars = document.querySelectorAll('.progress-bar-fill');
+
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        }
+
+        // 页面加载完成后执行
+        window.addEventListener('load', function () {
+            animateStats();
+            checkScroll();
+            animateProgressBar();
+        });
+
+        // 滚动时执行
+        window.addEventListener('scroll', checkScroll);
+
+        // 初始化Three.js场景
+        const container = document.getElementById('earth-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        // 创建地球
+        const earthGeometry = new THREE.SphereGeometry(3, 64, 64);
+        const earthTexture = new THREE.TextureLoader().load('https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/textures/planets/earth_atmos_2048.jpg');
+        const earthMaterial = new THREE.MeshPhongMaterial({
+            map: earthTexture,
+            specular: new THREE.Color(0x333333),
+            shininess: 5
+        });
+        const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+        scene.add(earth);
+
+        // 添加云层
+        const cloudGeometry = new THREE.SphereGeometry(3.05, 64, 64);
+        const cloudTexture = new THREE.TextureLoader().load('https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/textures/planets/earth_clouds_1024.png');
+        const cloudMaterial = new THREE.MeshPhongMaterial({
+            map: cloudTexture,
+            transparent: true,
+            opacity: 0.4
+        });
+        const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
+        scene.add(clouds);
+
+        // 添加环境光
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        // 添加定向光（模拟太阳光）
+        const sunLight = new THREE.DirectionalLight(0xffffff, 1);
+        sunLight.position.set(5, 3, 5);
+        scene.add(sunLight);
+
+        camera.position.z = 7;
+
+        // 动画循环
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // 地球自转
+            earth.rotation.y += 0.001;
+            
+            // 云层自转（速度略快于地球）
+            clouds.rotation.y += 0.002;
+            
+            renderer.render(scene, camera);
+        }
+
+        // 处理窗口大小变化
+        window.addEventListener('resize', () => {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            
+            renderer.setSize(width, height);
+        });
+
+        // 启动动画
+        animate();
+    </script>
+</body>
+
+</html>
