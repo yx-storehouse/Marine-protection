@@ -118,7 +118,9 @@ nav {
 .nav-links a:hover::after {
     width: 100%;
 }
-
+.nav-links .linked::after{
+    width: 100%;    
+}
 .mobile-menu {
     display: none;
     font-size: 1.5rem;
