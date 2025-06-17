@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海洋世界 - 社区分享</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/community.css">
+</head>
+
+<body>
+    <!-- 导航栏 - 完全匹配 index.html -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo" data-aos="fade-right"><i class="fas fa-water"></i>海洋世界</a>
+                <ul class="nav-links">
+                    <li data-aos="fade-down" data-aos-delay="100"><a href="index.html">首页</a></li>
+                    <li data-aos="fade-down" data-aos-delay="200"><a href="marine-species.html">海洋生物</a></li>
+                    <li data-aos="fade-down" data-aos-delay="300"><a href="conservation.html">生态保护</a></li>
+                    <li data-aos="fade-down" data-aos-delay="400"><a href="science-education.html">科普教育</a></li>
+                    <li data-aos="fade-down" data-aos-delay="500"><a href="active.html">活动展览</a></li>
+                    <li data-aos="fade-down" data-aos-delay="600"><a href="community.html" class="linked">社区分享</a></li>
+                    <li data-aos="fade-down" data-aos-delay="700"><a href="visitor-guide.html">参观指南</a></li>
+                    <li data-aos="fade-down" data-aos-delay="800"><a href="about.html">关于我们</a></li>
+                    <li data-aos="fade-down" data-aos-delay="900"><a href="wonders.html">海洋探秘</a></li>
+                </ul>
+                <div class="mobile-menu" data-aos="fade-left">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <section class="main-content">
+        <!-- 页面标题 -->
+        <div class="page-header fade-in">
+            <h1 class="page-title">海洋故事社区</h1>
+            <p class="page-subtitle">分享你的海洋探索之旅，与全世界的海洋爱好者交流互动</p>
+        </div>
+
+        <!-- 社区统计 -->
+        <div class="community-stats fade-in">
+            <div class="stat-card">
+                <div class="stat-number">12.5K</div>
+                <div class="stat-label">活跃用户</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">8.9K</div>
+                <div class="stat-label">分享故事</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25.6K</div>
+                <div class="stat-label">上传照片</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">156K</div>
+                <div class="stat-label">互动点赞</div>
+            </div>
+        </div>
+
+        <!-- 内容布局 -->
+        <div class="content-layout fade-in">
+            <!-- 主故事区 -->
+            <div class="main-content-area">
+                <!-- 故事上传区 -->
+                <div class="story-section">
+                    <h2 class="section-title">📝 分享你的海洋故事</h2>
+                    
+                    <div class="upload-form">
+                        <div class="form-group">
+                            <label class="form-label">故事标题</label>
+                            <input type="text" class="form-input" placeholder="给你的海洋故事起个精彩的标题..." id="storyTitle">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">故事内容</label>
+                            <textarea class="form-textarea" placeholder="分享你在水族馆的难忘经历、有趣发现或感动瞬间..." id="storyContent"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">上传照片</label>
+                            <div class="file-upload">
+                                <input type="file" multiple accept="image/*" id="storyImages">
+                                <label class="file-upload-label">
+                                    📸 点击上传照片 (支持多张图片)
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button class="submit-btn" onclick="submitStory()">🌊 发布故事</button>
+                    </div>
+                </div>
+
+                <!-- 故事动态 -->
+                <div class="story-section">
+                    <h2 class="section-title">🌊 社区故事动态</h2>
+                    
+                    <div class="story-feed" id="storyFeed">
+                        <!-- 故事将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 侧边栏 -->
+            <aside class="sidebar">
+                <!-- 热门故事 -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">🔥 热门故事</h3>
+                    <div id="hotStories">
+                        <!-- 热门故事将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+
+                <!-- 照片画廊 -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">📸 精彩瞬间</h3>
+                    <div class="photo-gallery">
+                        <div class="gallery-item" onclick="viewPhoto('dolphin')">🐬</div>
+                        <div class="gallery-item" onclick="viewPhoto('turtle')">🐢</div>
+                        <div class="gallery-item" onclick="viewPhoto('shark')">🦈</div>
+                        <div class="gallery-item" onclick="viewPhoto('coral')">🪸</div>
+                    </div>
+                </div>
+
+                <!-- 社区活动 -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">🎪 社区活动</h3>
+                    <div id="communityEvents">
+                        <!-- 活动将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+
+                <!-- 本月贡献者 -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">🏆 本月贡献者</h3>
+                    <div id="topContributors">
+                        <!-- 贡献者将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+    </section>
+
+    <!-- 照片查看模态框 -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">照片详情</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody">
+                <!-- 模态框内容将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 - 完全匹配 index.html -->
+    <footer id="contact">
+        <div class="footer-wave"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about" data-aos="fade-up">
+                    <a href="#" class="footer-logo"><i class="fas fa-water"></i>海洋世界</a>
+                    <p>我们致力于通过教育和保护行动，促进海洋生态系统的可持续发展，保护海洋生物多样性。海洋世界水族馆是一个集科普教育、科学研究和生态保护于一体的综合性海洋主题场馆。</p>
+                    <div class="social-links">
+                        <a href="#" data-aos="zoom-in" data-aos-delay="100"><i class="fab fa-weixin"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="200"><i class="fab fa-weibo"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="300"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="400"><i class="fab fa-youtube"></i></a>
+                        <a href="#" data-aos="zoom-in" data-aos-delay="500"><i class="fab fa-bilibili"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="100">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> 首页</a></li>
+                        <li><a href="#showcase"><i class="fas fa-chevron-right"></i> 海洋生物</a></li>
+                        <li><a href="#arc-carousel"><i class="fas fa-chevron-right"></i> 生物图鉴</a></li>
+                        <li><a href="#conservation"><i class="fas fa-chevron-right"></i> 生态保护</a></li>
+                        <li><a href="#news-events"><i class="fas fa-chevron-right"></i> 新闻活动</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 参观指南</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact" data-aos="fade-up" data-aos-delay="200">
+                    <h3>联系我们</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-info-text">
+                            <strong>地址</strong>
+                            <p>海洋世界水族馆</p>
+                            <p>中国深圳市南山区海岸大道100号</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-info-text">
+                            <strong>电话</strong>
+                            <p>+86 755-1234-5678</p>
+                            <p>周一至周日: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-info-text">
+                            <strong>邮箱</strong>
+                            <p>info@oceanworld.com</p>
+                            <p>support@oceanworld.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-newsletter" data-aos="fade-up" data-aos-delay="300">
+                    <h3>订阅通讯</h3>
+                    <p>订阅我们的电子通讯，获取最新的海洋资讯、保护项目进展和活动信息。我们每月发送一次通讯，您可以随时取消订阅。</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="您的电子邮箱" required>
+                        <button type="submit">订阅</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom" data-aos="fade-up" data-aos-delay="400">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 海洋世界水族馆. 保留所有权利.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">隐私政策</a>
+                        <a href="#">使用条款</a>
+                        <a href="#">网站地图</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/community.js"></script>
+</body>
+</html>
